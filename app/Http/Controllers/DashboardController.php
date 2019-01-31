@@ -80,7 +80,7 @@ WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MO
   AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
    group by dealers.name
   order by total DESC
-  LIMIT 2");
+  LIMIT 5");
 $carsByDealerC = collect($carsByDealer);
 
 
@@ -102,6 +102,28 @@ array_push($arraydealerstotal, $key->total);
 }
 
 
+$maxDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
+ FROM cars
+  left join dealers on dealers.id = cars.dealer_id
+WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
+  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
+   group by dealers.name
+  order by total DESC
+  LIMIT 5");
+
+if($maxDealer)
+{
+    $maxDealer  =$maxDealer[0]->total;
+
+  }else{
+    $arraydealers = array('No Data this month');
+
+$arraydealerstotal = array(0);
+
+$maxDealer  =0;
+
+  }
+
 $carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY day DESC LIMIT 7");
 $carsPerDay = collect($carsPerDay);
 
@@ -121,16 +143,16 @@ foreach ($carsPerDay as $key ) {
 array_push($lastDaysTotals, $key->total);
 
 }
-$maxDay = DB::select(" SELECT DayName(created_at) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY total DESC");
 
-$maxDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
- FROM cars
-  left join dealers on dealers.id = cars.dealer_id
-WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
-   group by dealers.name
-  order by total DESC
-  LIMIT 2");
+$maxDay = DB::select(" SELECT DayName(created_at) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY total DESC");
+$maxDay =$maxDay[0]->total;
+
+
+
+
+
+
+
 
 		return response()->json([
 			'cars3' => $ago->take(3), 
@@ -143,8 +165,8 @@ WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MO
 			'ago' => $now->addSeconds(10)->diffForHumans(),
 			'today' => $date,
 						'dayN' => $carsPerDay, 
-      'maxDay' => $maxDay[0]->total,
-			'maxDealer' => $maxDealer[0]->total,
+      'maxDay' => $maxDay,
+			'maxDealer' => $maxDealer,
 		    'due' => $due = Invoice::where('is_paid','!=', 1)->sum('due'),
 		    'income' => $due - $expenses,
 		    'total_cars' => $cars_month->count(),

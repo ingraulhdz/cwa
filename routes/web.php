@@ -23,6 +23,9 @@ Route::get('getCarsPerDay',['as'=>'getCarsPerDay','uses'=>'DashboardController@g
 Route::get('getDataCars',['as'=>'getDataCars','uses'=>'DashboardController@getDataCars']);
 Route::get('getDataDashboard',['as'=>'getDataDashboard','uses'=>'DashboardController@getDataDashboard']);
 
+Route::get('getDataReport',['as'=>'getDataReport','uses'=>'MasterData\ReportController@getDataReport']);
+Route::get('refreshData',['as'=>'refreshData','uses'=>'MasterData\ReportController@refreshData']);
+
 	Route::get('dealers/{id}','MasterData\CarController@getDealers');
 
 Route::post('ready_car',['as'=>'ready_car','uses'=>'MasterData\CarController@ready_car']);

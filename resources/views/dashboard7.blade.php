@@ -174,6 +174,8 @@ carsByDealer(data);
 
 
 
+        },error: function (data){
+          console.log(data.responseJSON);
         },
 
         complete: function() {
@@ -260,20 +262,21 @@ var myLineChart = new Chart(ctx, {
 });
 }
 
-
 function carsByDealer(data){
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
-  data: {
-    labels: data.dealersTop ,
-    datasets: [{
-      label: "Cars",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data:  data.dealersTopTotal 
-    }],
-  },
+   data: {
+      labels: data.dealersTop,
+      datasets: [
+        {
+          label: "cars this month",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                borderColor: "rgba(2,117,216,1)",
+          data: data.dealersTopTotal
+        }
+      ]
+    },
   options: {
     scales: {
       xAxes: [{

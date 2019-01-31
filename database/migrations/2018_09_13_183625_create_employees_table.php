@@ -85,6 +85,20 @@ class CreateEmployeesTable extends Migration
                                             ]); 
 
 
+
+                                DB::table('employees')->insert([
+            'name' => 'odin ',
+            'last_name' => 'Ruiz',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+
+
     }
 
     /**
