@@ -127,14 +127,14 @@ echo $today;
           <p class="small text-center text-muted my-5">
             <em id="ago"></em>
           </p>
-    
+ 		
 
 
 @endsection
 
 
 @section('js')
-    <script src="js/Chart.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
     
 
     <script>
@@ -164,7 +164,7 @@ $('#today').text(data.today);
 
             // Cars Per Day bar chart
 
-
+console.log(data.carsByDealer);
 carsPerDay(data);
 carsPie(data);
 carsByDealer(data);
@@ -211,7 +211,7 @@ function carsPerDay(data){
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: [data.dayN[6].day, data.dayN[5].day, data.dayN[4].day, data.dayN[3].day, data.dayN[2].day, data.dayN[1].day, data.dayN[0].day ],
+    labels: data.lastDays,
     datasets: [{
       label: "Cars",
       lineTension: 0.3,
@@ -224,7 +224,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
-    data: [data.dayN[6].total, data.dayN[5].total, data.dayN[4].total, data.dayN[3].total, data.dayN[2].total, data.dayN[1].total, data.dayN[0].total ],
+    data: data.lastDaysTotal,
     }],
   },
   options: {
@@ -245,7 +245,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: parseInt(data.max[0].total) ,
+          max: data.maxDay + 1,
           maxTicksLimit: 10
         },
         gridLines: {
@@ -266,12 +266,12 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: [ data.popo[0].dealer, data.popo[1].dealer, data.popo[2].dealer, data.popo[3].dealer ],
+    labels: data.dealersTop ,
     datasets: [{
       label: "Cars",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [ data.popo[0].total, data.popo[1].total, data.popo[2].total, data.popo[3].total  ]
+      data:  data.dealersTopTotal 
     }],
   },
   options: {
@@ -290,8 +290,8 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max:  parseInt(data.max[0].total) - 5,
-          maxTicksLimit:  parseInt(data.max[0].total) - 5
+          max: data.maxDealer,
+          maxTicksLimit: 5
         },
         gridLines: {
           display: true

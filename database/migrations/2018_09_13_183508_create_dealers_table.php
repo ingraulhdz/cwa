@@ -72,6 +72,18 @@ class CreateDealersTable extends Migration
             'zip_code' => 60440,
             'logo' => 'chevy',
                                             ]); 
+    DB::table('dealers')->insert([
+            'name' => 'ford',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'contact' => 'Juan Perez',
+            'contact_phone' => '456956598',
+            'manager' => 'John smit',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'logo' => 'chevy',
+                                            ]); 
 
 
 

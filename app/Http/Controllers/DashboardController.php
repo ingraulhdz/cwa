@@ -26,7 +26,8 @@ class DashboardController extends Controller
   order by total DESC"); 
 */
 
-    	return view('dashboard');
+
+    	return view('dashboard7');
 
     }
 
@@ -37,8 +38,6 @@ $dia = $now->format('d');
 $date = $now->format('g:ia \o\n l jS F Y');
 $now = Carbon::now();
 
-$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY day DESC");
-$max = DB::select(" SELECT DayName(created_at) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY total DESC");
 
 
 /*$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ', Day(created_at)) AS day, count(*) AS total FROM cars GROUP BY day order by created_at DESC ");
@@ -58,13 +57,7 @@ $ago->push(['id' => $car->id, 'make' => $car->make, 'model' => $car->model, 'yea
 
 }
 
-$carsByDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
- FROM cars
-  left join dealers on dealers.id = cars.dealer_id
-WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
-   group by dealers.name
-  order by total DESC");
+
 $cars_month = DB::select("SELECT count(cars.id) as total
  from cars
   WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
@@ -76,15 +69,82 @@ $due_month = DB::select("SELECT sum(cars.price) as total
 $expenses= 1210;
 $cars_month = Car::whereMonth('created_at', '=', $mes)->get();
 $invoices = Invoice::orderBy('id','DESC')->get();
+
+
+
+
+$carsByDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
+ FROM cars
+  left join dealers on dealers.id = cars.dealer_id
+WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
+  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
+   group by dealers.name
+  order by total DESC
+  LIMIT 2");
+$carsByDealerC = collect($carsByDealer);
+
+
+$arraydealers = array();
+$arraydealerstotal = array();
+
+
+foreach ($carsByDealerC as $key ) {
+
+array_push($arraydealers, $key->dealer);
+
+}
+
+
+foreach ($carsByDealerC as $key ) {
+
+array_push($arraydealerstotal, $key->total);
+
+}
+
+
+$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY day DESC LIMIT 7");
+$carsPerDay = collect($carsPerDay);
+
+$lastDays = array();
+$lastDaysTotals = array();
+
+
+foreach ($carsPerDay as $key ) {
+
+array_push($lastDays, $key->day);
+
+}
+
+
+foreach ($carsPerDay as $key ) {
+
+array_push($lastDaysTotals, $key->total);
+
+}
+$maxDay = DB::select(" SELECT DayName(created_at) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY total DESC");
+
+$maxDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
+ FROM cars
+  left join dealers on dealers.id = cars.dealer_id
+WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
+  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
+   group by dealers.name
+  order by total DESC
+  LIMIT 2");
+
 		return response()->json([
 			'cars3' => $ago->take(3), 
 			'invoices3' => $invoices->take(3), 
-			'popo' => $carsByDealer, 
+      'dealersTop' => $arraydealers, 
+      'dealersTopTotal' => $arraydealerstotal, 
+      'lastDays' => $lastDays, 
+			'lastDaysTotal' => $lastDaysTotals, 
          'currentMont' => $now->toFormattedDateString(), 
 			'ago' => $now->addSeconds(10)->diffForHumans(),
 			'today' => $date,
 						'dayN' => $carsPerDay, 
-			'max' => $max,
+      'maxDay' => $maxDay[0]->total,
+			'maxDealer' => $maxDealer[0]->total,
 		    'due' => $due = Invoice::where('is_paid','!=', 1)->sum('due'),
 		    'income' => $due - $expenses,
 		    'total_cars' => $cars_month->count(),
