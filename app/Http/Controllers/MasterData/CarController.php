@@ -18,6 +18,9 @@ use App\Models\Detailer;
 use App\Models\Extra;
 use App\Models\Dealer;
 use App\Models\Payment;
+use App\Models\Month;
+use App\Models\Month_Expenses;
+use App\Models\Expense;
 use App\Models\Employee;
 use App\Models\BodyStyle;
 use App\Models\Service;
@@ -25,6 +28,7 @@ use App\Http\Requests\RequestCar;
 use Illuminate\Database\Query;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Carbon\Carbon; 
 
 use Illuminate\Routing\Route;
 
@@ -36,6 +40,14 @@ class CarController extends Controller
     {
       	$cars = new Car();
         $emplo= Employee::pluck('name','id');
+//$cars->createMonthly(); //create montly expenses fro the current mode if tha car added is the first one in the curren month
+
+
+
+
+
+
+
         return view('app.cars.index', compact('cars','emplo'));
 
     }
@@ -197,15 +209,42 @@ public function createCar(Request $request)
 
 
     try{
-   /*      $car->make = $request->make;
-        $car->model = $request->model;
-        $car->year = $request->year;
-        $car->dealer_id = $request->dealer_id;
-        $car->vin = $request->vin;*/
+      
+$now = Carbon::now();
+        $car = Car::orderBy('created_at','DESC')->first()->created_at;
+        $lastMonth = $car->format('y').''.$car->format('m');
+        $currentMonth = $now->format('y').''.$now->format('m');
 
 
 
-/**---------------*/
+if( $lastMonth != $currentMonth){
+
+     $month = $currentMonth;
+     $month_name = $now->format('F');
+
+      $month = new Month();
+      $month->month = $currentMonth;
+      $month->month_name = $month_name ;
+      $month->save();
+
+$expenses= Expense::where('is_monthly',1)->get();
+
+foreach ($expenses as $key ) {
+
+  $rel = new Month_Expenses();
+$rel->expense_id = $key->id;
+$rel->month_id = $month->id;
+$rel->save();
+
+}
+
+
+
+}
+
+
+
+
 
 $car = new Car($request->all());
 if( is_null($request->price) ){

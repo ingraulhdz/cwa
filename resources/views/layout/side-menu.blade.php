@@ -56,15 +56,18 @@
 
 
 
-
-
-  <li class="nav-item">
-          <a class="nav-link" href="{{ url('invoice') }}">
-            <i class="fas fa-address-card fa-arrow-down" style="color: #dc3545"></i>
-            <span>Expenses</span></a>
-    </li>
-
-
+   <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-arrow-down fa-arrow-down"style="color: #dc3545"></i>
+            <span>Expenses</span>
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="pagesDropdown">
+            <h6 class="dropdown-header" style="color: #dc3545">About Car:</h6>
+            <a class="dropdown-item"  href="{{ url('supply') }}"><i class='fa fa-car' style="color: #dc3545"></i> Supplies</a>
+            <a class="dropdown-item" href="{{ url('expense') }}"><i class='fa fa-ad' style="color: #dc3545"></i> Expenses</a>
+            <div class="dropdown-divider"></div>
+          </div>
+  </li>
 
  
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Carbon\Carbon; 
 
 class Car extends Model
 {
@@ -43,6 +44,44 @@ public function scopeCar($query, $car){
  
 }
 }
+
+
+public function createMonthly(){
+
+try{
+        $now = Carbon::now();
+        $cars = Car::orderBy('created_at','DESC')->first()->created_at;
+        $lastMonth = $cars->format('y').'-'.$cars->format('m');
+        $currentMonth = $now->format('y').'-'.$now->format('m');
+if( $lastMonth != $currentMonth){
+
+     $month = $currentMonth;
+     $month_name = $now->format('F');
+      $month = Month::firstOrCreate(
+    ['month' => $month], ['month_name' => $month_name]
+);
+}
+
+return true;
+
+}catch(Exception $e){
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+        }
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
 
 public function name(){

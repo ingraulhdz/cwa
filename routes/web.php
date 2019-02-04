@@ -46,6 +46,8 @@ Route::get('customer.invoice/{id}', ['as'=>'customer.invoice','uses'=>'MasterDat
 
 Route::resource('report','MasterData\ReportController');
 Route::resource('extra','MasterData\ExtraController');
+Route::resource('expense','MasterData\ExpenseController');
+Route::resource('supply','MasterData\SupplyController');
 Route::resource('payment','MasterData\PaymentController');
 Route::resource('body_style','MasterData\BodyStyleController');
 Route::resource('service','MasterData\ServiceController');

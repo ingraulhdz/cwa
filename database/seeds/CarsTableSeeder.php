@@ -529,7 +529,7 @@ DB::table('cars')->insert([
             'service_id' => 1,
             'color' => 'red',
             'created_at' => '2019-01-30 07:43:13',    
-                                'employee_id' => 1
+                                'employee_id' => 1,
                                             ]);
         //
 
@@ -539,15 +539,158 @@ DB::table('cars')->insert([
             'make' => 'dodge',
             'model' => 'ram',
             'year' => '2015',
-            'vin' => '342351',
+            'vin' => '475261',
             'stock' => '234d',
             'dealer_id' => 4,
             'body_style_id' => 1,
             'service_id' => 1,
-            'color' => 'red',
-            'created_at' => '2019-01-30 05:43:13'
+            'color' => 'red',   
+                                'employee_id' => 2,
+            'created_at' => '2019-01-31 05:43:13'
                                             ]);
 
+
+
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '342387',
+            'stock' => '234d',
+            'dealer_id' => 1,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 2,
+            'created_at' => '2019-01-31 06:43:13'
+                                            ]);
+
+
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '342398',
+            'stock' => '234d',
+            'dealer_id' => 4,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 5,
+            'created_at' => '2019-01-31 08:43:13'
+                                            ]);
+
+/*
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '342302',
+            'stock' => '234d',
+            'dealer_id' => 2,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 5,
+            'created_at' => '2019-02-01 05:43:13'
+                                            ]);
+
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '393351',
+            'stock' => '234d',
+            'dealer_id' => 4,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 5,
+            'created_at' => '2019-02-01 04:43:13'
+                                            ]);
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '342351',
+            'stock' => '234d',
+            'dealer_id' => 5,
+            'body_style_id' => 1,
+            'service_id' => 1,   
+                                'employee_id' => 4,
+            'color' => 'red',
+            'created_at' => '2019-02-01 08:43:13'
+                                            ]);
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '932351',
+            'stock' => '234d',
+            'dealer_id' => 4,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 3,
+            'created_at' => '2019-02-01 05:05:13'
+                                            ]);
+
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '342851',
+            'stock' => '234d',
+            'dealer_id' => 3,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',   
+                                'employee_id' => 1,
+            'created_at' => '2019-02-02 05:43:13'
+                                            ]);
+
+
+
+
+DB::table('cars')->insert([
+            'make' => 'dodge',
+            'model' => 'ram',
+            'year' => '2015',
+            'vin' => '302831',
+            'stock' => '234d',
+            'dealer_id' => 1,
+            'body_style_id' => 1,
+            'service_id' => 1,
+            'color' => 'red',
+            'created_at' => '2019-02-02 02:43:13'
+                                            ]);
+*/
 
         //
 
