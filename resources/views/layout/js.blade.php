@@ -6,6 +6,7 @@
 <script src="/js/sweetalert2.all.min.js"></script>
 
      <script src="/js/sb-admin.js"></script>
+     <script src="/js/toastr.min.js"></script>
     <script src="/vendor/datatables/jquery.dataTables.js"></script>
 
     <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
