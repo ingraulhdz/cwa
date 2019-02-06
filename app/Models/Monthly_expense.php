@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Month extends Model
+class Monthly_expense extends Model
 {
         //protected $table = 'cliente';
   protected $table = 'monthly_expenses';
@@ -13,4 +13,11 @@ class Month extends Model
 
 'month','month_name','cost'
     ];
+
+
+
+    public function expenses(){
+
+        return $this->hasMany('App\Models\Expense');
+    }
 }

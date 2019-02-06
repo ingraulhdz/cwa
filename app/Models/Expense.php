@@ -13,4 +13,7 @@ class Expense extends Model
 
 'name','price','description', 'status','is_monthly'
     ];
+
+
+  
 }

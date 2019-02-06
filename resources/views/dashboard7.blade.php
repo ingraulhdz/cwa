@@ -103,19 +103,19 @@ Is Montly?  </label>
               Cars in last 7 days</div>
             <div class="card-body">
             <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <canvas id="expensesChart" width="100%" height="40%"></canvas>
 </div>
-            <div class="col-md-6">
+            <div class="col-md-4 card">
   
  <div class="row">
       <div class="col-xl-12 col-sm-12 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card text-white bg-danger o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-car"></i>
                   </div>
-                  <div class="mr-5"><b id="total_cars"></b> Monthly Cars!</div>
+                  <div class="mr-5"><b id="total_expenses"></b> Total Expenses</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">View Details</span>
@@ -129,12 +129,12 @@ Is Montly?  </label>
 
  <div class="row">
       <div class="col-xl-12 col-sm-12 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card text-white bg-success o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
                     <i class="fas fa-fw fa-car"></i>
                   </div>
-                  <div class="mr-5"><b id="total_cars"></b> Monthly Cars!</div>
+                  <div class="mr-5"><b id="income"></b> Income!</div>
                 </div>
                 <a class="card-footer text-white clearfix small z-1" href="#">
                   <span class="float-left">View Details</span>
@@ -145,6 +145,28 @@ Is Montly?  </label>
               </div>
             </div>
 </div>
+
+
+ <div class="row">
+      <div class="col-xl-12 col-sm-12 mb-3">
+              <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-car"></i>
+                  </div>
+                  <div class="mr-5"><b id="profit"></b> Profit!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">View Details</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+</div>
+
+
 
 
 </div>         
@@ -218,12 +240,10 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
         success: 
           function(data){
 
-$('#due').text("$" + data.due + ".00" );
-$('#today_cars').text(data.cars_today);
-$('#income').text("$" + data.income + ".00" );
-$('#total_cars').text(data.total_cars);
-$('#ago').text("Last updated " + data.ago);
-$('#today').text(data.today);
+$('#total_expenses').text("$" + data.total_expenses + ".00" );
+$('#total_income').text("$" + data.total_income + ".00" );
+$('#profit').text("$" + data.profit + ".00" );
+
 
 
            
@@ -257,11 +277,11 @@ function carsPie(data){
 var myPieChart = new Chart(ctx, {
     type: 'pie',
     data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      labels: data.array_expense_name,
       datasets: [{
         label: "Expenses",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: [2478,5267,734,784,433]
+        data: data.array_expense_cost
       }]
     },
     options: {

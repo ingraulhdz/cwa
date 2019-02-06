@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 
 use App\Models\Dealer;
+use App\Models\Monthly_expense;
 use App\Models\Invoice;
 use Carbon\Carbon; 
 use App\Models\Employee;
@@ -14,17 +15,9 @@ class DashboardController extends Controller
 {
     //
     public function index(){
-/*'
-*/
 
-/*$carsByEmployee = DB::select("SELECT users.name as detailer, count(cars.employee_id) as total
- from cars
-  left join users on users.id = cars.employee_id
-  WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
-  group by users.name
-  order by total DESC"); 
-*/
+$mes = new Monthly_expense();
+//dd($mes);
 
 
     	return view('dashboard7');
