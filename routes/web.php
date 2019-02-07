@@ -14,8 +14,14 @@ Route::get('app.dealers.show/{id}',
 
 
 */Route::get('car-extras/{id}','MasterData\CarController@car_extras');
+Route::get('expenses', 'MasterData\ExpenseController@main');
+
+
+Route::post('create_supply','MasterData\ExpenseController@AddSupply');
+Route::get('get_supply/{id}','MasterData\SupplyController@getSupply');
 Route::post('delete_car_invoice',['as'=>'delete_car_invoice','uses'=>'MasterData\InvoiceController@deleteCarInvoice']);
 Route::post('to_invoice',['as'=>'to_invoice','uses'=>'MasterData\InvoiceController@toInvoice']);
+Route::post('create_unique_expense',['as'=>'create_unique_expense','uses'=>'MasterData\ExpenseController@CreateUniqueExpense']);
 
 Route::get('get-year',['as'=>'get-year','uses'=>'MasterData\CarController@getYear']);
 Route::get('getDealersTop',['as'=>'getDealersTop','uses'=>'DashboardController@getDealersTop']);

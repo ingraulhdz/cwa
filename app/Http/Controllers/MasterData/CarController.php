@@ -18,7 +18,7 @@ use App\Models\Detailer;
 use App\Models\Extra;
 use App\Models\Dealer;
 use App\Models\Payment;
-use App\Models\Month;
+use App\Models\MonthPassive;
 use App\Models\Month_Expenses;
 use App\Models\Expense;
 use App\Models\Employee;
@@ -212,28 +212,26 @@ public function createCar(Request $request)
       
 $now = Carbon::now();
         $car = Car::orderBy('created_at','DESC')->first()->created_at;
-        $lastMonth = $car->format('y').''.$car->format('m');
-        $currentMonth = $now->format('y').''.$now->format('m');
-
+        $lastMonth = $car->format('y-m');
+        $currentMonth = $now->format('y-m');
 
 
 if( $lastMonth != $currentMonth){
 
-     $month = $currentMonth;
      $month_name = $now->format('F');
 
-      $month = new Month();
-      $month->month = $currentMonth;
+      $month = new MonthPassive();
+      $month->month = 1212;
       $month->month_name = $month_name ;
       $month->save();
 
-$expenses= Expense::where('is_monthly',1)->get();
+$expenses= Expense::where('status',1)->get();
 
 foreach ($expenses as $key ) {
 
   $rel = new Month_Expenses();
 $rel->expense_id = $key->id;
-$rel->month_id = $month->id;
+$rel->month_passive_id = $month->id;
 $rel->save();
 
 }

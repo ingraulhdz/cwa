@@ -6,21 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 
 use App\Models\Dealer;
-use App\Models\Monthly_expense;
 use App\Models\Invoice;
 use Carbon\Carbon; 
-use App\Models\Employee;
 use DB;
 class DashboardController extends Controller
 {
     //
     public function index(){
 
-$mes = new Monthly_expense();
-//dd($mes);
-
-
-    	return view('dashboard7');
+//
+      
+    return view('dashboard7');
 
     }
 

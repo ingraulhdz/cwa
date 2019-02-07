@@ -13,11 +13,11 @@ class CreateMonthlyExpenses extends Migration
      */
     public function up()
     {
-     Schema::create('monthly_expenses', function (Blueprint $table) {
+     Schema::create('month_passives', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('month');
+            $table->date('month');
            $table->string('month_name');
-            $table->double('cost', 8, 2)->default(0);  
+            $table->double('price', 8, 2)->default(0);  
             //$table->boolean('status')->default(1);   
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ class CreateMonthlyExpenses extends Migration
 
       public function down()
     {
-        Schema::dropIfExists('monthly_expenses');
+        Schema::dropIfExists('month_passives');
     }
 }

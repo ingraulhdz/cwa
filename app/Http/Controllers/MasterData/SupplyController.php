@@ -29,6 +29,11 @@ class SupplyController extends Controller
         return view('app.supplies.index', compact('supplies'));
     }
 
+    public function getSupply($id)
+    {
+
+        return Supply::findOrFail($id);
+    }
 
 	public function create()
 	{

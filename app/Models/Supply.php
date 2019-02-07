@@ -13,4 +13,11 @@ class Supply extends Model
 
 'name','price','description'
     ];
+
+
+    public function monthlyExpenses()
+    {
+        return $this->belongsToMany('App\Models\monthlyExpenses');
+    }
+
 }

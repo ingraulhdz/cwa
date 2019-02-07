@@ -18,7 +18,6 @@ class CreateExpensesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->double('price', 8, 2); 
-            $table->boolean('is_monthly')->default(0);  
             $table->boolean('status')->default(1);  
             $table->timestamps();
         });

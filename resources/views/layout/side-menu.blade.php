@@ -54,20 +54,14 @@
             <span>Invoices</span></a>
     </li>
 
+  <li class="nav-item">
+          <a class="nav-link" href="{{ url('expenses') }}">
+            <i class="fas fa-address-card fa-envelope" style="color: #dc3545"></i>
+            <span>Expenses</span></a>
+    </li>
 
 
-   <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-arrow-down fa-arrow-down"style="color: #dc3545"></i>
-            <span>Expenses</span>
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header" style="color: #dc3545">About Car:</h6>
-            <a class="dropdown-item"  href="{{ url('supply') }}"><i class='fa fa-car' style="color: #dc3545"></i> Supplies</a>
-            <a class="dropdown-item" href="{{ url('expense') }}"><i class='fa fa-ad' style="color: #dc3545"></i> Expenses</a>
-            <div class="dropdown-divider"></div>
-          </div>
-  </li>
+
 
  
 
@@ -80,13 +74,19 @@
             <span>Modules</span>
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header" style="color: #dc3545">About Car:</h6>
+            <h6 class="dropdown-header" style="color: #dc3545">Car:</h6>
             <a class="dropdown-item"  href="{{ url('body_style') }}"><i class='fa fa-car' style="color: #dc3545"></i> Body Styles</a>
             <a class="dropdown-item" href="{{ url('extra') }}"><i class='fa fa-ad' style="color: #dc3545"></i> Extras</a>
             <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header" style="color: #dc3545">About Services:</h6>
+            <h6 class="dropdown-header" style="color: #dc3545">Services:</h6>
             <a class="dropdown-item"  href="{{ url('service') }}"><i class='fa fa-american-sign-language-interpreting' style="color: #dc3545"></i> Services</a>
             <a class="dropdown-item"  href="{{ url('payment') }}"><i class='fa fa-money-check-alt' style="color: #dc3545"></i> Payments</a>
+
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header" style="color: #dc3545">Expenses:</h6>
+            <a class="dropdown-item"  href="{{ url('supply') }}"><i class='fa fa-american-sign-language-interpreting' style="color: #dc3545"></i> Supplies</a>
+            <a class="dropdown-item"  href="{{ url('expense') }}"><i class='fa fa-money-check-alt' style="color: #dc3545"></i> Monthly Expenses</a>
+
           </div>
   </li>
 

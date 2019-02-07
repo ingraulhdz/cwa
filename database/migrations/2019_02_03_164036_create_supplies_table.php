@@ -17,9 +17,9 @@ class CreateSuppliesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->string('measure');
             $table->double('price', 8, 2); 
             $table->boolean('status')->default(1);   
-            $table->boolean('frequent')->default(0);   
                         $table->timestamps();
         });
     }
