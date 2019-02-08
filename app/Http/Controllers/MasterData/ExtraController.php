@@ -37,7 +37,12 @@ class ExtraController extends Controller
 
 
 	public function store(Request $request)
-	{
+	{ 
+        $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
+  ]);
 		try{
 
 			$extra = new Extra($request->all());
@@ -67,10 +72,22 @@ class ExtraController extends Controller
 
 	public function update(Request $request,$id)
 	{
-        $extra= Extra::findOrFail($id);
+     $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
+
+  ]);
+    try{
+            $extra= Extra::findOrFail($id);
         $extra->fill($request->all());
         $extra->save();
+        }catch(\Exception $e){
 
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+            }
         $message ='Extra updated! ';
 	 	\Session::flash('message',$message);
         return redirect()->route('extra.index');
@@ -95,6 +112,8 @@ $message ="Extra active";
 }
 
  $item->save();
+        \Session::flash('message',$message);
+
  return back()->with('success', $message);
 
 }

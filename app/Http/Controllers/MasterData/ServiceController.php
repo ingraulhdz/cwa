@@ -40,6 +40,12 @@ class ServiceController extends Controller
 
 	public function store(Request $request)
 	{
+		  $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
+
+  ]);
 
 try{
 		$service = new service($request->all());
@@ -75,9 +81,22 @@ return view('app.services.edit', compact('service'));
 	 */
 	public function update(Request $request,$id)
 	{
+		  $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
 
+  ]);
+
+
+try{
         $service= service::findOrFail($id);
         $service->fill($request->all());
+ }catch(\Exception $e){
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+        }
 
         $service->save();
          $message ='Service updated! ';
@@ -99,16 +118,18 @@ public function destroy($id)
 
  if($item->status){
 $item->status = 0;
-$message="Body Style inactive";
+$message="Service is  inactive";
 }
 else{
 
 $item->status = 1;
-$message ="Body Style inactive";
+$message ="Service is  active";
 
 }
 
  $item->save();
+ 		 	\Session::flash('message',$message);
+
  return back()->with('success', $message);
 
 }

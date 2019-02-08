@@ -221,22 +221,24 @@ if( $lastMonth != $currentMonth){
      $month_name = $now->format('F');
 
       $month = new MonthPassive();
-      $month->month = 1212;
       $month->month_name = $month_name ;
       $month->save();
 
 $expenses= Expense::where('status',1)->get();
+$expense_price=0;
 
 foreach ($expenses as $key ) {
 
   $rel = new Month_Expenses();
 $rel->expense_id = $key->id;
 $rel->month_passive_id = $month->id;
+$expense_price=  $expense_price + $key->price ;
 $rel->save();
 
 }
 
-
+$month->price = $expense_price;
+      $month->save();
 
 }
 

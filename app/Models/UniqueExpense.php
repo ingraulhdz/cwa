@@ -11,7 +11,7 @@ class UniqueExpense extends Model
 
      protected $fillable = [
 
-'name','price','description', 'month_id'
+'name','price','description', 'month_passive_id'
     ];
 
 

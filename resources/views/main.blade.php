@@ -35,19 +35,7 @@
               </li>
               <li class="breadcrumb-item active">Overview</li>
             </ol> -->
-@if(Session::has('message'))
-  <div class="alert alert-success">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-    {{ Session::get('message') }}
-  </div>
-@endif
-@if(Session::has('error'))
-  <div class="alert alert-danger">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-    {{ Session::get('error') }}
-  
-  </div>
-@endif
+
 
 <!-- @if ($errors->any())
     <div class="alert alert-danger">
@@ -83,6 +71,65 @@
 
     @include('layout.js')
 
+
+@if(Session::has('message'))
+    {{ Session::get('message') }}
+    <script >
+
+
+
+swal({
+  position: 'top-end',
+  type: 'success',
+  title:'{{ Session::get('message') }} ',
+  showConfirmButton: false,
+  timer: 2000
+});
+   </script>
+@endif
+@if(Session::has('error'))
+  
+   <script >
+ toastr["error"](' {{ Session::get('error') }} ');
+
+    </script>
+
+@endif
+
+@if ($errors->any())
+   <script >
+    var message = '<small>';
+
+
+    </script>
+   
+            @foreach ($errors->all() as $error)
+             <script >
+              var err= '{{ $error }}';
+              // toastr["error"](err);
+toastr.options = {
+  "closeButton": true,   "timeOut": "15000",
+}
+
+               message = message+"<li>"+err+"</li>";
+
+             </script>   
+            @endforeach
+     
+
+        <script >
+          toastr["error"](message+"</small> ", "check the follows errors")
+/*Swal.fire({
+  type: 'error',
+  title: 'Oops... Please check the errors',
+  html: message
+})
+
+*/
+    </script>
+
+
+@endif
 <script>
       $(document).ready(function(){
 var i= 0;

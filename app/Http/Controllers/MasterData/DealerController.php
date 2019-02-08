@@ -66,7 +66,18 @@ return $pdf->stream();
 	public function store(Request $request)
 	{
 
+ $data = $this->validate(request(), [
+        'name' => 'required',
+        'contact' => 'required',
+            'phone' => 'required|digits:10|numeric|unique:dealers',
+            'contact_phone' => 'required|min:10|digits:10|numeric',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email|unique:dealers',
+            'address' => 'required'
+  ]);
 
+
+    // $data = request()->only('name', 'price', 'category_id');
 
 try{
 
@@ -80,7 +91,7 @@ try{
             return \Redirect::back()->withInput()->withErrors($messageError);
         }
 
-            $message ='The dealer was created!.';
+            $message ='The dealer '.$dealer->name.' was created!.';
             \Session::flash('message',$message);
              return redirect()->route('dealer.index');
 
@@ -107,13 +118,21 @@ public function edit($id)
 	 */
 	public function update(Request $request,$id)
 	{
-
+ $data = $this->validate(request(), [
+        'name' => 'required',
+        'contact' => 'required',
+            'phone' => 'required|digits:10|numeric|unique:dealers',
+            'contact_phone' => 'required|min:10|digits:10|numeric',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email|unique:dealers',
+            'address' => 'required',
+  ]);
 try{
         $dealer= Dealer::findOrFail($id);
         $dealer->fill($request->all());
         $dealer->save();
 
-        $message ='Update successfull! ';
+        $message ='Dealer '.$dealer->name. ' was Updated successfull ! ';
 		\Session::flash('message',$message);
         return redirect()->route('dealer.index');
 
@@ -136,23 +155,40 @@ try{
 	 */
 	public function destroy($id)
 {
+try{
 
  $dealer = Dealer::findOrFail($id);
 
  if($dealer->status){
 $dealer->status = 0;
-$message="dealer inactive";
+$message="dealer INACTIVE";
 }
 else{
 
 $dealer->status = 1;
-$message ="Employee inactive";
+$message ="Dealer ACTIVE";
 
 }
 
  $dealer->save();
 
+
+             $message ='Update successfull: '.$message;
+		\Session::flash('message',$message);
         return back()->with('success', $message);
+
+}catch(Exception $e){
+            $messageError = "Someting is wrong: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+        }
+
+
+
+
+
+
+
 
 }
 

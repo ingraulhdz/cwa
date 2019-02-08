@@ -1,9 +1,5 @@
 @extends('app.main')
 
-@section('css')
-    <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-@stop
-
 @section('bar')
 @include('app.customers.nav-bar')
 @stop
@@ -59,10 +55,4 @@
               </div>
    
 @endsection
-
-@section('js')
-    <script src="/js/demo/datatables-demo.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-@stop
 

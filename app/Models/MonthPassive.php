@@ -21,6 +21,12 @@ class MonthPassive extends Model
     }
 
 
+  public function month_supplies()
+    {
+        return $this->hasMany('App\Models\Month_Supplies');
+    }
+
+
 
     public function expenses(){
 

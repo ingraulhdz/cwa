@@ -16,7 +16,7 @@
                     <tr>
                       <th>Name</th>
                       <th>Description</th>
-                      <th>Body Style</th>
+                      <th>Vehicle types</th>
                       <th>Price</th>
                       <th>Status</th>
                       <th>Options</th>
@@ -29,7 +29,7 @@
                     <tr>
                       <td>{{$service->name}}</td>
                       <td>{{$service->description}}</td>
-                      <td>@if($service->service) {{ $service->service->name}}  @endif</td>
+                      <td>@if($service->body_style) {{ $service->service->name}} @else All Types @endif</td>
                       <td>${{$service->price}}.00</td>
                                            <td>
 @if($service->status) <span class="badge badge-pill badge-success"><i class="fa fa-check"></i> Active</span>@else

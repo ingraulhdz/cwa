@@ -28,20 +28,20 @@
         <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-print"></i> Export</button>
         </a>
       </li>
-
+<li class="nav-item" id="btn-add-supply" style="display: none">
+        <a class="nav-link" href="#" id="add_expense" data-toggle="modal" data-target="#add_expenses">
+        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add Expense</button>
+        </a>
+      </li>
        <li class="nav-item" id="btn-add-expense" style="display: none">
         <a class="nav-link" href="#" id="add_supply" data-toggle="modal" data-target="#add_supplys">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Add Supply</button>
+        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add Supply</button>
         </a>
       </li>
 
-        <li class="nav-item" id="btn-add-supply" style="display: none">
-        <a class="nav-link" href="#" id="add_expense" data-toggle="modal" data-target="#add_expenses">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Add Expense</button>
-        </a>
-      </li>
+        
 
-        <a class="nav-link  text-muted pull-right float-right" href="#" id="add_expense" data-toggle="modal" data-target="#add_expenses">
+        <a class="nav-link  text-muted pull-right float-right" href="#" id="date_expense" style="display: none" data-toggle="modal" data-target="#add_expenses">
 <small>Data for <?php
 $today = date('F Y');               // Sat Mar 10 17:16:18 MST 2001
 echo $today;

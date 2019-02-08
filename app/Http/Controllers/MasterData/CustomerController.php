@@ -44,12 +44,15 @@ class CustomerController extends Controller
 	public function store(Request $request)
 	{
 
+ $data = $this->validate(request(), [
+        'name' => 'required',
+            'phone' => 'required|digits:10|numeric|unique:customers',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email|unique:customers',
+            'address' => 'required',  
+            'city' => 'required'  ]);
 
-$validatedData = $request->validate([
-         'email' => 'required|email|unique:users',
-    'phone' => 'required|numeric',
 
-    ]);
 
 
 try{
@@ -94,6 +97,13 @@ public function edit($id)
 	 */
 	public function update(Request $request,$id)
 	{
+ $data = $this->validate(request(), [
+        'name' => 'required',
+            'phone' => 'required|digits:10|numeric',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email',
+            'address' => 'required',  
+            'city' => 'required'  ]);
 
 try{
         $customer= Customer::findOrFail($id);
@@ -102,7 +112,7 @@ try{
 
          $message ='Customer updated! ';
 		 	\Session::flash('message',$message);
-        return redirect()->route('customer.index');
+        return redirect()->back()->withInput();
 
 }catch(Exception $e){
             $messageError = "Someting is wrong: ".$e->getMessage();
@@ -144,7 +154,7 @@ $message ="customer inactive";
 }
 
  $customer->save();
-
+            \Session::flash('message',$message);
         return back()->with('success', $message);
 
 }

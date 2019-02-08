@@ -15,7 +15,6 @@ class CreateMonthlyExpenses extends Migration
     {
      Schema::create('month_passives', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('month');
            $table->string('month_name');
             $table->double('price', 8, 2)->default(0);  
             //$table->boolean('status')->default(1);   

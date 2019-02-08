@@ -42,6 +42,7 @@ class ExpenseController extends Controller
 
      public function main()
     {
+
         return view('app.expenses.main');
     }
 
@@ -58,6 +59,9 @@ $supply->supply_id = $request->supply_id;
 $supply->amount = $request->amount;
 $supply->total_price = $request->total;
 $supply->save();
+
+$month->price = $month->price + $request->total;
+$month->save();
 return $supply;
  }catch(\Exception $e){
 
@@ -77,8 +81,11 @@ $now = Carbon::now();
 $y = $now->format('Y');
 $m = $now->format('m');
 $month = MonthPassive::whereYear('created_at', $y)->whereMonth('created_at', $m)->first();
+
+$month_supplies = $month->month_supplies;
 $array_expense_name = array();
 $array_expense_cost = array();
+$array_expense_amount = array();
 
 $expenses= Expense::where('status',1)->get();
 $unique_expenses = UniqueExpense::where('month_passive_id', $month->id)->get();
@@ -88,20 +95,29 @@ $supplies= ($month->supplies);
 
 
 
-
+if($supplies){
 
 
 foreach ($supplies as $key ) {
+
     array_push($array_expense_name, $key->name);
 }
 
 
 foreach ($supplies as $key ) {
-array_push($array_expense_cost, $key->price);
+foreach ($month_supplies as $ms ) {
+
+        if($key->id == $ms->supply_id){
+
+
+    array_push($array_expense_cost, ($key->price* $ms->amount) );
+
+        }
+    }
+
+
 }
-
-
-
+}
 
 foreach ($expenses as $key ) {
     array_push($array_expense_name, $key->name);
@@ -110,6 +126,7 @@ foreach ($expenses as $key ) {
 
 foreach ($expenses as $key ) {
 array_push($array_expense_cost, $key->price);
+
 }
 
 
@@ -125,6 +142,7 @@ foreach ($unique_expenses as $key ) {
 
 array_push($array_expense_cost, $key->price);
 
+
 }
 $sum_unique_expenses= $unique_expenses->sum('price');
 
@@ -139,7 +157,7 @@ foreach ($expenses as $key) {
     $expenses_all->push([
     'name' => $key->name,
     'type' => 'Montly Expense',
-    'price' => $key->price
+    'price' => $key->price,
 ]);
 
 }
@@ -151,38 +169,43 @@ foreach ($unique_expenses as $key) {
     $expenses_all->push([
     'name' => $key->name,
     'type' => 'Unique Expense',
-    'price' => $key->price
+    'price' => $key->price,
 ]);
 
 }
 
 }
-
 
 if($supplies){
 
 foreach ($supplies as $key) {
 
-    $expenses_all->push([
-    'name' => $key->name,
-    'type' => 'Supply',
-    'price' => $key->price
-]);
+    foreach ($month_supplies as $ms ) {
 
-}
+        if($key->id == $ms->supply_id){
 
-}
+            $expenses_all->push([
+            'name' => $key->name,
+            'type' => 'Supply',
+            'price' => $key->price."x".$ms->amount."= $".$key->price * $ms->amount
+                             ]);
 
+                                }
 
+                                    }
 
-
-
-
-$sum_expenses = $expenses->sum('price');
-$sum_supplies = 0 ;
+                        }
 
 
-$total_expenses = ( $sum_expenses + $sum_supplies + $sum_unique_expenses );
+                    }
+
+
+
+
+
+
+
+$total_expenses = $month->price;
 $total_income = 500;
 $profit = $total_income - $total_expenses;
 
@@ -211,11 +234,19 @@ $profit = $total_income - $total_expenses;
     {
        try{
 
-$month_id = MonthPassive::orderby('id','DESC')->first()->month;
+
+$now = Carbon::now();
+$y = $now->format('Y');
+$m = $now->format('m');
+$month = MonthPassive::whereYear('created_at', $y)->whereMonth('created_at', $m)->first();
+
 
             $expense = new UniqueExpense($request->all());
-            $expense->month_id = 1;
+            $expense->month_passive_id = $month->id;
             $expense->save();
+$month->price = $month->price+$request->price;
+$month->save();
+             return $expense;
 
         }catch(\Exception $e){
 
@@ -224,14 +255,17 @@ $month_id = MonthPassive::orderby('id','DESC')->first()->month;
             return $messageError;
             }
 
-            $message ='The expense was created!.';
-            \Session::flash('message',$message);
-             return 1;
+        
     }
 
 
 	public function store(Request $request)
-	{
+	{ $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
+
+  ]);
 		try{
 
 			$expense = new Expense($request->all());
@@ -260,10 +294,25 @@ $month_id = MonthPassive::orderby('id','DESC')->first()->month;
 
 
 	public function update(Request $request,$id)
-	{
-        $expense= Expense::findOrFail($id);
+	{ 
+        $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+                    'price' => 'required|numeric',
+
+  ]);
+try{
+  $expense= Expense::findOrFail($id);
         $expense->fill($request->all());
         $expense->save();
+    }catch(\Exception $e){
+
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return $messageError;
+            }
+
+
 
         $message ='Expense updated! ';
 	 	\Session::flash('message',$message);
@@ -289,6 +338,8 @@ $message ="Expense active";
 }
 
  $item->save();
+        \Session::flash('message',$message);
+
  return back()->with('success', $message);
 
 }

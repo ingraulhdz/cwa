@@ -51,15 +51,16 @@ class EmployeeController extends Controller
 	public function store(Request $request)
 	{
 
-/*
-$this->validate($request,[
-	 'name' => 'required|min:2|max:32',
-            'phone' => 'required|digits_between:7,15|numeric',
-            'email' => 'required|unique:users|email',
-            'photo' => 'image',
-	]);
-     
-*/
+ $data = $this->validate(request(), [
+        'name' => 'required',
+        'last_name' => 'required',
+            'phone' => 'required|digits:10|numeric|unique:dealers',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email|unique:dealers',
+            'address' => 'required',
+            'rol_id' => 'required',
+  ]);
+
 
 
 
@@ -87,7 +88,7 @@ if($request->photo){
 
 
 
- $message ='The employee was created!.';
+ $message ='The employee: '.$employee->name.' was created!.';
  \Session::flash('message',$message);
  return redirect()->route('employee.index');
 
@@ -122,16 +123,20 @@ public function destroy($id)
 
  if($employee->status){
 $employee->status = 0;
-$message="Employee inactive";
+         $message =$employee->name. ' was updated to INACTIVE! ';
 }
 else{
 
 $employee->status = 1;
-$message="Employee inactive";
+         $message =$employee->name. ' was updated to ACTIVE! ';
 
 }
  $employee->save();
 
+
+
+		\Session::flash('message',$message);
+        return redirect()->route('employee.index');
         return back()->with('success', $message);
 
 }
@@ -150,6 +155,17 @@ $message="Employee inactive";
 	
 	public function update(Request $request,$id)
 	{
+ $data = $this->validate(request(), [
+        'name' => 'required',
+        'last_name' => 'required',
+            'phone' => 'required|digits:10|numeric|unique:dealers',
+        'zip_code' =>  'required|digits:5|numeric',
+            'email' => 'required|email|unique:dealers',
+            'address' => 'required',
+            'rol_id' => 'required',
+  ]);
+
+
 
 try{
 
@@ -175,7 +191,7 @@ if($request->photo){
 
          $message ='Empoyee updated! ';
 		\Session::flash('message',$message);
-        return redirect()->route('employee.index');
+        return redirect()->back()->withInput();
 
  }catch(\Exception $e){
 

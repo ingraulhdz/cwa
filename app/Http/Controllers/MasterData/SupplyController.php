@@ -43,6 +43,10 @@ class SupplyController extends Controller
 
 	public function store(Request $request)
 	{
+         $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244'
+  ]);
 		try{
 
 			$supply = new Supply($request->all());
@@ -72,10 +76,22 @@ class SupplyController extends Controller
 
 	public function update(Request $request,$id)
 	{
+         $data = $this->validate(request(), [
+        'name' => 'required|min:2|max:244',
+        'description' => 'required|min:5|max:244',
+            'price' => 'required|numeric',
+  ]);
+
+         try{
         $supply= Supply::findOrFail($id);
         $supply->fill($request->all());
         $supply->save();
+    }catch(\Exception $e){
 
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+            }
         $message ='supply updated! ';
 	 	\Session::flash('message',$message);
         return redirect()->route('supply.index');
@@ -100,6 +116,8 @@ $message ="supply active";
 }
 
  $item->save();
+            \Session::flash('message',$message);
+
  return back()->with('success', $message);
 
 }

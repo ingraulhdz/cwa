@@ -13,6 +13,7 @@ Route::get('app.dealers.show/{id}',
 	['as'=>'app.dealers.show','uses'=>'MasterData\DealerController@show']);
 
 
+
 */Route::get('car-extras/{id}','MasterData\CarController@car_extras');
 Route::get('expenses', 'MasterData\ExpenseController@main');
 
