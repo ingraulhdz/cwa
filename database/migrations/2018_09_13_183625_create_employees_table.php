@@ -98,6 +98,65 @@ class CreateEmployeesTable extends Migration
 
                                             ]); 
 
+                                                                DB::table('employees')->insert([
+            'name' => 'Carlos ',
+            'last_name' => 'Ruiz',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+
+                                                                                                DB::table('employees')->insert([
+            'name' => 'Lino ',
+            'last_name' => 'Perez',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+                                                                                                DB::table('employees')->insert([
+            'name' => 'Rick ',
+            'last_name' => 'Carls',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+
+                                                                                                DB::table('employees')->insert([
+            'name' => 'George  ',
+            'last_name' => 'Smith',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+
+                                                                                                DB::table('employees')->insert([
+            'name' => 'Rogelio ',
+            'last_name' => 'Perez',
+            'email' => 'raulhernandezing@gmail.com',
+            'phone' => '46595659',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 3
+
+                                            ]); 
+
 
     }
 
