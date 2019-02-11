@@ -9,12 +9,18 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-Route::get('app.dealers.show/{id}',
-	['as'=>'app.dealers.show','uses'=>'MasterData\DealerController@show']);
+*/
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Auth::routes();
 
-*/Route::get('car-extras/{id}','MasterData\CarController@car_extras');
+Route::get('/home', 'HomeController@index')->name('home');
+
+            
+	Route::get('car-extras/{id}','MasterData\CarController@car_extras');
 Route::get('expenses', 'MasterData\ExpenseController@main');
 
 
@@ -76,21 +82,19 @@ Route::get('car.customer', function () { return view('app.cars.customer');})->na
 Route::get('car.print','MasterData\CarController@print');
 
 
+  
 
-Route::get('/', 'DashboardController@index');
-
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/tables', function () {
-    return view('/template/tables');
-});
-
-Route::get('/charts', function () {
-    return view('/template/charts');
-});
-
-
-
-
+Route::view('index.html', '/sb-admin/index');
+Route::view('tables.html', '/sb-admin/tables');
+Route::view('charts.html', '/sb-admin/charts');
+Route::view('blank.html', '/sb-admin/blank');
+Route::view('404.html', '/sb-admin/404');
+Route::view('register.html', '/sb-admin/register');
+Route::view('login.html', '/sb-admin/login');
+Route::view('buttons.html', '/sb-admin/buttons');
+Route::view('cards.html', '/sb-admin/cards');
+Route::view('utilities-color.html', '/sb-admin/utilities-color');
+Route::view('utilities-border.html', '/sb-admin/utilities-border');
+Route::view('utilities-animation.html', '/sb-admin/utilities-animation');
+Route::view('utilities-other.html', '/sb-admin/utilities-other');
+Route::view('forgot-password.html', '/sb-admin/forgot-password');

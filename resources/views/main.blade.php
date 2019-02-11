@@ -1,177 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Car Wash Admin @yield('head')</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>SB Admin 2 - Dashboard</title>
 
       @include('layout.css')
 
-  </head>
+</head>
 
-  <body id="page-top">
-  <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+<body id="page-top">
 
-       @include('layout.nav')
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-      <div id="wrapper">
-      <!-- Sidebar -->
-         @include('layout.side-menu')
+    <!-- Sidebar -->
+    @include('layout.topbar')
+    <!-- End of Sidebar -->
 
-          <div id="content-wrapper">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <div class="container-fluid">
+      <!-- Main Content -->
+      <div id="content">
 
-            <!-- Breadcrumbs-->
-           <!--  <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="#">Dashboard</a>
-              </li>
-              <li class="breadcrumb-item active">Overview</li>
-            </ol> -->
+        <!-- Topbar -->
+        
+       @include('layout.sidebar')
+        <!-- End of Topbar -->
+<div class="container-fluid">
 
-
-<!-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $err)
-                <li>{{ $err }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
- -->
-
-              @yield('content')
-
-          </div>
-          <!-- /.container-fluid -->
-
-          <!-- Sticky Footer -->
-         
-        @include('layout.footer')
-
-
+  
+        <!-- Begin Page Content -->
+        @yield('content')
+        <!-- /.container-fluid -->
+     </div>
       </div>
-      <!-- /.content-wrapper -->
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+ @include('layout.footer')
+      <!-- End of Footer -->
+
     </div>
-    <!-- /#wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
+    <!-- End of Content Wrapper -->
 
-    @include('layout.modal')
+  </div>
+  <!-- End of Page Wrapper -->
 
-    @include('layout.js')
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
-
-@if(Session::has('message'))
-    {{ Session::get('message') }}
-    <script >
+  <!-- Logout Modal-->
+  @include('layout.modal')
 
 
+  <!-- Bootstrap core JavaScript-->
+  @include('layout.js')
 
-swal({
-  position: 'top-end',
-  type: 'success',
-  title:'{{ Session::get('message') }} ',
-  showConfirmButton: false,
-  timer: 2000
-});
-   </script>
-@endif
-@if(Session::has('error'))
-  
-   <script >
- toastr["error"](' {{ Session::get('error') }} ');
-
-    </script>
-
-@endif
-
-@if ($errors->any())
-   <script >
-    var message = '<small>';
-
-
-    </script>
-   
-            @foreach ($errors->all() as $error)
-             <script >
-              var err= '{{ $error }}';
-              // toastr["error"](err);
-toastr.options = {
-  "closeButton": true,   "timeOut": "15000",
-}
-
-               message = message+"<li>"+err+"</li>";
-
-             </script>   
-            @endforeach
-     
-
-        <script >
-          toastr["error"](message+"</small> ", "check the follows errors")
-/*Swal.fire({
-  type: 'error',
-  title: 'Oops... Please check the errors',
-  html: message
-})
-
-*/
-    </script>
-
-
-@endif
-<script>
-      $(document).ready(function(){
-var i= 0;
-    var ww = document.body.clientWidth;
-    if (ww < 830) {
-  $("body").toggleClass("sidebar-toggled");
-    $(".sidebar").toggleClass("toggled");   
-     }
-
-
-  
-$.ajax({
-  url: '/getDataDashboard',
-  type: 'GET',
-  success: function(data){
-var id=3;
-
-data.cars3.forEach(element => {
-          $("#nav_card_cars").append("<a class='dropdown-item' href='/car/"+element.id+"'> "+element.year+" "+element.make+" "+element.model+" <small><span class='text-muted'> "+element.ago+"  </span></small> </a><hr>");
-        });
-
-
-data.invoices3.forEach(element => {
-          $("#nav_card_invoices").append("<a class='dropdown-item' href='/invoice/"+element.id+"'> Invoice #"+element.id+" $"+element.due+".00 <small><span class='text-muted'> "+element.created_at+"  </span></small> </a><hr>");
-        });
-
-$("#nav_cars").text(data.total_cars);
-if(data.invoices_open > 0){
-$("#nav_invoices").text(data.invoices_open); 
-
-}else{
-  $("#nav_invoices").hide(); 
-
-}
- }
-})
-
-
-
-});
-</script>
-
-  </body>
+</body>
 
 </html>

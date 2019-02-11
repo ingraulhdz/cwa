@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Mexico_City',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -176,11 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
-Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
-
+                Barryvdh\DomPDF\ServiceProvider::class,
 Intervention\Image\ImageServiceProvider::class
 
+      
 
     ],
 
@@ -196,10 +195,8 @@ Intervention\Image\ImageServiceProvider::class
     */
 
     'aliases' => [
-        'Image' => Intervention\Image\Facades\Image::class,
-
+  'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
