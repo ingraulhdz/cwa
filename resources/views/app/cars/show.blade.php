@@ -1,5 +1,5 @@
-@extends('app.cars.main')
-
+@extends('app.main')
+@include('app.cars.nav-bar')
 
 @section('sub-content')
 

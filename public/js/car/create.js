@@ -18,9 +18,10 @@ e.preventDefault();
 	$('#btn-txt').text( "Add " );
 	$('#fa-btn-modal').addClass( "fa-plus" );
 	$('#modal').addClass( "bd-example-modal-lg" );
-	$('.modal-title').text("Add car" );
+	$('#modal-title').text("Add car" );
 	
 	$('#modal').modal('show');
+
 
 clearCreateFormCar();
 
@@ -41,7 +42,7 @@ var m = ($('#make').val());
 	$.ajax(
 	{
 		type:'POST',
-		url:'create-car',
+		url:'/create-car',
 		            headers:{'X-CSRF-TOKEN':token},
 		datatype: 'JSON',
 		data:{
@@ -81,7 +82,7 @@ if(data.employee){
 
 
 
-		  $('#dataTable').append("<tr class="+data.car.id+">"+
+		  $('#carsTable').append("<tr class="+data.car.id+">"+
 		  	"<td td-name-"+data.car.id+">"+data.car.year+" "+data.car.make+"-"+data.car.model+" #"+data.car.vin+"</td>"+
 		  	"<td td-employee-"+data.car.id+">"+ employee+"</td>"+
 			"<td td-dealer-"+data.car.id+">"+data.dealer.name+"</td>"+
@@ -172,7 +173,7 @@ var popo = null;
 		  {
 			  position: 'top-end',
 			  type: 'error',
-			  title: 'someting ...' + data.error,
+			  title: 'someting is wrong...',
 			  showConfirmButton: true,
 			  timer: 2000
 		  });
@@ -196,6 +197,11 @@ var popo = null;
 
 function clearCreateFormCar(){
  
+ 
+ $('#create_vin').val("");
+ $('#create_vin').attr("class", "form-control form-control-sm form-control-success ");
+                            $('#create_vin').parent().parent().attr("class", "form-group");
+                            $('#create_vin').parent().children('small').hide();                           
 
 
 }

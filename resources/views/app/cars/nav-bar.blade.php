@@ -1,57 +1,15 @@
-<div class="options-bar">
+@section('module_name')
+   <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-car fa-sm fa-fw text-gray-400"></i>
+Cars </h6>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/car">
-   <i class="fa fa-car" style="color: #dc3545;"></i>
-   {{$title or 'Cars'}} 
-  <small>@yield('subtitle')</small></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+@endsection
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="{{ redirect()->back()->getTargetUrl() }}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Back</button>
-        </a>
-      </li>
-
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-        <button id="create-modal" class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add</button>
-        </a>
-      </li>
-
-       <li class="nav-item">
-        <a class="nav-link" href="{{url('car.print')}} " target="_blank">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-print"></i> Export</button>
-        </a>
-      </li>
-
-
-       <li class="nav-item">
-        <a class="nav-link" href="{{route('car.customer')}}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-user"></i> Customer Car</button>
-        </a>
-      </li>
-
-    
-
-          </ul>
-
- 
-<!--
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-        <button class="btn btn-md btn-outline-danger" type="button"><i class="fa fa-trash"></i> Delete</button>
-        </a>
-      </li>
-
-    -->
-
-  </div>
-
-  </div>
-</nav>
-
+@section('options')
+  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Options:</div>
+                      <a class="dropdown-item" href="#" id="create-modal">Add Car</a>
+                      <a class="dropdown-item"  href="{{url('car.print')}} ">Export</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{route('car.customer')}}">Customer Car</a>
+                    </div>
+@endsection

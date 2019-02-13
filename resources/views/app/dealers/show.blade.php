@@ -1,5 +1,5 @@
-@extends('app.dealers.main')
-
+@extends('app.main')
+@include('app.dealers.nav-bar')
 
 @section('sub-content')
 

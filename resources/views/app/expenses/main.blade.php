@@ -1,20 +1,13 @@
 @extends('app.main')
-
-
-
-@section('bar')
 @include('app.expenses.nav-bar')  
+
+@section('css')
         
  
-
-
 @stop
 
-
 @section('sub-content')
-
     
-       
 
 @include('app.expenses.partials.expense_modal')
 @include('app.expenses.partials.supply_modal')
@@ -163,6 +156,7 @@ $("#btn-add").hide();
 $("#btn-export-expense").hide();
 
 $("#create_expense").click(function () {
+  alert();
   $.ajax(
   {
     type:'POST',
@@ -301,3 +295,4 @@ var myPieChart = new Chart(ctx, {
 
 
 @stop
+

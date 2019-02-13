@@ -1,50 +1,9 @@
-<div class="options-bar">
+@section('options')
+  <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Customer Options:</div>
+                      <a class="dropdown-item" href="{{route('customer.create')}}">Add</a>
+                      <a class="dropdown-item" href="{{url('customer.export')}}">Export</a>
+                      <div class="dropdown-divider"></div>
+                    </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/customer">
-   <i class="fa fa-building" style="color: #dc3545;"></i>
-   {{$title or 'Customer'}} 
-  <small>@yield('subtitle')</small></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="{{ url()->previous() }}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Back</button>
-        </a>
-      </li>
-
-        <li class="nav-item">
-        <a class="nav-link" href="{{route('customer.create')}}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add</button>
-        </a>
-      </li>
-
-       <li class="nav-item">
-        <a class="nav-link" href="{{url('customer.export')}}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-print"></i> Export</button>
-        </a>
-      </li>
-
-    
-
-          </ul>
-
- 
-<!--
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-        <button class="btn btn-md btn-outline-danger" type="button"><i class="fa fa-trash"></i> Delete</button>
-        </a>
-      </li>
-
-    -->
-
-  </div>
-
-  </div>
-</nav>
-
+@endsection

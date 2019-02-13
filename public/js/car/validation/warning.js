@@ -1,7 +1,7 @@
 
 $.ajax({
 	type:'GET',
-	url:'get-year',
+	url:'/get-year',
 	dataType:'JSON',
 	data:{
 		'year':year,

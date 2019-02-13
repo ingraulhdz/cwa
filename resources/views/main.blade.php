@@ -20,8 +20,8 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-    <!-- Sidebar -->
-    @include('layout.topbar')
+    <!-- Sidebar -->       @include('layout.sidebar')
+
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -31,8 +31,8 @@
       <div id="content">
 
         <!-- Topbar -->
-        
-       @include('layout.sidebar')
+         @include('layout.topbar')
+   
         <!-- End of Topbar -->
 <div class="container-fluid">
 
@@ -65,7 +65,111 @@
 
   <!-- Bootstrap core JavaScript-->
   @include('layout.js')
+ 
 
+@if(Session::has('message'))
+    {{ Session::get('message') }}
+    <script >
+
+
+
+swal({
+  position: 'top-end',
+  type: 'success',
+  title:'{{ Session::get('message') }} ',
+  showConfirmButton: false,
+  timer: 2000
+});
+   </script>
+@endif
+@if(Session::has('error'))
+  
+   <script >
+ toastr["error"](' {{ Session::get('error') }} ');
+
+    </script>
+
+@endif
+
+@if ($errors->any())
+   <script >
+    var message = '<small>';
+
+
+    </script>
+   
+            @foreach ($errors->all() as $error)
+             <script >
+              var err= '{{ $error }}';
+              // toastr["error"](err);
+toastr.options = {
+  "closeButton": true,   "timeOut": "15000",
+}
+
+               message = message+"<li>"+err+"</li>";
+
+             </script>   
+            @endforeach
+     
+
+        <script >
+          toastr["error"](message+"</small> ", "check the follows errors")
+/*Swal.fire({
+  type: 'error',
+  title: 'Oops... Please check the errors',
+  html: message
+})
+
+*/
+    </script>
+
+
+@endif
+<script>
+      $(document).ready(function(){
+var i= 0;
+    var ww = document.body.clientWidth;
+    if (ww < 830) {
+  $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");   
+     }
+
+  
+$.ajax({
+  url: '/getDataDashboard',
+  type: 'GET',
+  success: function(data){
+var id=3;
+
+data.cars3.forEach(element => {       
+  $("#nav_card_cars").append("<a class='dropdown-item d-flex align-items-center' href='/car/"+element.id+"'><div class='mr-3'><div class='icon-circle bg-primary'><i class='fas fa-car text-white'></i></div></div><div><div class='small text-gray-500'>"+element.ago+"</div><span class='font-weight-bold'>"+element.year+" "+element.make+" "+element.model+"</span></div></a> ");
+        });
+
+
+data.invoices3.forEach(element => {
+          $("#nav_card_invoices").append("<a class='dropdown-item d-flex align-items-center'href='/invoice/"+element.id+"'><div class='dropdown-list-image mr-3'><img class='rounded-circle' src='https://source.unsplash.com/AU4VPcFN4LE/60x60' alt=''><div class='status-indicator'></div></div><div><div class='text-truncate'>Invoice #"+element.id+" $"+element.due+".00 </div><div class='small text-gray-500'>"+element.created_at+" · 1d</div></div></a>");
+        });
+
+/*<a class='dropdown-item' href='/invoice/"+element.id+"'> Invoice #"+element.id+" $"+element.due+".00 <small><span class='text-muted'> "+element.created_at+"  </span></small> </a><hr>
+
+                
+*/
+
+$("#nav_cars").text(data.total_cars);
+if(data.invoices_open > 0){
+$("#nav_invoices").text(data.invoices_open); 
+
+}else{
+  $("#nav_invoices").hide(); 
+
+}
+ }
+})
+
+
+
+});
+</script>
 </body>
 
 </html>

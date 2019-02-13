@@ -1,11 +1,11 @@
 @extends('app.main')
+@include('app.invoices.nav-bar')
+
 @section('css')
-    <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
 @stop
 
-@section('bar')
-@include('app.invoices.nav-bar')
-@stop
+
 @section('sub-content')
 {{$cars->dealer}}
 <div class="row">

@@ -1,11 +1,8 @@
 @extends('app.main')
+@include('app.extras.nav-bar')
 
 @section('css')
     <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-@stop
-
-@section('bar')
-@include('app.extras.nav-bar')
 @stop
 
 

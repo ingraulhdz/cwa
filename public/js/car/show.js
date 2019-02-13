@@ -2,16 +2,15 @@
   $(document).on('click', '#show-modal', function() { 
 
 var id = $(this).data('id');
-	console.log('show '+id);
 $('#btn-modal').addClass( "btn-info" );
 $("#btn-modal").attr("data-dismiss","modal");
 $('#btn-txt').text( "Close" );
 $('#fa-btn-modal').addClass( "fa-times" );
- 
+
 
   $.ajax({
 	type:'GET',
-	url:'get-car',
+	url:'/get-car',
 	dataType:'JSON',
 	data:{
 		'id':id,
@@ -24,7 +23,7 @@ if(data.employee){
 	var employee = '<span class="badge badge-pill badge-warning"><i class="fa fa-exclamation-triangle"></i> Not Asigned!</span>';
 }
 
-$('.modal-title').text(data.car.year +" "+ data.car.make +" "+ data.car.model);
+$('#modal-title').text("Car: "+data.car.year +" "+ data.car.make +" "+ data.car.model);
 
 
 if(data.dealer){

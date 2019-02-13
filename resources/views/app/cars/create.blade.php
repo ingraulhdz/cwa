@@ -326,18 +326,11 @@ function validacion(campo){
                 } 
             }
 
-
-
-
-
   if (campo==='create_vin'){
-
                 vin = document.getElementById(campo).value;
                 if( vin == null || vin.length == 0 || /^\s+$/.test(vin) ) {
                                                        $("#car_found").hide();
-
-                    empty(campo);
-                    
+                    empty(campo);                
                 }
                 else
                 {
@@ -349,10 +342,6 @@ function validacion(campo){
                                     if (!(/^\d{6}$/.test(vin))) 
                                     {
                                                        $("#car_found").hide();
-
-
-
-
                                     $("#glypcn"+campo).remove();
                                     $('#'+campo).attr("class", "form-control form-control-warning");
                                     $('#'+campo).parent().parent().attr("class", "form-group has-warning text-warning has-feedback");
@@ -363,29 +352,32 @@ function validacion(campo){
 
                                     }
 
-                                    else{
+                                   else{
 
                                       $.ajax({
                                         type:'GET',
-                                        url:'get-year',
+                                        url:'/get-year',
                                         dataType:'JSON',
                                         data:{
                                           'vin':vin,
                                           '_token':$('#token').val(),
                                         },
                                         success: function (data){
-
-
-
-if(data.vin == vin){ $("#car_found_link").html(data.car.make +" "+data.car.model +" "+data.car.year +"<br>Last service:  "+ data.car.updated_at +" ");
-                                   $("#car_found").show();
+if(data.vin == vin){
                                    $("#glypcn"+campo).remove();
                                    $('#'+campo).attr("class", "form-control form-control-warning");
                                    $('#'+campo).parent().parent().attr("class", "form-group has-warning text-danger has-feedback");
                                    $('#'+campo).parent().children('small').text("This Vin#  exist in our data base").attr("class","text-danger").show();
                                    $('#'+campo).parent().append("<small id='glypcn"+campo+"' class='fa fa-exclamation-triangle form-control-feedback'></small>");
                                       // $('#make').val(data.car.make).attr("disabled","true");
-
+                                  Swal.fire({
+                                    type: 'error',
+                                    title: 'This car exists in our database...',
+                                    html: data.car.make +" "+data.car.model +" "+data.car.year +" Vin #" +data.car.vin +"<br><small> Last service:  "+ data.car.updated_at +"</small ",
+                                    footer: "<a href='/car/"+data.car.id+"'>See more abour this car</a>"
+                                  });
+vin = 0;
+$("#create_vin").val(0);
                                       return false; 
 
 }
@@ -444,7 +436,7 @@ else
                                     $('#'+campo).parent().parent().attr("class", "form-group has-warning text-warning has-feedback");
 
 if(year<1920){
-                                      $('#'+campo).parent().children('small').text("Year Can be less than 1920").attr("class","text-warning").show();
+                                      $('#'+campo).parent().children('small').text("Year Can not be less than 1920").attr("class","text-warning").show();
 
 }
 if(year>currentYear){

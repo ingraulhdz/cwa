@@ -23,7 +23,6 @@ var id = $(this).data('id');
 	$('#fa-btn-modal').addClass( "fa-forward" );
 	$('#modal').addClass( "bd-example-modal-lg" );
 	$('#modal').modal('show');
-	$('.modal-title').text("Edit car" );
 
   });
 
@@ -39,7 +38,7 @@ $(document).on('click', '.btn-update', function(e) {
 	$.ajax(
 	{
 		type:'POST',
-		url:'update-car',
+		url:'/update-car',
 		data:{
 		  '_token': token,
 		  'id': id,
@@ -106,6 +105,8 @@ function getCar(id){
 		'_token':$('#token').val(),
 	},
 	success: function (data){
+		$('#modal-title').text("Edit Car: "+data.car.year +" "+ data.car.make +" "+ data.car.model);
+
 				$('#make_edit').val(data.car.make);
 		$('#model_edit').val(data.car.model);
 		$('#year_edit').val(data.car.year);

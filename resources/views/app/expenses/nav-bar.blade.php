@@ -1,46 +1,6 @@
-<div class="options-bar">
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/expense">
-   <i class="fa fa-building" style="color: #dc3545;"></i>
-   {{$title or 'Expenses'}} 
-  <small>@yield('subtitle')</small></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-        <a class="nav-link" href="{{ url()->previous() }}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Back</button>
-        </a>
-      </li>
-
-        <li class="nav-item" id="btn-add">
-        <a class="nav-link" href="{{route('expense.create')}}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add</button>
-        </a>
-      </li>
-
-       <li class="nav-item" id="btn-export-expense">
-        <a class="nav-link" href="{{url('expense.export')}}">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-print"></i> Export</button>
-        </a>
-      </li>
-<li class="nav-item" id="btn-add-supply" style="display: none">
-        <a class="nav-link" href="#" id="add_expense" data-toggle="modal" data-target="#add_expenses">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add Expense</button>
-        </a>
-      </li>
-       <li class="nav-item" id="btn-add-expense" style="display: none">
-        <a class="nav-link" href="#" id="add_supply" data-toggle="modal" data-target="#add_supplys">
-        <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-plus"></i> Add Supply</button>
-        </a>
-      </li>
-
-        
-
+ @section('module_name')
+   <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-arrow-down fa-sm fa-fw text-gray-400"></i>
+Expenses</h6><h6>
         <a class="nav-link  text-muted pull-right float-right" href="#" id="date_expense" style="display: none" data-toggle="modal" data-target="#add_expenses">
 <small>Data for <?php
 $today = date('F Y');               // Sat Mar 10 17:16:18 MST 2001
@@ -48,22 +8,24 @@ echo $today;
               ?>   </small>     </a>
       
 
-    @yield('buttons')
+ </h6>
 
-          </ul>
+@endsection
 
- 
-<!--
-        <li class="nav-item">
-        <a class="nav-link" href="#">
-        <button class="btn btn-md btn-outline-danger" type="button"><i class="fa fa-trash"></i> Delete</button>
-        </a>
-      </li>
+@section('options')
+ <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Options:</div>
+                      <a class="dropdown-item"  href="#" id="btn-add-expense">  <i class="fas fa-plus fa-sm fa-fw text-gray-600"></i> Add Expense</a>
+                      <a class="dropdown-item"  href="#" id="btn-add-supply">  <i class="fas fa-plus fa-sm fa-fw text-gray-600"></i> Add Supply</a>
+                      <a class="dropdown-item"  href="{{route('expense.create')}}" id="btn-add">  <i class="fas fa-plus fa-sm fa-fw text-gray-600"></i> Add</a>
+                      <a class="dropdown-item"  href="{{url('expense.print')}}"  id="btn-export-expense">  <i class="fas fa-file fa-sm fa-fw text-gray-600"></i> Export</a>
+                      <div class="dropdown-divider"></div>
+                    </div>
 
-    -->
+@endsection
 
-  </div>
 
-  </div>
-</nav>
 
+
+
+      

@@ -1,7 +1,5 @@
-
-
-@extends('app.employees.main')
-@section('subtitle', '/ ')
+@extends('app.main')
+@extends('app.employees.nav-bar')
 @section('sub-content')
 
 <form action="{{route('employee.update', $employee)}}" method="POST"  enctype= "multipart/form-data">

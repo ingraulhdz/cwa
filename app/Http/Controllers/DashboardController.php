@@ -91,27 +91,6 @@ array_push($arraydealerstotal, $key->total);
 }
 
 
-$maxDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
- FROM cars
-  left join dealers on dealers.id = cars.dealer_id
-WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY 
-   group by dealers.name
-  order by total DESC
-  LIMIT 5");
-
-if($maxDealer)
-{
-    $maxDealer  =$maxDealer[0]->total;
-
-  }else{
-    $arraydealers = array('No Data this month');
-
-$arraydealerstotal = array(0);
-
-$maxDealer  =0;
-
-  }
 
 $carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY day DESC LIMIT 7");
 $carsPerDay = collect($carsPerDay);
@@ -133,17 +112,33 @@ array_push($lastDaysTotals, $key->total);
 
 }
 
-$maxDay = DB::select(" SELECT DayName(created_at) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY total DESC");
-$maxDay =$maxDay[0]->total;
 
+$employees = DB::table('employees')
+->join('cars', 'employees.id', '=', 'cars.employee_id')
+->select('employees.name as name', DB::raw("count(cars.employee_id) as total"))->whereMonth('cars.created_at', $mes)
+->groupBy('employees.name')
+->get()->take(3);
 
+$arrayEmployees = array();
+$employeesTotal = array();
+foreach ($employees as $key ) {
 
+array_push($arrayEmployees, $key->name);
+
+}
+foreach ($employees as $key ) {
+
+array_push($employeesTotal, $key->total);
+
+}
 
 
 
 
 
 		return response()->json([
+      'employees' => $arrayEmployees, 
+      'employeesTotal' => $employeesTotal, 
 			'cars3' => $ago->take(3), 
 			'invoices3' => $invoices->take(3), 
       'dealersTop' => $arraydealers, 
@@ -154,8 +149,6 @@ $maxDay =$maxDay[0]->total;
 			'ago' => $now->addSeconds(10)->diffForHumans(),
 			'today' => $date,
 						'dayN' => $carsPerDay, 
-      'maxDay' => $maxDay,
-			'maxDealer' => $maxDealer,
 		    'due' => $due = Invoice::where('is_paid','!=', 1)->sum('due'),
 		    'income' => $due - $expenses,
 		    'total_cars' => $cars_month->count(),

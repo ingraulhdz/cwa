@@ -1,90 +1,86 @@
-@extends('app.cars.main')
+@extends('app.main')
+@include('app.cars.nav-bar')
 @section('css')
-
-
-
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 @stop
 
 @section('sub-content')
 
-
-
-
-
 <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-dark o-hidden h-100">
+
+       <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-home"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><b id=""></b> New arrived</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="inshop_cars"></label></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="inshop_cars"></b> New Cars</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-warning o-hidden h-100">
+                 <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-check"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><b id=""></b>Ready</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="ready_cars"></label></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="ready_cars"></b> Ready Cars</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="{{url('invoice')}}">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
+                 <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-envelope"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Done</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="done_cars"></label></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="done_cars"></b> Done Cars </div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="{{url('invoice.view')}}">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100">
+                 <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-money-check-alt"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1"><b id=""></b>Due</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="due_cars"></label></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="due_cars"></b> Due cars</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="{{url('invoice.paid')}}">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
-            </div>                        
+            </div>
+
+
+     
+                     
   </div>
 
 
 
  <div class="table-responsive">
-                <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-striped" id="carsTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Car</th>
@@ -148,11 +144,15 @@
 @endsection
 
 @section('js')
-    
+
+  <!-- Page level plugins -->
+  <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
 <script>
 
 $(document).ready(function (){
-
+$("#carsTable").dataTable();
 getCars();
 });
 
@@ -238,7 +238,7 @@ function getCars(){
 $.ajax(
   {
     type:'GET',
-    url:'getCars',
+    url:'/getCars',
     data:{
     '_token':$('#token').val(),
   },

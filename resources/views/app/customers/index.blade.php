@@ -1,8 +1,6 @@
 @extends('app.main')
 
-@section('bar')
 @include('app.customers.nav-bar')
-@stop
 
 
 @section('sub-content')

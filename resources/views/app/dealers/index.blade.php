@@ -1,9 +1,14 @@
-@extends('app.dealers.main')
+@extends('app.main')
+@include('app.dealers.nav-bar')
 @section('css')
-    <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+ 
 @stop
 
 @section('sub-content')
+@include('app.dealers.top_info')
 
 
  <div class="table-responsive">
@@ -68,8 +73,14 @@
 @endsection
 
 @section('js')
-    <script src="/js/demo/datatables-demo.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <script src="js/demo/datatables-demo.js"></script>
+  <script src="vendor/chart.js/Chart.min.js"></script>
+
+  <script src="js/demo/chart-bar-demo.js"></script>
 
 @stop
 

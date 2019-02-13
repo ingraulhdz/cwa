@@ -1,48 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/invoice">Invoices   @yield('subtitle')</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+@section('module_name')  <i class="fas fa-envelope fa-sm fa-fw text-gray-400"></i>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    
-      <li class="nav-item">
-      <a class="nav-link" href="{{ url()->previous() }}">
-        <button class="lead btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-arrow-left"></i> Back</button>
-        </a>
-      </li>
- 
-  <li class="nav-item">
-        <a class="nav-link" href="{{route('invoice.index')}}">
-                <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-home"></i> Main </button></a>
-      </li>
-
-       <li class="nav-item">
-        <a class="nav-link" href="{{url('invoice.view')}}">
-                <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-envelope-open"></i> Open </button></a>
-      </li>
-
-
-  <li class="nav-item">
-        <a class="nav-link" href="{{url('invoice.paid')}}">
-                <button class="btn btn-md btn-xs btn-outline-danger" type="button"><i class="fa fa-envelope"></i> Close</button></a>
-      </li>
-
-
-    
-
-    </ul>     
-
-    <form class="form-inline my-2 my-lg-0" action="{{ route('invoice.create') }}" method="GET">
-<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-   <div class="input-group">
-    <select class="form-control border border-danger" name="id" value="{{ old('dealer_id') }}" required="true">
-         <option value="">Select a Customer</option>
-       
-   
-
+invoices</h6><h6>
+         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ route('invoice.create') }}" method="GET">
+            <div class="input-group">
+                  <select class="form-control bg-light border-0 small" name="id" value="{{ old('dealer_id') }}" required="true" aria-label="Search" aria-describedby="basic-addon3">
+ <option value="">Select a Customer</option>
 
          @foreach(App\Models\Dealer::hasInvoice()->get() as $dealer)
        
@@ -51,21 +13,46 @@
 
 
 
-        </select>  
+        </select> 
 
-
-                <div class="input-group-append">
-            <button class="btn btn-outline-danger" type="submit">
-              <i class="fas fa-eye"></i> View
-            </button>
-          </div>
-        </div>
-
-    </form>
-
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <i class="fas fa-eye fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
 
 
 
+  <div class="dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages          <ul class="navbar-nav ml-auto">
+ -->
+              <div class="dropdown-menu dropdown-menu-right p-0 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search" action="{{ route('invoice.create') }}" method="GET">
+                  <div class="input-group">
+                    <select class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" name="id" value="{{ old('dealer_id') }}" required="true" aria-describedby="basic-addon3" >
+                       @foreach(App\Models\Dealer::hasInvoice()->get() as $dealer)
+       
+        <option value='{{ $dealer->id }}' >{{ $dealer->name }}</option>
+        @endforeach
+
+
+
+        </select> 
+
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-eye fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
 
 
 
@@ -73,9 +60,20 @@
 
 
 
+@endsection
+
+@section('options')
+
+
+ <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Options:</div>
+                      <a class="dropdown-item"  href="{{route('invoice.index')}}">  <i class="fas fa-plus fa-sm fa-fw text-gray-600"></i> Main</a>
+                      <a class="dropdown-item"  href="{{url('invoice.view')}}">  <i class="fas fa-file fa-sm fa-fw text-gray-600"></i> Open</a>
+                      <a class="dropdown-item"  href="{{url('invoice.paid')}}">  <i class="fas fa-file fa-sm fa-fw text-gray-600"></i> Close</a>
+                      <div class="dropdown-divider"></div>
+                    </div>
 
 
 
-  </div>
-</nav>
+@endsection
 

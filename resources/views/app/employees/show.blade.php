@@ -1,6 +1,5 @@
-@extends('app.employees.main')
-
-
+@extends('app.main')
+@extends('app.employees.nav-bar')
 @section('sub-content')
 
 <div class="row">
