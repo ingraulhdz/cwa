@@ -27,22 +27,22 @@ class CreateEmployeesTable extends Migration
             $table->integer('zip_code');
             $table->boolean('status')->default(1);   
             $table->integer('rol_id')->unsigned();
-            $table->foreign('rol_id')->references('id')->on('rols'); 
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');    
+            $table->foreign('rol_id')->references('id')->on('roles'); 
+           // $table->integer('user_id')->unsigned()->nullable();
+           // $table->foreign('user_id')->references('id')->on('users');    
             $table->timestamps();
 
         });
 
            DB::table('employees')->insert([
-            'name' => 'Luis Fernando',
-            'last_name' => 'Ortiz',
+            'name' => 'Raul ',
+            'last_name' => 'Hernandez',
             'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
-            'address' => '544 boughton rd',
+            'phone' => '4422263267',
+            'address' => '217 bunkerhill  ',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 1
 
                                             ]); 
 

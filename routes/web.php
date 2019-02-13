@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', 'MasterData\CarController@index');
@@ -60,6 +60,8 @@ Route::get('invoice.view', 	['as'=>'invoice.view','uses'=>'MasterData\InvoiceCon
 
 Route::get('customer.invoice/{id}', ['as'=>'customer.invoice','uses'=>'MasterData\CustomerController@invoice'])->name('customer.invoice');
 
+Route::resource('user','MasterData\UserController');
+Route::get('/getEmployee','MasterData\UserController@getEmployee');
 Route::resource('report','MasterData\ReportController');
 Route::resource('extra','MasterData\ExtraController');
 Route::resource('expense','MasterData\ExpenseController');
@@ -100,3 +102,6 @@ Route::view('utilities-border.html', '/sb-admin/utilities-border');
 Route::view('utilities-animation.html', '/sb-admin/utilities-animation');
 Route::view('utilities-other.html', '/sb-admin/utilities-other');
 Route::view('forgot-password.html', '/sb-admin/forgot-password');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

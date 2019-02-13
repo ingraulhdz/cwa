@@ -1,8 +1,6 @@
 @extends('app.main')
-@section('subtitle', '/ Create Extra')
-@section('bar')
+
 @include('app.extras.nav-bar')
-@stop
 
 
 @section('sub-content')

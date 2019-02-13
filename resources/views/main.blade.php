@@ -125,6 +125,22 @@ toastr.options = {
 
 
 @endif
+
+
+
+
+ @if (session('status'))
+                      
+
+   <script >
+ toastr["info"](' {{ Session::get('status') }} ');
+ toastr["info"]('  {{ session('status') }}');
+
+    </script>
+
+                    @endif
+
+
 <script>
       $(document).ready(function(){
 var i= 0;

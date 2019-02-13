@@ -1,7 +1,10 @@
 @extends('app.main')
 
-@include('app.extras.nav-bar')
 
+
+@section('bar')
+@include('app.users.nav-bar')
+@stop
 @section('sub-content')
 
 <div class="row">
@@ -33,11 +36,10 @@
 		  <div class="card-header bg-dark text-danger">
 <b>Information</b>		  </div>
 		<ul class="list-group list-group-flush">
-    <li class="list-group-item"><b>Name: </b>{{$extra->name}}</li>
-    <li class="list-group-item"><b>Description: </b>{{$extra->description}}</li>
-		<li class="list-group-item"><b>Price: </b>$ {{$extra->price}}.00</li>
+    <li class="list-group-item"><b>Email: </b>{{$user->email}}</li>
+
     <li class="list-group-item"><b>Status: </b>
-                                @if($extra->status)
+                                @if($user->status)
                                  <span class="badge badge-pill badge-success"><i class="fa fa-check"></i> Active</span>
                                  @else 
                                 <span class="badge badge-pill badge-warning"><i class="fa fa-exclamation-triangle"></i> Inactive</span>
