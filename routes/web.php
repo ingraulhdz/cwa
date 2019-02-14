@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/dashboard', 'MasterData\CarController@index');
-
+Route::get('/dashboard', function () {
+    return view('/welcome');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
