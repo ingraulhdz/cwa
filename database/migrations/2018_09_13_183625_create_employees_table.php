@@ -50,8 +50,8 @@ class CreateEmployeesTable extends Migration
                 DB::table('employees')->insert([
             'name' => 'Angel',
             'last_name' => 'Rodriguez',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'angel@gmail.com',
+            'phone' => '7221231235',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
@@ -63,24 +63,36 @@ class CreateEmployeesTable extends Migration
                 DB::table('employees')->insert([
             'name' => 'Alfredo ',
             'last_name' => 'Quintana',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'alfredo@gmail.com',
+            'phone' => '6301234567',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 2
+
+                                            ]); 
+
+                       DB::table('employees')->insert([
+            'name' => 'Sotero ',
+            'last_name' => 'Cabrera',
+            'email' => 'Sotero@gmail.com',
+            'phone' => '6301236578',
+            'address' => '544 boughton rd',
+            'city' => 'Bolngbrook',
+            'zip_code' => 60440,
+            'rol_id' => 2
 
                                             ]); 
 
                                 DB::table('employees')->insert([
             'name' => 'Cecilio ',
             'last_name' => 'Gonzales',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'cecilio@gmail.com',
+            'phone' => '3312645123',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 4
 
                                             ]); 
 
@@ -89,71 +101,71 @@ class CreateEmployeesTable extends Migration
                                 DB::table('employees')->insert([
             'name' => 'odin ',
             'last_name' => 'Ruiz',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'odin@gmail.com',
+            'phone' => '6302831156',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 4
 
                                             ]); 
 
                                                                 DB::table('employees')->insert([
             'name' => 'Carlos ',
             'last_name' => 'Ruiz',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'carlos@gmail.com',
+            'phone' => '6305821345',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 4
 
                                             ]); 
 
                                                                                                 DB::table('employees')->insert([
             'name' => 'Lino ',
             'last_name' => 'Perez',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'lino@gmail.com',
+            'phone' => '6302651245',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 5
 
                                             ]); 
                                                                                                 DB::table('employees')->insert([
             'name' => 'Rick ',
             'last_name' => 'Carls',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'rick@gmail.com',
+            'phone' => '6302513265',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 5
 
                                             ]); 
 
                                                                                                 DB::table('employees')->insert([
             'name' => 'George  ',
             'last_name' => 'Smith',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'george@gmail.com',
+            'phone' => '6302513265',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 6
 
                                             ]); 
 
                                                                                                 DB::table('employees')->insert([
             'name' => 'Rogelio ',
             'last_name' => 'Perez',
-            'email' => 'raulhernandezing@gmail.com',
-            'phone' => '46595659',
+            'email' => 'rogelio@gmail.com',
+            'phone' => '6302512654',
             'address' => '544 boughton rd',
             'city' => 'Bolngbrook',
             'zip_code' => 60440,
-            'rol_id' => 3
+            'rol_id' => 6
 
                                             ]); 
 

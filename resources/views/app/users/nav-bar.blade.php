@@ -2,14 +2,17 @@
 
 Users</h6><h6>
 
-         <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ route('invoice.create') }}" method="GET">
+         <div class="d-none" id="bar_search_user">
+         <div  class="d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" action="{{ route('invoice.create') }}" method="GET">
             <div class="input-group">
                  <select class="form-control bg-light border-0 small @if ($errors->any()) {{$errors->has('emp') ? 'is-invalid':'is-valid'}} @endif" name="employee" id="employee" value="{{ old('dealer_id') }}" required="true" aria-label="Search" aria-describedby="basic-addon3">
  <option value="">Select Employee</option>
 
          @foreach(App\Models\Employee::get() as $dealer)
        
+       @if(! $dealer->user)
         <option value='{{ $dealer->id }}' >{{ $dealer->name }} {{ $dealer->last_name }}</option>
+        @endif
         @endforeach
 
 
@@ -29,20 +32,6 @@ Users</h6><h6>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="dropdown no-arrow d-sm-none">
               <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
@@ -52,8 +41,9 @@ Users</h6><h6>
               <div class="dropdown-menu dropdown-menu-right p-0 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search" action="{{ route('invoice.create') }}" method="GET">
                   <div class="input-group">
-                    <select class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" name="id" value="{{ old('dealer_id') }}" required="true" aria-describedby="basic-addon3" >
-                       @foreach(App\Models\Dealer::hasInvoice()->get() as $dealer)
+                    <select class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" name="id" value="{{ old('dealer_id') }}" required="true" aria-describedby="basic-addon3" > <option value="">Select Employee</option>
+
+                       @foreach(App\Models\Employee::get() as $dealer)
        
         <option value='{{ $dealer->id }}' >{{ $dealer->name }}</option>
         @endforeach
@@ -70,6 +60,7 @@ Users</h6><h6>
                   </div>
                 </form>
               </div>
+            </div>
             </div>
 
 

@@ -24,7 +24,7 @@
           @foreach($users as $user)                       
                     <tr>
                       <td>{{$user->email}}</td>
-                      <td>{{$user->employee->name}} {{$user->employee->last_name}}</td>
+                      <td>{{$user->employee->fullName()}}</td>
                       <td>{{$user->employee->rol->name}} </td>
                      
                               <td>

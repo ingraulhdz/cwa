@@ -15,8 +15,33 @@ class DashboardController extends Controller
     public function index(){
 
 //
-      
-    return view('dashboard7');
+      if(\Auth::user()){
+
+$rol = \Auth::user()->employee->rol->name;
+
+
+switch ($rol) {
+    case 'Developer':
+      return view('app.dashboards.developer');
+        break;    case 'Admin':
+      return view('app.dashboards.developer');
+        break;
+    case 'Detailer':
+      return view('app.dashboards.detailer');
+        break;
+    case 'Manager':
+      return view('app.dashboards.manager');
+        break;  
+         case 'External':
+      return view('app.dashboards.external');
+        break;   
+       case 'Salaried':
+      return view('app.dashboards.salaried');
+        break;
+}
+
+      }
+    return view('home');
 
     }
 
@@ -92,7 +117,7 @@ array_push($arraydealerstotal, $key->total);
 
 
 
-$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY day DESC LIMIT 7");
+$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ',Day(created_at)) AS day, COUNT(*) AS total FROM cars GROUP BY day ORDER BY created_at DESC LIMIT 7");
 $carsPerDay = collect($carsPerDay);
 
 $lastDays = array();

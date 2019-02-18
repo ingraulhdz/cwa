@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark bg-gradient-primary accordion" id="accordionSidebar"  style="  background-image: linear-gradient(to bottom right, black, #4e73df);">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <div class="sidebar-brand-icon ">
 <img src="/logo.png" height="100%" width="100%">        </div> 
       </a>
@@ -11,7 +11,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="/index.html">
+        <a class="nav-link" href="/dashboard">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>

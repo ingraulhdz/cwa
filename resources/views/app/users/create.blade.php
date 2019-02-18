@@ -15,28 +15,46 @@
 
 
 
- <div class="col-md-6 form-group">
+ <div class="col-md-4 form-group">
       <small for="inlineFormInputGroup">Email</small>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text bg-dark"><i class="fa fa-tag" style="color: #dc3545"></i>
           </div>
         </div>
-        <input type="text" class="form-control @if ($errors->any()) {{$errors->has('email') ? 'is-invalid':'is-valid'}} @endif" id="email" name="email" placeholder="Enter your email address"  required="true" >
+
+        <input type="text" class="form-control @if ($errors->any()) {{$errors->has('email') ? 'is-invalid':'is-valid'}} @endif" id="email_old" name="email_old" placeholder="Enter your email address"  required="true" disabled="true" autofocus>
                    {!! $errors->first('email','<div class="invalid-feedback">:message        </div>') !!}
+        <input type="hidden" id="email" name="email"      >
 
       </div>
   </div>
 
 
- <div class="col-md-6 form-group">
+ <div class="col-md-4 form-group">
+      <small for="inlineFormInputGroup">Username</small>
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text bg-dark"><i class="fa fa-tag" style="color: #dc3545"></i>
+          </div>
+        </div>
+
+        <input type="text" class="form-control @if ($errors->any()) {{$errors->has('username') ? 'is-invalid':'is-valid'}} @endif" id="username" name="username" placeholder="Enter your username address"  required="true" >
+                   {!! $errors->first('username','<div class="invalid-feedback">:message        </div>') !!}
+        <input type="hidden" id="username" name="username"      >
+
+      </div>
+  </div>
+
+
+ <div class="col-md-4 form-group">
       <small for="inlineFormInputGroup">Password</small>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <div class="input-group-text bg-dark"><i class="fa fa-tag" style="color: #dc3545"></i>
           </div>
         </div>
-        <input type="text" class="form-control @if ($errors->any()) {{$errors->has('password') ? 'is-invalid':'is-valid'}} @endif" id="password" name="password" placeholder="Enter your password address" value="{{ old('password') }}" required="true" autofocus>
+        <input type="password" class="form-control @if ($errors->any()) {{$errors->has('password') ? 'is-invalid':'is-valid'}} @endif" id="password" name="password" placeholder="Enter your password address" value="{{ old('password') }}" required="true" >
                    {!! $errors->first('password','<div class="invalid-feedback">:message        </div>') !!}
 
       </div>
@@ -95,6 +113,10 @@
 @stop
 @section('js')
 <script type="text/javascript">
+  $(document).ready( function () {
+    $("#bar_search_user").removeClass("d-none");
+
+  });
   $("#employee").change(function(){
     $("#employee_data").removeClass("d-none");
 $("#employee_id").val($("#employee").val());
@@ -109,6 +131,7 @@ $("#employee_id").val($("#employee").val());
       },
       success: function(data){
         console.log(data.email);
+$("#email_old").val(data.employee.email);
 $("#email").val(data.employee.email);
 $("#name").val(data.employee.name+ ' ' +data.employee.last_name);
 $("#rol").val(data.rol);

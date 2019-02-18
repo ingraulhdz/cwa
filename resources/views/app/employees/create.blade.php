@@ -129,7 +129,7 @@
           <div class="input-group-text bg-dark"><i class="fa fa-at" style="color: #dc3545"></i>
           </div>
         </div>
-        <select class="form-control "@if ($errors->any()) {{$errors->has('rol_id') ? 'is-invalid':'is-valid'}} @endif" id="rol_id" name="rol_id" placeholder="Type of Employee" value="{{ $employee->rol_id }}"" >
+        <select class="form-control "@if ($errors->any()) {{$errors->has('rol_id') ? 'is-invalid':'is-valid'}} @endif" id="rol_id" name="rol_id" placeholder="Type of Employee" >
            <option value="">Select type of Employee</option>
            @foreach(App\Models\Rol::get() as $rol)
         <option value='{{ $rol->id }}' >{{ $rol->name }}</option>

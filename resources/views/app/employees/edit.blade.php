@@ -12,8 +12,7 @@
 
 <div class="row">
 <div class="col-md-2">
-<img src="/img/employees/{{$employee->img()}}" class="rounded-circle float-left" width="100px" height="100px">
-
+<img src="{{$employee->img()}}" class="rounded-circle float-left" width="100px" height="100px">
   </div>
 
   <div class="col-md-5">
@@ -146,7 +145,7 @@
 
 
 
- <div class="col-md-4 form-group">
+  <div class="col-md-4 form-group">
       <small for="inlineFormInputGroup">Tipe of Employee</small>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
@@ -155,18 +154,15 @@
         </div>
         <select class="form-control @if ($errors->any()) {{$errors->has('rol_id') ? 'is-invalid':'is-valid'}} @endif" id="zip_code" name="rol_id" placeholder="5 digits zip code" value="{{ $employee->rol_id }}" >
            <option value="">Select type of Employee</option>
-           @foreach(App\Models\Rol::get() as $rol)
-        <option value='{{ $rol->id }}' >{{ $rol->name }}</option>
+       @foreach(App\Models\Rol::get() as $rol) 
+         <option value='{{ $rol->id }}' @if($rol->id == $employee->id ) selected  @endif >{{ $rol->name }}</option>
         @endforeach
         </select>
                        {!! $errors->first('rol_id','<div class="invalid-feedback">:message        </div>') !!}
 
       
       </div>
-</div>
-
-
-
+ </div>
 
  <div class="col-md-5 form-group">
      <small for="inlineFormInputGroup">Photo</small>

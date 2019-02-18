@@ -207,9 +207,8 @@ public function paid(){
 
   public function employee()
     {
-        return $this->hasOne('App\Models\Employee ');
+        return $this->belongsTo('App\Models\Employee');
     }
-
 
 
   public function service()

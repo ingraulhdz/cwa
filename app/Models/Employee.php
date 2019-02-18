@@ -29,12 +29,16 @@ public function img(){
 		return $this->photo;
 }else {
 
-return 'avatar.jpg';
+return '/img/employees/avatar.jpg';
 }
 
 }
 
 
+ public function user()
+    {
+        return $this->hasOne('App\User');
+    }
 
 
 public function rol(){

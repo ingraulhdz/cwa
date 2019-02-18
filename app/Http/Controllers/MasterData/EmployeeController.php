@@ -79,7 +79,7 @@ if($request->photo){
 	$path= 'img/employees/';
 	$file_name= $employee->id.'.'.$ext;
     \Image::make($request->file('photo'))->resize(144,144)->save($path.$file_name);
-		$employee->photo = $file_name;
+		$employee->photo = $path.$file_name;
 		$employee->save();
 
 					}
@@ -169,8 +169,8 @@ $employee->status = 1;
 
 try{
 
-		$employee= employee::findOrFail($id);
-        $employee->fill($request->all());
+       $employee= employee::findOrFail($id);
+       $employee->fill($request->all());
        $employee->save();
 
 
@@ -181,15 +181,12 @@ if($request->photo){
 	$path= 'img/employees/';
 	$file_name= $employee->id.'.'.$ext;
     \Image::make($request->file('photo'))->resize(144,144)->save($path.$file_name);
-		$employee->photo = $file_name;
+		$employee->photo = '/'.$path.$file_name;
 		$employee->save();
 
 					}
-
-
-
-
-         $message ='Empoyee updated! ';
+					
+        $message ='Empoyee updated! ';
 		\Session::flash('message',$message);
         return redirect()->back()->withInput();
 

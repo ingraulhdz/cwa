@@ -45,7 +45,8 @@
                         {{ csrf_field() }}
 
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="email" name="email" name="email" value="{{ old('email') }}" required autofocus aria-describedby="emailHelp" placeholder="Enter Email Address...">
+
+                      <input type="text" class="form-control form-control-user" id="email" name="email" name="email" value="{{ old('email') }}" required autofocus aria-describedby="emailHelp" placeholder="Enter Email Address...">
                        @if ($errors->has('email'))
                                     <span class="help-block text-danger">
                                         <strong>{{ $errors->first('email') }}</strong>

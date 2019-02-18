@@ -40,8 +40,6 @@ class CarController extends Controller
     {
       	$cars = new Car();
         $emplo= Employee::pluck('name','id');
-//$cars->createMonthly(); //create montly expenses fro the current mode if tha car added is the first one in the curren month
-
 
 
 

@@ -4,7 +4,8 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <h3 class=" text-gray-400">{{ Auth::user()->employee->rol->name}}</h3>
+                        <h3 class=" text-gray-400">{{ Auth::user()->employee->rol->name}}</h3>
+
             <div class="d-none d-sm-inline-block ">
 
               <small class="text-gray-500">Last updated</small>

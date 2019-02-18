@@ -10,7 +10,7 @@ use Redirect;
 use Session;
 use Auth;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\User;
 use App\Models\Employee;
 use Illuminate\Database\Query;
 use Illuminate\Support\Facades\Input;
@@ -32,7 +32,7 @@ class UserController extends Controller
 
 	public function create()
 	{
-        return view('app.Users.create');
+        return view('app.users.create');
 	}
 
 
@@ -52,15 +52,17 @@ return response()->json([
 
         $data = $this->validate(request(), [
         'email' => 'required|email|unique:users',
-        'password' => 'required|min:6|max:50',
+        'password1' => 'required|min:6|max:50',
+        'password2' => 'required|min:6|max:50',
           ]);
        /* if ($validator->fails()) {
 
 }*/
 		try{
             $user = new User($request->all());
-        $user->password = bcrypt('secret');
+        $user->password = bcrypt($request->password);
         $user->employee_id = $request->employee_id;
+        $user->username = $request->username;
         $user->email = $request->email;
 
 			$user->save();
@@ -83,19 +85,34 @@ return response()->json([
 	public function edit($id)
 	{
 			$user = User::findOrFail($id);
-			return view('app.Users.edit', compact('user'));
+			return view('app.users.edit', compact('user'));
 	}
 
 
 	public function update(Request $request,$id)
 	{
  $data = $this->validate(request(), [
-       // 'name' => 'required|min:2|max:244',
         'email' => 'required|email'
           ]);
     try{
-            $user= User::findOrFail($id);
-        $user->fill($request->all());
+    $user= User::findOrFail($id);
+
+if($request->password2){
+if($request->password1){
+
+
+if($request->password2 == $request->password1){
+
+$user->password = bcrypt($request->password1);
+
+
+}
+}
+}
+
+
+
+        $user->username = $request->username;
         $user->save();
         }catch(\Exception $e){
 
@@ -144,7 +161,7 @@ $message ="User active";
 	{
 
 $user = User::findOrFail($id);
-return view('app.Users.show', compact('user'));
+return view('app.users.show', compact('user'));
 
 	}
 
