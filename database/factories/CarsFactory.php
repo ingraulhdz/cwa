@@ -29,13 +29,13 @@ timezone                              // 'Europe/Paris'
             'vin' => $faker->unique()->numerify('######'),
             'stock' => $faker->word(5),
             'employee_id' =>  $faker->numberBetween(1,10),
-            'level' =>  $faker->numberBetween(0,1),
+            'level_id' =>  $faker->numberBetween(1 ,2),
             'dealer_id' =>  $faker->numberBetween(1,10),
             'body_style_id' =>  $faker->numberBetween(1,2),
             'service_id' =>  1,
             'color' => $faker->colorName,
             'note' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-            'created_at' => $faker->dateTimeBetween($startDate = '-35 days', $endDate = 'now')
+            'created_at' => $faker->dateTimeBetween($startDate = '-35 days', $endDate = 'yesterday')
 
                ];
 });

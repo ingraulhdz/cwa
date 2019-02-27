@@ -4,7 +4,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            v            <h3 class=" text-gray-400">{{ Auth::user()->employee->rol->name}}</h3>
+                      <h3 class=" text-gray-400">{{ Auth::user()->employee->rol->name}}</h3>
 
             <div class="d-none d-sm-inline-block ">
 
@@ -56,10 +56,10 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Due</div>
+                      <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Expenses</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><label id="due"></label></div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><label id="expenses"></label></div>
                         </div>
                         <div class="col">
                           <div class="progress progress-sm mr-2">
@@ -82,8 +82,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total income</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="income"></label></div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total due</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="due"></label></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -262,6 +262,7 @@ Chart.defaults.global.defaultFontColor = '#858796';
         success: 
           function(data){
 
+$('#expenses').text("$" + data.expenses + "" );
 $('#due').text("$" + data.due + "" );
 $('#today_cars').text(data.cars_today);
 $('#income').text("$" + data.income + "" );

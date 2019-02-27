@@ -206,7 +206,7 @@ $fecha = date("Y-m-d");
         $invoice->payment_id = null; //is not customer
         $invoice->is_paid = 0; //is not customer
         $invoice->save();
-        $cars->where('level',2)->where('dealer_id', $request->dealer_id)->update(['invoice_id' => $invoice->id, 'level' => 3]);
+        $cars->where('level_id',2)->where('dealer_id', $request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 3]);
 
         }
 
@@ -218,7 +218,7 @@ $fecha = date("Y-m-d");
                      $invoice->payment_id = $request->payment_id; //is not dealer
                     $invoice->save();
 
-              $cars->where('level',2)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level' => 4]);
+              $cars->where('level_id',2)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
 
 
 
@@ -316,9 +316,9 @@ $car->save();
     {
         
 $car = Car::findOrFail($request->id);
-$car->level = 1;
+$car->level = 2;
 $car->save();
-$cars = Car::where('level',2)->where('dealer_id',$car->dealer_id);
+$cars = Car::where('level_id',3)->where('dealer_id',$car->dealer_id);
 
         return response()->json(['car' => $car, 'price' => $cars->count(), 'count_cars' =>$cars->sum('price')]);
 
@@ -360,7 +360,7 @@ $cars = new Car();
         $invoice->save();
 
      Car::where('invoice_id', $invoice->id)
-        ->update(['level' => 4]);
+        ->update(['level_id' => 4]);
 
 
 

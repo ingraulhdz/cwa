@@ -13,7 +13,6 @@
 
 <div class="col-md-4 ">
 
-		<img src="/img/logos/{{ is_null($car->dealer) ? 'logo' : $car->dealer->logo}}.jpg" width="150px" height="100px">
 </div>
 
 </div>

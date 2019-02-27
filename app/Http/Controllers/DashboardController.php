@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 
+use App\Models\MonthPassive;
 use App\Models\Dealer;
 use App\Models\Invoice;
 use Carbon\Carbon; 
@@ -13,7 +14,6 @@ class DashboardController extends Controller
 {
     //
     public function index(){
-
 //
       if(\Auth::user()){
 
@@ -22,9 +22,9 @@ $rol = \Auth::user()->employee->rol->name;
 
 switch ($rol) {
     case 'Developer':
-      return view('app.dashboards.developer');
+      return view('app.dashboards.admin');
         break;    case 'Admin':
-      return view('app.dashboards.developer');
+      return view('app.dashboards.admin');
         break;
     case 'Detailer':
       return view('app.dashboards.detailer');
@@ -49,6 +49,7 @@ switch ($rol) {
 $now = new \DateTime();
 $mes = $now->format('m');
 $dia = $now->format('d');
+$y = $now->format('y');
 $date = $now->format('g:ia \o\n l jS F Y');
 $now = Carbon::now();
 
@@ -57,35 +58,26 @@ $now = Carbon::now();
 /*$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ', Day(created_at)) AS day, count(*) AS total FROM cars GROUP BY day order by created_at DESC ");
 $max = DB::select(" SELECT CONCAT(DayName(created_at), ' ', Day(created_at)) AS day, count(*) AS total FROM cars GROUP BY day order by total DESC ");
 */
-
-$cars_today = Car::whereDay('created_at', $dia)->get();
-
-$cars=Car::where('level', '!=', 3)->orderBy('id', 'DESC')->get();
+$cars=Car::where('level_id', '!=', 4)->orderBy('id', 'DESC')->get();
+$cars_today = Car::whereDay('created_at', $dia)->whereMonth('created_at', $mes)->get();
 
 
 $ago = collect([]);
-
 foreach ($cars as $car) {
-
 $ago->push(['id' => $car->id, 'make' => $car->make, 'model' => $car->model, 'year' => $car->year,  'ago' => $car->created_at->addSeconds(10)->diffForHumans()]);
-
 }
 
+$expenses= MonthPassive::whereMonth('created_at', $mes)->first();
 
-$cars_month = DB::select("SELECT count(cars.id) as total
- from cars
-  WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY "); 
-$due_month = DB::select("SELECT sum(cars.price) as total
- from cars
-  WHERE cars.created_at >= LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY - INTERVAL 1 MONTH
-  AND cars.created_at < LAST_DAY(CURRENT_DATE) + INTERVAL 1 DAY ");
-$expenses= 1210;
+if($expenses){
+
+$expenses = $expenses->price;
+}else{
+  $expenses = 0;
+}
+
 $cars_month = Car::whereMonth('created_at', '=', $mes)->get();
 $invoices = Invoice::orderBy('id','DESC')->get();
-
-
-
 
 $carsByDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
  FROM cars
@@ -162,6 +154,11 @@ array_push($employeesTotal, $key->total);
 
 
 		return response()->json([
+      'due' => $due = Car::where('level_id','!=', 4)->sum('price'),
+      'income' => $income = Car::where('level_id', 4)->sum('price'),
+      'total_cars' => $cars_month->count(),
+      'cars_today' => $cars_today->count(),
+      'expenses' => $expenses,
       'employees' => $arrayEmployees, 
       'employeesTotal' => $employeesTotal, 
 			'cars3' => $ago->take(3), 
@@ -170,19 +167,15 @@ array_push($employeesTotal, $key->total);
       'dealersTopTotal' => $arraydealerstotal, 
       'lastDays' => $lastDays, 
 			'lastDaysTotal' => $lastDaysTotals, 
-         'currentMont' => $now->toFormattedDateString(), 
+      'currentMont' => $now->toFormattedDateString(), 
 			'ago' => $now->addSeconds(10)->diffForHumans(),
-			'today' => $date,
-						'dayN' => $carsPerDay, 
-		    'due' => $due = Invoice::where('is_paid','!=', 1)->sum('due'),
-		    'income' => $due - $expenses,
-		    'total_cars' => $cars_month->count(),
-		    'invoices_open' => $invoices->where('is_paid', 0)->count(),
-		    'cars_today' => $cars_today->count(),
-			'cars_ready' => $cars_month->where('level',1)->count(),
-			'cars_invoice' => $cars_month->where('level',2)->count(),
-			'cars_news' => $cars_month->where('level',0)->count(),
-			'cars_not_assigned' => $cars_month->where('employee_id','!=', null)->where('level','<', 2)->count(),
+      'today' => $date,
+		  'dayN' => $carsPerDay, 
+		  'invoices_open' => $invoices->where('is_paid', 0)->count(),
+			'cars_ready' => $cars_month->where('level_id',2)->count(),
+			'cars_invoice' => $cars_month->where('level_id',3)->count(),
+			'cars_news' => $cars_month->where('level_id',1)->count(),
+			'cars_not_assigned' => $cars_month->where('employee_id','!=', null)->where('employee_id', null)->count(),
 		]);
 
     }

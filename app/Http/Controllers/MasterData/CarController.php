@@ -71,7 +71,7 @@ public function ready_car(Request $request){
 if($car->employee){
 
 
-   $car->level = 1; // ready
+   $car->level_id = 2; // ready
    $car->save();
 
    return $car;  
@@ -94,11 +94,11 @@ $cars = new Car();
 
 
 return response()->json([
-'inshop_cars' => $cars->where('level',0)->count(),
-'ready_cars' => $cars->where('level',1)->count(),
-'done_cars' => $cars->where('level',2)->count(),
-'due_cars' => $cars->where('level',3)->count(),
-'paid_cars' => $cars->where('level',4)->count()
+'inshop_cars' => $cars->where('leve_id',1)->count(),
+'ready_cars' => $cars->where('leve_id',2)->count(),
+'done_cars' => $cars->where('leve_id',3)->count(),
+'due_cars' => $cars->where('leve_id','!=', 4)->count(),
+'paid_cars' => $cars->where('leve_id',4)->count()
 ]);
 
 }
@@ -114,7 +114,7 @@ try{
    //          return \Redirect::back()->withInput()->withErrors($messageError);
    //      }
 
-        $car->level = 2; // ready
+        $car->level_id = 3; // ready
         $car->save();
 
          $message ='Tha Car ' .$car->name(). " is reaady to invoice";
@@ -214,7 +214,7 @@ $now = Carbon::now();
         $currentMonth = $now->format('y-m');
 
 
-if( $lastMonth != $currentMonth){
+//if( $lastMonth != $currentMonth){
 
      $month_name = $now->format('F');
 
@@ -238,7 +238,7 @@ $rel->save();
 $month->price = $expense_price;
       $month->save();
 
-}
+//}
 
 
 
@@ -495,7 +495,7 @@ try{
             return \Redirect::back()->withInput()->withErrors($messageError);
         }
 
-        $car->level = 1; // ready
+        $car->level_id = 2; // ready
         $car->save();
 
          $message ='Tha Car ' .$car->name(). " is reaady.";

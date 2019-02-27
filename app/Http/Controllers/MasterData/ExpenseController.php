@@ -48,7 +48,6 @@ class ExpenseController extends Controller
 
 
 public function AddSupply(Request $request){
-
 try{
 
 
@@ -233,7 +232,6 @@ $profit = $total_income - $total_expenses;
     public function CreateUniqueExpense(Request $request)
     {
        try{
-
 
 $now = Carbon::now();
 $y = $now->format('Y');

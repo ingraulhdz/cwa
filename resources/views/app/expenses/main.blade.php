@@ -15,68 +15,65 @@
 
             <div class="row">
             <div class="col-md-8">
-              <canvas id="expensesChart" width="100%" height="80%"></canvas>
+              <canvas id="expensesChart" width="100%" height="50%"></canvas>
 </div>
             <div class="col-md-4 card">
   
  <div class="row">
       <div class="col-xl-12 col-sm-12 mb-3">
-              <div class="card text-white bg-danger o-hidden h-100">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-arrow-down"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Expenses (total)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id="total_expenses"></b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="total_expenses"></b> Total Expenses</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 </div>
 
+  
  <div class="row">
       <div class="col-xl-12 col-sm-12 mb-3">
-              <div class="card text-white bg-success o-hidden h-100">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-arrow-up"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Income (Monthly)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id="income"></b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="income"></b> Income!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 </div>
 
-
+ 
  <div class="row">
       <div class="col-xl-12 col-sm-12 mb-3">
-              <div class="card text-white bg-primary o-hidden h-100">
+              <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fas fa-fw fa-check"></i>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Profit (Monthly)</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id="profit"></b></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
                   </div>
-                  <div class="mr-5"><b id="profit"></b> Profit!</div>
                 </div>
-                <a class="card-footer text-white clearfix small z-1" href="#">
-                  <span class="float-left">View Details</span>
-                  <span class="float-right">
-                    <i class="fas fa-angle-right"></i>
-                  </span>
-                </a>
               </div>
             </div>
 </div>
-
 
 
 
@@ -126,7 +123,7 @@
 $("#total_supply").val('');
 $("#amount_supply").val('');
 $.ajax({
-  url: "get_supply/"+$( "#supply_id" ).val(),
+  url: "/get_supply/"+$( "#supply_id" ).val(),
   type: "GET",
   success: function(data){
 $("#measure").text("Price per "+ data.measure +"$ "+data.price + ".00").show();
@@ -149,6 +146,7 @@ $("#measure").removeClass("d-none");
 
 
       $(document).ready(function(){
+
 $("#btn-add-expense").show();
 $("#btn-add-supply").show();
 $("#date_expense").show();
@@ -156,7 +154,6 @@ $("#btn-add").hide();
 $("#btn-export-expense").hide();
 
 $("#create_expense").click(function () {
-  alert();
   $.ajax(
   {
     type:'POST',
@@ -174,6 +171,8 @@ toastr["success"]("Expense "+ data.name +" for  $"+ data.price +".00  was succes
 
 
 $("#add_expenses").modal("hide");       
+}, error: function(data){
+  console.log(data);
 }
 });
 sendRequest();
@@ -182,6 +181,7 @@ sendRequest();
 
 
 $("#create_supply").click(function () {
+  alert('data');
   $.ajax(
   {
     type:'POST',
@@ -220,6 +220,7 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
   type:'GET',
         success: 
           function(data){
+         console.log(data);
 
 $('#total_expenses').text("$" + data.total_expenses + ".00" );
 $('#income').text("$" + data.total_income + ".00" );
@@ -246,7 +247,8 @@ $("#expensesTable").dataTable();
 
 
 
-        },error: function (data){
+        },error: function (data){       
+
           console.log(data.responseJSON);
         },
 
@@ -271,7 +273,8 @@ var myPieChart = new Chart(ctx, {
       labels: data.array_expense_name,
       datasets: [{
         label: "Expenses",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3eABcd", "#AB5ea2","#3cbaAB","#CBc3b9","#AC5850"],
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850", "#3eABcd", "#AB5ea2","#3cbaAB","#CBc3b9","#AC5850","#6600cc", "#ff9500","#82dfe5","#ffb2a5","#154935", "#acc6bb", "#aa6h73","#390f2c","#356df0","#4accc2"],
+
         data: data.array_expense_cost
       }]
     },

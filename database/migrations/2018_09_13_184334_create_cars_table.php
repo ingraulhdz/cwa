@@ -14,6 +14,7 @@ class CreateCarsTable extends Migration
     public function up()
     {
         Schema::create('cars', function (Blueprint $table) {
+            
             $table->increments('id');
             $table->string('make');
             $table->string('model');
@@ -24,11 +25,9 @@ class CreateCarsTable extends Migration
             $table->string('stock')->nullable();
             $table->double('price', 8, 2)->default(100);        
             $table->double('price_plus', 8, 2)->default(0);        
-            $table->integer('level')->default(0);   
-            // $table->boolean('is_done')->default(0);   
-            // $table->boolean('is_invoice')->default(0);   
-            // $table->boolean('is_paid')->default(0);   
+            //$table->integer('level')->default(0);   
             $table->boolean('status')->default(1);   
+            $table->integer('level_id')->unsigned()->default(1);
             $table->integer('dealer_id')->unsigned()->nullable();
             $table->integer('body_style_id')->unsigned()->nullable();
             $table->integer('customer_id')->unsigned()->nullable();
@@ -37,6 +36,7 @@ class CreateCarsTable extends Migration
             $table->integer('payment_id')->unsigned()->nullable();         
             $table->integer('user_id')->unsigned()->nullable(); 
             $table->integer('invoice_id')->unsigned()->nullable(); 
+            $table->foreign('level_id')->references('id')->on('levels');    
             $table->foreign('dealer_id')->references('id')->on('dealers');    
             $table->foreign('invoice_id')->references('id')->on('invoices');    
             $table->foreign('customer_id')->references('id')->on('customers');    

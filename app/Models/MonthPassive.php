@@ -11,7 +11,7 @@ class MonthPassive extends Model
 
      protected $fillable = [
 
-'month','month_name','cost'
+'month','month_name','price'
     ];
 
 

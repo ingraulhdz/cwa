@@ -18,7 +18,7 @@ class Car extends Model
   'note',
   'color',
   'stock',
-  'level',
+  'level_id',
   'price',
   'is-donde',
   'is_invoice',
@@ -95,7 +95,7 @@ public function name(){
 public function inShop(){
   
 
-  return  $this->where('level',0)->get();
+  return  $this->where('level_id',0)->get();
 
 
 }
@@ -106,7 +106,7 @@ public function ready(){
   
 
 
-  return  $this->where('level',1)->get();
+  return  $this->where('level_id',1)->get();
   
 
 }
@@ -117,7 +117,7 @@ public function done(){
   
 
 
-  return  $this->where('level',2)->get();
+  return  $this->where('level_id',2)->get();
   
 
 }
@@ -128,7 +128,7 @@ public function invoice(){
   
 
 
-  return  $this->where('level',3)->get();
+  return  $this->where('level_id',3)->get();
 
 
 }
@@ -143,7 +143,7 @@ public function paid(){
   
 
 
-  return  $this->where('level',4)->get();
+  return  $this->where('level_id',4)->get();
 
 
 
@@ -151,26 +151,6 @@ public function paid(){
   return $cars;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -190,6 +170,11 @@ public function paid(){
     }
 
 
+
+ public function level()
+    {
+        return $this->belongsTo('App\Models\level');
+    }
 
 
  public function dealer()
