@@ -63,7 +63,7 @@ class Dealer extends Model
  public static function hasInvoice()
     {
 $dealers= \DB::table('dealers')
-            ->join('cars', 'dealers.id', '=', 'cars.dealer_id')->where('cars.level',1)->orWhere('cars.level',2)->distinct('dealers.id')
+            ->join('cars', 'dealers.id', '=', 'cars.dealer_id')->where('cars.level_id',2)->orWhere('cars.level_id',3)->distinct('dealers.id')
             ->select('dealers.id', 'dealers.name');
             
 return $dealers;

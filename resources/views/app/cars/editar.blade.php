@@ -4,7 +4,6 @@
 <input type="hidden" name="_method" value="PUT">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<input type="hidden" name="id" value="{{ $car->id }}">
 
 <input type="hidden" class="form-control" id="fid" disabled>
 
@@ -165,7 +164,7 @@
  
 
 @foreach(App\Models\Service::get() as $service)
-<option value='{{ $service->id }}' @if($car->service) @if($car->service->id == $service->id) selected @endif @endif > {{ $service->name }}</option>
+<option value='{{ $service->id }}'> {{ $service->name }}</option>
 @endforeach
 </select>
       </div>
@@ -181,7 +180,7 @@
 
  @foreach(App\Models\BodyStyle::get() as $body)
 
-<option value='{{ $body->id }}' @if($car->body_style) @if($car->body_style->id == $body->id) selected @endif @endif >  {{ $body->name }}</option>
+<option value='{{ $body->id }}'>  {{ $body->name }}</option>
 
  @endforeach
 
@@ -196,7 +195,7 @@
       <small for="inlineFormInputGroup">Color</small>
       <div class="input-group mb-2">
       
-        <input type="text" class="form-control form-control-sm" id="color_edit" name="color" placeholder="Car Color" value="{{ $car->color }}">
+        <input type="text" class="form-control form-control-sm" id="color_edit" name="color" placeholder="Car Color" >
       </div>
 </div>
 
@@ -240,7 +239,7 @@
       <small for="inlineFormInputGroup">Note:</small>
       <div class="input-group mb-2">
        
-        <textarea type="text" class="form-control form-control-sm" id="note_" name="note" placeholder="{{ $car->note }}" ></textarea>
+        <textarea type="text" class="form-control form-control-sm" id="note_" name="note" ></textarea>
       </div>
 </div>
 </div>

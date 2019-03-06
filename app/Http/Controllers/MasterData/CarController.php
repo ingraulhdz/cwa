@@ -89,16 +89,15 @@ $employees= Employee::all();
 public  function getCars(Request $request){
 
 
-//$cars = Car::count();
-$cars = new Car();
+$cars = Car::get();
 
 
 return response()->json([
-'inshop_cars' => $cars->where('leve_id',1)->count(),
-'ready_cars' => $cars->where('leve_id',2)->count(),
-'done_cars' => $cars->where('leve_id',3)->count(),
-'due_cars' => $cars->where('leve_id','!=', 4)->count(),
-'paid_cars' => $cars->where('leve_id',4)->count()
+'new_cars' => $cars->where('level_id',1)->count(),
+'ready_cars' => $cars->where('level_id',2)->count(),
+'done_cars' => $cars->where('level_id',3)->count(),
+'due_cars' => $cars->where('level_id','!=', 4)->count(),
+'paid_cars' => $cars->where('level_id',4)->count()
 ]);
 
 }
@@ -324,53 +323,7 @@ $carName = $car->name();
         }
 
 
-       /* $car = new Car($request->all());
-        $car = new Car();
-        $car->make = $request->make;
-        $car->model = $request->model;
-        $car->year = $request->year;
-        $car->dealer_id = $request->dealer_id;
-        $car->vin = $request->vin;
-*/
 
-//$extras = json_decode($request->extras);
-//$total = count($extras);
-
-/*
-for($i=0; $i<$total; $i++){
-
-    $ex = Car_Extra::firstOrCreate([
-    'extra_id' => $extras[$i], 'car_id' => $car->id
-
-]);
-   
-}
-
-
-
-$current_extras = Car_Extra::where('car_id',$car->id)->pluck('extra_id')->all(); 
-
-//get all current extras
-$suma = 0;
-
-for($i=0; $i < count($current_extras); $i++){
-$extra = Extra::findOrFail($current_extras[$i]);
-$suma = $suma + $extra->price;
-
-
-}
-
-
-$car->price_plus = $suma;*/
-/*$car->save();
-
-        return response()->json([
-            'car' => $car,
-            'dealer' => $car->dealer,
-            'customer' => $car->customer,
-            'employee' => $car->employee]);
-
-*/
 }
 
 

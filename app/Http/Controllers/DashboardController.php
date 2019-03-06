@@ -23,18 +23,24 @@ $rol = \Auth::user()->employee->rol->name;
 switch ($rol) {
     case 'Developer':
       return view('app.dashboards.admin');
-        break;    case 'Admin':
+        break;  
+
+          case 'Admin':
       return view('app.dashboards.admin');
         break;
+
     case 'Detailer':
       return view('app.dashboards.detailer');
         break;
+
     case 'Manager':
       return view('app.dashboards.manager');
         break;  
+
          case 'External':
       return view('app.dashboards.external');
-        break;   
+        break;  
+
        case 'Salaried':
       return view('app.dashboards.salaried');
         break;
@@ -53,13 +59,8 @@ $y = $now->format('y');
 $date = $now->format('g:ia \o\n l jS F Y');
 $now = Carbon::now();
 
-
-
-/*$carsPerDay = DB::select(" SELECT CONCAT(DayName(created_at), ' ', Day(created_at)) AS day, count(*) AS total FROM cars GROUP BY day order by created_at DESC ");
-$max = DB::select(" SELECT CONCAT(DayName(created_at), ' ', Day(created_at)) AS day, count(*) AS total FROM cars GROUP BY day order by total DESC ");
-*/
 $cars=Car::where('level_id', '!=', 4)->orderBy('id', 'DESC')->get();
-$cars_today = Car::whereDay('created_at', $dia)->whereMonth('created_at', $mes)->get();
+
 
 
 $ago = collect([]);
@@ -76,7 +77,7 @@ $expenses = $expenses->price;
   $expenses = 0;
 }
 
-$cars_month = Car::whereMonth('created_at', '=', $mes)->get();
+
 $invoices = Invoice::orderBy('id','DESC')->get();
 
 $carsByDealer = \DB::select("SELECT  dealers.name as dealer, count(cars.dealer_id) as total
@@ -150,15 +151,18 @@ array_push($employeesTotal, $key->total);
 }
 
 
+$cars_today = Car::whereDay('created_at', $dia)->whereMonth('created_at', $mes)->get();
 
+$cars_month = Car::whereMonth('created_at', '=', $mes)->get();
 
 
 		return response()->json([
+       'cars_monthly' => $cars_month->count(),
+     'cars_today' => $cars_today->count(),
+       'expenses' => $expenses,
       'due' => $due = Car::where('level_id','!=', 4)->sum('price'),
       'income' => $income = Car::where('level_id', 4)->sum('price'),
-      'total_cars' => $cars_month->count(),
-      'cars_today' => $cars_today->count(),
-      'expenses' => $expenses,
+      
       'employees' => $arrayEmployees, 
       'employeesTotal' => $employeesTotal, 
 			'cars3' => $ago->take(3), 
@@ -180,15 +184,6 @@ array_push($employeesTotal, $key->total);
 
     }
  
-
-
-
-
-
-
-
-
-//RRRRRRRRRRRRR
 
 
 

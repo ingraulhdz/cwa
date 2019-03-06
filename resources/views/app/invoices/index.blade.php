@@ -17,8 +17,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Due </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id='due'></b></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -34,8 +34,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Cars </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id='cars'></b></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -51,16 +51,16 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Dealers</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id='dealers'></b></div>
                         </div>
-                        <div class="col">
+                      <!--   <div class="col">
                           <div class="progress progress-sm mr-2">
                             <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div class="col-auto">
@@ -77,8 +77,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Invoiced Car</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><b id='invoiced'></b></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -102,7 +102,7 @@
                   </thead>
                  
                   <tbody>
-          @foreach($cars->where('level',1)->orWhere('level',2)->get() as $car)                       
+          @foreach($cars->where('level_id',2)->orWhere('level_id',3)->get() as $car)                       
                     <tr class="item_{{$car->id}}" >
                          <td><a href="{{ route('car.show', $car)}}" class="text-dark" ><small>{{$car->name() }}</small> </a></td>
 
@@ -123,7 +123,7 @@
  <a href="{{url('customer.invoice', $car) }}" class="btn btn-sm btn-info"><i class="fa fa-money-check-alt"></i> <small>Pay</small></a>
 
 @else
-                          @if($car->level == 1 )
+                          @if($car->level_id == 2 )
  <a href="#" class="btn-sm btn-warning to_invoice item_status_{{$car->id}}" data-id="{{$car->id}}" ><i class="fa fa-envelope"></i></a>
 @else
 <span class="badge badge-pill badge-success"><i class="fa fa-check"></i> Done</span>
@@ -158,6 +158,8 @@ var token = $('input[name=_token]').val();
 
 
 
+
+
 $.ajax({
   type:'POST',
   url:'/to_invoice',
@@ -177,13 +179,34 @@ swal({
 
 $(".item_status_"+id).replaceWith("<span class='badge badge-pill badge-success'><i class='fa fa-check'></i> Done</span>");
 
-
+getDataInvoice();
 
 
 
 
   }
 });
+
+
+function getDataInvoice(){
+
+
+$.ajax({
+  type:'GET',
+  url:'/getDataInvoiceIndex',
+  data:{
+    '_token' :token,
+    'id': id
+  },success: function (data){
+    $("#cars").text(data.cars);
+    $("#dealers").text(data.dealers);
+    $("#invoiced").text(data.invoiced);
+    $("#due").text(data.due);
+  }
+});
+
+
+}
 
 
 });

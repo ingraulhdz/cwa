@@ -23,7 +23,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cars (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="total_cars"></label></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="cars_monthly"></label></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -40,7 +40,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Cars (Today)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="today_cars"></label></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="cars_today"></label></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -242,9 +242,6 @@
       <script src="vendor/chart.js/Chart.min.js"></script>
 
 
-  <script src="js/demo/chart-pie-demo.js"></script>
-
-
     <script>
       $(document).ready(function(){
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -264,16 +261,15 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 $('#expenses').text("$" + data.expenses + "" );
 $('#due').text("$" + data.due + "" );
-$('#today_cars').text(data.cars_today);
+$('#cars_today').text(data.cars_today);
 $('#income').text("$" + data.income + "" );
-$('#total_cars').text(data.total_cars);
+$('#cars_monthly').text(data.cars_monthly);
 $('#ago').text("Last updated " + data.ago);
 $('#today').text(data.today);
 
 
             // Cars Per Day bar chart
 
-console.log(data.carsByDealer);
 carsPerDay(data);
 carsPie(data);
 carsByDealer(data);
@@ -331,6 +327,7 @@ new Chart(document.getElementById("carsByEmployee"), {
 
 
 function carsPie(data){
+  
 
 $("#labels_pie").html("  <span class='mr-2'><i class='fas fa-circle text-primary'></i> Ready </span><span class='mr-2'><i class='fas fa-circle text-success'></i> Invoiced</span><span class='mr-2'><i class='fas fa-circle text-info'></i> News</span><i class='fas fa-circle text-warning'></i> Assigned</span>");
 var ctx = document.getElementById("carsStatus");

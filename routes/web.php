@@ -50,6 +50,7 @@ Route::post('set-extras',['as'=>'set-extras','uses'=>'MasterData\CarController@s
 Route::get('get-car',['as'=>'update-car','uses'=>'MasterData\CarController@getCar']);
 Route::get('getCars',['as'=>'getCars','uses'=>'MasterData\CarController@getCars']);
 Route::get('/getDataInvoice',['as'=>'getDataInvoice','uses'=>'MasterData\InvoiceController@getDataInvoice']);
+Route::get('/getDataInvoiceIndex',['as'=>'getDataInvoiceIndex','uses'=>'MasterData\InvoiceController@getDataInvoiceIndex']);
 
 Route::post('invoice.pay',['as'=>'invoice.pay','uses'=>'MasterData\InvoiceController@pay']);
 Route::get('invoice.paid',['as'=>'invoice.paid','uses'=>'MasterData\InvoiceController@paid']);

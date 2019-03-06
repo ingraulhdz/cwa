@@ -269,7 +269,7 @@ $fecha = date("Y-m-d");
 
 $invoice = Invoice::findOrFail($id);
 $invoice = Invoice::findOrFail($id);
-$cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->where('level',4)->get();
+$cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->where('level_id',4)->get();
 
 
  $pdf = \PDF::loadView('app.invoices.pdf',compact('cars','invoice'));
@@ -282,10 +282,21 @@ $cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->where('level',4)->get(
 
     }
 
-    public function getDataInvoice(Request $request)
+    public function getDataInvoiceIndex(Request $request)
+    { 
+return response()->json([ 
+          'due' => Car::where('level_id', '!=', 4)->sum('price'),
+          'invoiced' => Car::where('level_id', 3)->count(),
+          'dealers' => Dealer::hasInvoice()->count(),
+          'cars' => Car::where('level_id', 2)->count(),
+
+        ]);
+
+}
+     public function getDataInvoice(Request $request)
     {
 
-$cars = Car::where('level',2)->where('dealer_id',$request->dealer);
+$cars = Car::where('level_id',2)->where('dealer_id',$request->dealer);
 $extras = $cars->sum('price_plus');
 $subtotal = $cars->sum('price');
 $total = $subtotal + $extras;
@@ -303,7 +314,7 @@ $total = $subtotal + $extras;
     {
 
 $car = Car::findOrFail($request->id);
-$car->level = 2;
+$car->level_id = 2;
 $car->save();
 
         return response()->json($car);
@@ -316,7 +327,7 @@ $car->save();
     {
         
 $car = Car::findOrFail($request->id);
-$car->level = 2;
+$car->level_id = 2;
 $car->save();
 $cars = Car::where('level_id',3)->where('dealer_id',$car->dealer_id);
 

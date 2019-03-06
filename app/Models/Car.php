@@ -95,7 +95,7 @@ public function name(){
 public function inShop(){
   
 
-  return  $this->where('level_id',0)->get();
+  return  $this->where('level_id',1)->get();
 
 
 }
