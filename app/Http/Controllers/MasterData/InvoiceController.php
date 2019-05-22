@@ -47,7 +47,7 @@ class InvoiceController extends Controller
          try
         {  $dealer = Dealer::findOrFail( $request->id);
             $cars = new car();
-            $cars = $cars->done()->where('dealer_id', $dealer->id);
+            $cars = $cars->invoice()->where('dealer_id', $dealer->id);
 
 
 
@@ -158,13 +158,13 @@ $fecha = date("Y-m-d");
   if($request->stock)
         {
              $dealer = Dealer::findOrFail( $car->dealer_id);
-             $cars = $cars->done()->where('dealer_id', $dealer->id);
+             $cars = $cars->where('level_id',3)->where('dealer_id', $dealer->id);
 
         }
      else
      {
          $dealer = Customer::findOrFail( $car->customer_id);
-         $cars = $cars->done()->where('customer_id', $dealer->id);
+         $cars = $cars->where('level_id',3)->where('customer_id', $dealer->id);
      }
        
 
@@ -314,7 +314,7 @@ $total = $subtotal + $extras;
     {
 
 $car = Car::findOrFail($request->id);
-$car->level_id = 2;
+$car->level_id = 3;
 $car->save();
 
         return response()->json($car);
