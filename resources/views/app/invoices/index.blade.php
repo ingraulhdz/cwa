@@ -125,6 +125,7 @@
 @else
                           @if($car->level_id == 2 )
  <a href="#" class="btn-sm btn-warning to_invoice item_status_{{$car->id}}" data-id="{{$car->id}}" ><i class="fa fa-envelope"></i></a>
+ 
 @else
 <span class="badge badge-pill badge-success"><i class="fa fa-check"></i> Done</span>
                            @endif
