@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<title>Documentation | Auto Zoon</title>
+
+<!-- Styles -->
+<link href="css/build-dreams-doc.all.min.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-target=".sidebar" data-offset="200">
+<div class="container"> <a style="display: block;" class="back-to-top text-center" href="#"> <i class="fa fa-angle-up"></i> </a> </div>
+
+<!-- Sidebar -->
+<aside class="sidebar sidebar-boxed sidebar-dark"> <a class="sidebar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+  <h3 class="main_heading">Table of Contents</h3>
+  <ul class="topnav">
+    <li class="active"><a href="#tab_inst" class="scroll">Instalation</a></li>
+    <li><a href="#tab0" class="scroll">Bootstrape Grid</a></li>
+    <li><a href="#">HTML</a>
+      <ul>
+        <li><a href="#tab1" class="scroll">HTML Structure</a></li>
+        <li><a href="#">Nav Bar</a>
+          <ul>
+            <li><a href="#tab2" class="scroll">Nav-Bar</a></li>
+          </ul>
+        </li>
+    	<li><a href="#">Banner / Slider</a>
+          <ul>
+            <li><a href="#tab9" class="scroll">Owl Slider</a></li>
+            <li><a href="#tab10" class="scroll">Revolution Slider</a></li>
+          </ul>
+        </li>
+        <li><a href="#tab11" class="scroll">Smooth Scrolling</a></li>
+        <li><a href="#tab12" class="scroll">Changing Fonts</a></li>
+        <li><a href="#tab13" class="scroll">Maps</a></li>
+        <li><a href="#tab14" class="scroll">Footer</a></li>
+      </ul>
+    </li>
+    <li class="dropdown"><a href="#tab16" class="scroll">Included Files</a></li>
+    <li><a href="#">Credit</a>
+      <ul>
+        <li><a href="#tab19" class="scroll">CSS</a></li>
+        <li><a href="#tab20" class="scroll">JS</a></li>
+        <li><a href="#tab21" class="scroll">Images</a></li>
+      </ul>
+    </li>
+  </ul>
+</aside>
+<!-- END Sidebar -->
+
+<header class="site-header navbar-transparent"> 
+  
+  <!-- Banner -->
+  <div class="banner auto-size" style="background:#d44457;">
+    <div class="container text-white">
+      <h3 class="text-center main_heading">"Auto Zoon HTML5" <br>
+        Multipurpose Business Template Documentation by "99_Design"</h3>
+    </div>
+  </div>
+  <!-- END Banner --> 
+  
+</header>
+<main class="container-fluid"> 
+  
+  <!-- Main content -->
+  
+  <div class="bg_pre">
+    <div class="col-md-4">
+      <div class="prepend-top"><strong>Created: 05/01/2018<br>
+        By: 99_Design<br>
+        Email : <a href="mailto:logicsforest@gmail.com"> logicsforest@gmail.com</a></strong></div>
+    </div>
+    <div class="col-md-8">
+      <p class="prepend-top_2">Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="#.">here</a>.<br>
+        Thanks so much!</p>
+    </div>
+  </div>
+  <article class="main-content" role="main">
+    <section id="tab_inst" class="active">
+      <h4>Instalation</h4>
+      <p>Follow the steps below to get started with your Site Template:</p>
+      <div class="file-tree">
+        <ol>
+          <li>Open the Package/auto_zoon_files Folder to find all the Templates Files</li>
+          <li>You will need to Upload these files to your Web Server using FTP in order to use it on your Website.</li>
+          <li>Make sure you upload the required files/folders listed below:<br>
+            <ul>
+              <br>
+              <li class="is-folder open">auto_zoon_files/css - Extra Stylesheets Folder</li>
+              <li class="is-folder open">auto_zoon_files/images - Images Folder</li>
+              <li class="is-folder open">auto_zoon_files/js - Javacripts Folder</li>
+              <li class="is-folder open">auto_zoon_files/fonts - Main webfonts File</li>
+              <li class="is-folder open">auto_zoon_files/index.html - Index File/Homepage</li>
+            </ul>
+            <br>
+            <br>
+            <br>
+          </li>
+          <p>The other files can be used according to your preferences.
+            You're now good to go..! Start adding your Content and show off your Brand New Beautiful Website in style</p>
+        </ol>
+      </div>
+      </div>
+    </section>
+    
+    <section id="tab0">
+    	<div class="navi-tabs__content">
+            <h4>Grid</h4>
+            <p>Using a single set of <code>.col-md-*</code> grid classes, you can create a basic grid system that starts out stacked on mobile devices and tablet devices (the extra small to small range) before becoming horizontal on desktop (medium) devices. Place grid columns in any row.
+            we use multipul grid in Auto Zoon template</p>
+            <pre>  <img src="images/grid-layout.jpeg" class="img-responsive" alt="grid-image"></pre>
+          </div>
+    </section>
+    
+    <section id="tab1">
+      <div class="navi-tabs__content" id="tab1">
+        <h4>HTML Structure</h4>
+        <p>Auto Zoon follows a simple coding structure. here is the sample:</p>
+        <pre class="bottommargin">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+
+	<span class="color">&lt;!-- Your Stylesheets, Scripts &amp; Title
+	============================================= --&gt;</span>
+	...
+
+&lt;/head&gt;
+&lt;body&gt;
+
+	<span class="color">&lt;!-- The Main Wrapper======== --&gt;</span>
+
+
+		<span class="color">&lt;!-- Header
+		============================================= --&gt;</span>
+		&lt;header"&gt;
+
+			...
+
+		&lt;/header&gt;
+
+		<span class="color">&lt;!-- Site Content
+		============================================= --&gt;</span>
+		&lt;section id="ID_NAME"&gt;
+
+				&lt;div class="container clearfix"&gt;
+					...
+				&lt;/div&gt;
+
+		&lt;/section&gt;
+
+		<span class="color">&lt;!-- Footer
+		============================================= --&gt;</span>
+		&lt;footer&gt;
+
+			&lt;div class="container"&gt;
+				...
+			&lt;/div&gt;
+
+
+		&lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+      </div>
+    </section>
+    
+    <section id="tab2">
+      <div class="navi-tabs__content">
+        <h4>Nav-Bar</h4>
+        <p>Auto Zoon have coded a Simple Nav-Bar also, you can set the structure as below</p>
+        <pre>
+&lt;nav class="navbar navbar-default navbar-sticky bootsnav"&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="navbar-header"&gt;
+      &lt;button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"&gt;
+        &lt;i class="fa fa-bars"&gt;&lt;/i&gt;&lt;/button&gt;
+          &lt;a class="navbar-brand" href="#brand"&gt;&lt;img src="LOGO_ADDRESS" class="logo" alt=""&gt;&lt;/a&gt;&lt;/div&gt;
+            &lt;div class="collapse navbar-collapse" id="navbar-menu"&gt;
+              &lt;ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp"&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                  &lt;li class="dropdown"&gt;
+                    &lt; href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;Dropdown&lt;/a&gt;
+                    &lt;ul class="dropdown-menu"&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;text&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;text&lt;/a&gt;&lt;/li&gt;
+                    ...
+                  &lt;/ul&gt;
+                &lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</pre>
+      </div>
+    </section>
+
+    <section id="tab9">
+    	<div class="navi-tabs__content">
+            <h4>Owl Slider</h4>
+            <p>Set index page banners you can set the structure as below of owl slider</p><br>
+             http://owlgraphic.com/owlcarousel/      
+          </div>
+    </section>
+    
+    <section id="tab10">
+    	<div class="navi-tabs__content">
+            <h4>Revolution Slider</h4>
+            <p>Set index page banners you can set the structure as below of revolution slider</p><br>
+             https://www.themepunch.com/     
+          </div>
+    </section>
+    
+    <section id="tab11">
+    	<div class="navi-tabs__content">
+            <h4>Smooth Scrolling</h4>
+            <p>Auto Zoon enables Smooth Scrolling on Windows Desktop PCs for a Smooth experience. You can enables it by simply adding the  <code>.wow</code> and <code>.fadeIn</code>(transition class name) in any tag.</p>
+            <br>
+            <h4>Page Loading Transitions</h4>
+            <p>You can show Interactive loaders to your Visitors while the Pages of you Website loads in the background & then Reveal your Pages with CSS3 Transitions. Page Loading Transitions are enabled by default. To disable the Transition, you can simply remove the <code>.loader</code></p>
+          </div>
+    </section>
+    
+    <section id="tab12">
+    	<div class="navi-tabs__content">
+            <h4>Changing Fonts</h4>
+            <p>Change your Fonts on the Fly as we have included a css/style.css file to manage the custom fonts you include with ease. By default, Auto Zoon uses 2 type Fonts namely: Raleway, Opensans from the <a href="https://www.google.com/fonts" target="_blank">Google Fonts</a> Library. You can find the Linking to the Font Files in the head tag of all the .html files.</p>
+           <pre>&lt;link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet" type="text/css" /&gt;</pre>
+           <p>In order to change the Fonts, you will need to Edit the Above Links with your Custom Font if you plan to use a Google Font or Remove it complete if you plan to use a Self Hosted font. Here is an Example for using 
+           <a href="https://css-tricks.com/snippets/css/using-font-face/" target="_blank">Self Hosted</a> Fonts.</p>
+            
+          </div>
+    </section>
+    
+    <section id="tab13">
+    	<div class="navi-tabs__content">
+            <h4>Maps</h4>
+            To set map in any where just simply add this,
+            <pre>
+				&lt;div id="map"&gt;&lt;/div&gt;            
+            </pre>
+          </div>
+    </section>
+    
+    <section id="tab14">
+    	<div class="navi-tabs__content" id="tab16">
+            <h4>Footer</h4>
+            <p>For setting the copyright message, use<code>copy-right</code> tag.</p>
+           <pre>
+           &lt;footer id=""footer&gt;
+           	&lt;footer class="container"&gt;
+            
+            	&lt;div class="col-md-4 col-sm-4 col-xs-12"&gt;
+                	&lt;div class="footer_detail"&gt;
+                    	--------
+            	        &lt;/div&gt;
+           	&lt;/div&gt;
+            
+            &lt;div class="col-md-4 col-sm-4 col-xs-12"&gt;
+                	&lt;div class="footer_detail"&gt;
+                    	--------
+            	        &lt;/div&gt;
+           	&lt;/div&gt;
+            
+            &lt;div class="col-md-4 col-sm-4 col-xs-12"&gt;
+                	&lt;div class="footer_detail"&gt;
+                    	--------
+            	        &lt;/div&gt;
+           	&lt;/div&gt;
+            
+                                
+            &lt;/div&gt;
+           &lt;/div&gt;
+                &lt;div class="footer_bottom"&gt;
+                  &lt;div class="row"&gt;
+                    &lt;div class="col-md-6"&gt;
+                      &lt;div class="copyright"&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                     
+                     &lt;div class="col-md-6"&gt; 
+                      &lt; class="socialicons"&gt;
+                      &lt;li&gt;------ &lt;/li&gt;
+                          .......
+                          
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                 &lt;/div&gt;
+               &lt;/div&gt;
+            &lt;/footer&gt;
+           </pre>
+          </div>
+    </section>
+    
+    <section id="tab16">
+    	<div class="navi-tabs__content">
+            
+            <h4>What's included</h4>
+            <p>Once you download the template, you can see a folder with several files and sub folders. You can read description of some important files in continue.</p>
+
+            <div class="file-tree">
+              
+              <ul>
+                  <ul>
+                    <li class="is-folder open">
+                      <ul>
+                            <li class="is-file">Bootstrap.min.css<i> Minified version of all required <code>bootstrap</code> files</i></li>
+                            <li class="is-file">font-awesome.min.css<i> Minified version of all required <code>font-awesome / Glyphicons</code> files</i></li>
+                            <li class="is-file">owl.carousel.css<i> Minified version of all required <code>Owl Slider</code> files</i></li>
+                            <li class="is-file">animate.min.css<i> Minified version of all required<code>Animation</code> file</i></li>
+                            <li class="is-file">bootsnav.css<i> Minified version of all required<code>Main Nav-bar</code> file</i></li>
+                            <li class="is-file">setting.css<i> Minified version of all required<code>Revolution Slider</code> file</i></li>
+                            <li class="is-file">hero_slider.css<i>All custom coding in this file<code>Hero Slider</code> file</i></li>
+                            <li class="is-file">product-tab.css<i> Minified version of all required <code>Tabs</code> files</i></li>
+                            <li class="is-file">reset.css<i> Minified version of all required <code>Reset css</code> files</i></li>
+                            <li class="is-file">owl.transitions.css<i> Minified version of all required<code>Animation</code> file</i></li>
+                            <li class="is-file">jquery.fancybox.css<i> Minified version of all required<code>fancybox</code> file</i></li>
+                            <li class="is-file">style.css<i>All custom coding in this file<code>custom coding</code> file</i></li>
+                        </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="is-folder">fonts<i></i>
+                    	<ul>
+                            <li class="is-file">FontAwesome<i> http://fortawesome.github.io/Font-Awesome</i></li>
+                            <li class="is-file">Open Sans<i> https://fonts.google.com/specimen/Open+Sans?selection.family=Open+Sans</i></li>
+                            <li class="is-file">Raleway<i> https://fonts.google.com/?query=raleway&selection.family=Raleway</i></li>
+                      	</ul>
+                    </li>
+                    <li class="is-folder">Images
+                    	<ul>
+                            <li class="is-file">JPG / PNG<i>  All Images demo images and replace all images with your original images</i></li>
+                      	</ul>
+                    </li>
+                    <li class="is-folder open">
+                      js
+                      <ul>
+                        <li class="is-file">bootstrap.min.js<i> bootstrap3+ version of all required Javascript files</i></li>
+                        <li class="is-file">jquery.2.2.3.min.js<i> jquery version of all required jquery files</i></li>
+                        <li class="is-file">owl.carousel.min.js<i> Minified version of all required slider Javascript files</i></li>
+                        <li class="is-file">jquery.counterup.js<i> Minified version of all required Counter Javascript files</i></li>
+                        <li class="is-file">gmaps.js<i> Minified version of all required Maping Javascript files</i></li>
+                        <li class="is-file">jquery.themepunch.revolution.min.js.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">jquery.themepunch.revolution.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">jquery.themepunch.tools.min.j<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">revolution.extension.layeranimation.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">revolution.extension.navigation.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">revolution.extension.parallax.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">revolution.extension.slideanims.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">revolution.extension.video.min.js<i> Minified version of all required Revolution Slider Javascript files</i></li>
+                        <li class="is-file">custom.js<i> Minified version of all required custom Javascript files</i></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+            </div>
+
+            <p>We just included layouts files for your start point. 
+            You should choose one of those and start customizing components such as navbar, banner, sidebar and footer to make a starter file for your documentation. 
+            You can access to all of the available files in "Documentation" or "src" folder.
+            </p>
+
+          </div>
+    </section>
+    
+    <section id="tab19">
+    	<div class="navi-tabs__content">
+            <h4>CSS</h4>
+            <p>Once you download the template, you can see a folder with several files and sub folders. You can read description of some important files in continue.</p>
+ 				
+                 <ul>
+                    <li class="is-file">Bootstrap.min.css<i>  <code>http://getbootstrap.com</code></i></li>
+                    <li class="is-file">font-awesome.min.css<i> <code>http://fortawesome.github.io/Font-Awesome</code></i></li>
+                    <li class="is-file">owl.carousel.css<i> <code>http://www.owlcarousel.owlgraphic.com</code></i></li>
+                    <li class="is-file">animate.min.css<i> <code>https://daneden.github.io/animate.css</code></i></li>
+                    <li class="is-file">bootsnav.css<i> <code>http://www.jqueryrain.com/?J_ndwmn6</code></i></li>
+                    <li class="is-file">settings.css<i> <code>https://revolution.themepunch.com/free-slider-exchange</code></i></li>
+                  </ul>
+          </div>
+    </section>
+    <section id="tab20">
+    	<div class="navi-tabs__content" id="tab1-2">
+            <h4>js</h4>
+            <p>Once you download the template, you can see a folder with several files and sub folders. You can read description of some important files in continue.</p>
+            
+            <ul>
+                <li class="is-file">jquery-2.1.4.js<i><code> https://jquery.com</code></i></li>
+                <li class="is-file">bootstrap.min.js<i><code> http://getbootstrap.com</code></i></li>
+                <li class="is-file">owl.carousel.min.js<i><code>http://www.owlcarousel.owlgraphic.com</code></i></li>
+                <li class="is-file">jquery.fancybox.js<i><code>  http://fancybox.net</code></i></li>
+                <li class="is-file">bootsnav.js<i><code>http://www.jqueryrain.com/?J_ndwmn6</code></i></li>
+                <li class="is-file">jquery.counterup.js<i><code>https://github.com/bfintal/Counter-Up</code></i></li>
+                <li class="is-file">gmaps.js<i><code>https://hpneo.github.io/gmaps</code></i></li>
+                <li class="is-file">jquery.themepunch<i><code> https://revolution.themepunch.com/free-slider-exchange</code></i></li>
+          </ul>
+          
+          </div>
+          
+    </section>
+    <section id="tab21">
+    	<div class="navi-tabs__content" id="tab1-2">
+            <h4>Images</h4>
+            <p>Once you download the template, you can see a folder with several files and sub folders. You can read description of some important files in continue.</p>
+            
+            <ul>
+              <li class="is-file"><i><code>http://www.freeimages.com/</code></i></li>
+              <li class="is-file"><i><code>https://www.rakenapp.com/</code></i></li>
+              <li class="is-file"><i><code>https://www.credibly.com</code></i></li>
+            </ul>
+            
+          </div>
+          <h4>Note:</h4><p>Preview images are not included in the download package.</p>
+    </section>
+    
+  </article>
+  <!-- END Main content --> 
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>Copyright & copy; 2018. All right reserved</p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- END Footer --> 
+
+<!-- Scripts --> 
+<script src="js/jquery-2.1.4.js"></script> 
+<script src="js/scriptbreaker-multiple-accordion-1.js"></script> 
+<script language="JavaScript">
+
+$(document).ready(function() {
+	$(".topnav").accordion({
+		accordion:false,
+		speed: 500,
+		closedSign: '[+]',
+		openedSign: '[-]'
+	});
+	
+	/* Smooth-Scroll */
+	  $(".scroll").click(function(event){
+		  
+		  event.preventDefault();
+		  $('html,body').animate({scrollTop:$(this.hash).offset().top}, 700);
+	  });
+});
+/**************** Scroll Button *************************/
+	  var offset =650;
+	  var duration = 300;
+	  $(window).scroll(function() {
+		  if ($(this).scrollTop() > offset) {
+			  $('.back-to-top').fadeIn(200);
+		  } else {
+			  $('.back-to-top').fadeOut(200);
+		  }
+	  });
+	  $('.back-to-top').on("click",function(event) {
+		  event.preventDefault();
+		  $('html, body').animate({scrollTop: 0}, 500);
+		  return false;
+	  });
+</script>
+</body>
+</html>
