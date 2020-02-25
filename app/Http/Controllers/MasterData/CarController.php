@@ -167,6 +167,7 @@ $ex =Extra::all();
 
 public function getYear(Request $request){
 $car = Car::where('vin', $request->vin )->first();
+
 if($car){
 $vin = $car->vin;
 }
@@ -295,31 +296,12 @@ $carName = $car->name();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      }catch(Exception $e){
-            $messageError = "Someting is worng: ".$e->getMessage();
+            $messageError = "Someting is worng :(  (: ".$e->getMessage();
             \Session::flash('error',$messageError);
-            return response()->json(['error' => $messageError,'msj' => 'hola']);
+            return response()->json(['error' => $messageError,
+              'msj' => 'hola error_log(message)',
+              'dato' > '43e232']);
         }
 
 
@@ -476,7 +458,7 @@ try{
         return view('app.cars.create');
    
     }catch(Exception $e){
-            $messageError = "Someting is worng: ".$e->getMessage();
+            $messageError = "Someting is worng /: ".$e->getMessage();
             \Session::flash('error',$messageError);
             return \Redirect::back()->withInput()->withErrors($messageError);
         }
@@ -505,12 +487,12 @@ if($request->name)
         $car->customer_id = $customer->id;
         $car->save();
 
-        $message ='The car '.$request->year.' '.$request->make.' '.$request->model. ' was added!';
+        $message =' yes The car '.$request->year.' '.$request->make.' '.$request->model. ' was added!';
         \Session::flash('message',$message);
         return redirect()->route('car.index');  
 
   }catch(Exception $e){
-            $messageError = "Someting is worng: ".$e->getMessage();
+            $messageError = "Someting is war: ".$e->getMessage();
             \Session::flash('error',$messageError);
             return \Redirect::back()->withInput()->withErrors($messageError);
     }
@@ -527,7 +509,7 @@ else{
         $car->save();
 
        }catch(Exception $e){
-            $messageError = "Someting is worng: ".$e->getMessage();
+            $messageError = "Someting is wer: ".$e->getMessage();
             \Session::flash('error',$messageError);
             return \Redirect::back()->withInput()->withErrors($messageError);
       }

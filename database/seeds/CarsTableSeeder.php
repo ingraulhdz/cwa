@@ -9,7 +9,7 @@ class CarsTableSeeder extends Seeder
      public function run(Faker $faker)
     {
 
-factory(App\Models\Car::class,300)->create();
+factory(App\Models\Car::class,3)->create();
 
 
 /*        DB::table('cars')->insert([

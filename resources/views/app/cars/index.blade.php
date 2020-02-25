@@ -219,7 +219,7 @@ success: function(data){
 
 },error: function(data){
   swal({
-    title: ' Something was wrong',
+    title: ' Something was wrongd',
     type: 'error'
   });
 }});

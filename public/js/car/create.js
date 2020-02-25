@@ -63,6 +63,9 @@ var m = ($('#make').val());
 //'extras':extras
 		  			},
 		success: function(data){
+
+			clearCreateFormCar();
+			console.log('Car added.....')
 		  swal(
 		  {
 			  position: 'top-end',
@@ -71,6 +74,8 @@ var m = ($('#make').val());
 			  showConfirmButton: false,
 			  timer: 1500
 		  });
+
+
 //<span class="badge badge-pill badge-warning"><i class="fa fa-exclamation-triangle"></i> Not Asigned!</span>
 // <td class="td-options-{{$car->id}}">
 //		  	"<a href='#' class='btn btn-sm btn-ready' id='show-modal' data-id='"+data.car.id+"'><i class='fa fa-check'></i></a></td>"+
@@ -92,7 +97,8 @@ if(data.employee){
 "<a href='#' data-id='"+data.car.id+"' class='btn btn-sm btn-success ready' id=''><i class='fa fa-check'></i></a>"+
 		  	"</tr>");
 
- 
+ $("#create_vin").val("");
+
      $('#create-blade').hide();
      $("#car_found").hide();
      $("#car_found_link").hide();
@@ -157,6 +163,7 @@ var popo = null;
 	$('#create_color').val('');
 	$('#create_note').val('');
 	$('#create_price').val('');
+	$('#create_vin').val('');
                                                  
 	$('#create-blade').hide();
 
@@ -166,27 +173,22 @@ var popo = null;
 
             error:function(data)
             {
-                console.log("ERR...");
+
+                console.log("ERROR  car not saved...");
                 console.log(data.responseJSON.message);
-                console.log(data.mjs);
-                 swal(
-		  {
-			  position: 'top-end',
-			  type: 'error',
-			  title: 'someting is wrong...',
-			  showConfirmButton: true,
-			  timer: 2000
-		  });
+                console.log(data.dato);
+    //              swal(
+		  // {
+			 //  position: 'top-end',
+			 //  type: 'error',
+			 //  title: 'someting is wrongzx...',
+			 //  showConfirmButton: false,
+			 //  timer: 1500
+		  // });
                  	$('#modal').modal('show');
 
                 }
 	});
-
-
-
-
-
-
 
 
 
@@ -197,8 +199,13 @@ var popo = null;
 
 function clearCreateFormCar(){
  
- 
- $('#create_vin').val("");
+ console.log( 'valor del vin antes');
+ console.log( $('#create_vin').val());
+ $('#create_vin').val(null);
+  console.log( 'valor del vin despues');
+ console.log( $('#create_vin').val());
+
+ $('#price').val(110);
  $('#create_vin').attr("class", "form-control form-control-sm form-control-success ");
                             $('#create_vin').parent().parent().attr("class", "form-group");
                             $('#create_vin').parent().children('small').hide();                           

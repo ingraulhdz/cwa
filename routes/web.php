@@ -64,6 +64,7 @@ Route::resource('user','MasterData\UserController');
 Route::get('/getEmployee','MasterData\UserController@getEmployee');
 Route::resource('report','MasterData\ReportController');
 Route::resource('extra','MasterData\ExtraController');
+Route::resource('carro','MasterData\CarroController');
 Route::resource('expense','MasterData\ExpenseController');
 Route::resource('supply','MasterData\SupplyController');
 Route::resource('payment','MasterData\PaymentController');

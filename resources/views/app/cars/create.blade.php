@@ -363,13 +363,17 @@ function validacion(campo){
                                           '_token':$('#token').val(),
                                         },
                                         success: function (data){
-if(data.vin == vin){
+old_vin = $("#create_vin").val();
+if(data.vin == old_vin){
                                    $("#glypcn"+campo).remove();
                                    $('#'+campo).attr("class", "form-control form-control-warning");
                                    $('#'+campo).parent().parent().attr("class", "form-group has-warning text-danger has-feedback");
                                    $('#'+campo).parent().children('small').text("This Vin#  exist in our data base").attr("class","text-danger").show();
                                    $('#'+campo).parent().append("<small id='glypcn"+campo+"' class='fa fa-exclamation-triangle form-control-feedback'></small>");
                                       // $('#make').val(data.car.make).attr("disabled","true");
+                               
+ console.log( 'lanzar repetido');
+
                                   Swal.fire({
                                     type: 'error',
                                     title: 'This car exists in our database...',
@@ -377,10 +381,12 @@ if(data.vin == vin){
                                     footer: "<a href='/car/"+data.car.id+"'>See more abour this car</a>"
                                   });
 vin = 0;
-$("#create_vin").val(0);
-                                      return false; 
+$("#create_vin").val("");
+ return false; 
 
 }
+
+
 else
 {
                                   success(campo);
