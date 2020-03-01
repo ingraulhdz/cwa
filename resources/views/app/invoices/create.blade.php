@@ -11,6 +11,8 @@
 
 
 @section('sub-content')
+
+
 <form action="{{route('invoice.store')}}" method="POST">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <input type="hidden" name="due" id="due">
@@ -56,7 +58,7 @@
   </button type="submit"> 
  @else 
 
-<li class="list-group-item"> <select class="form-control form-control-sm" name="payment_id" required="true">
+<li class="list-group-item"> <select class="selectpicker show-tick form-control form-control-sm" name="payment_id" required="true">
 <option value="">Select a Payment method</option>
          @foreach(App\Models\Payment::get() as $pay)
         <option value='{{ $pay->id }}' >{{ $pay->name }}</option>
@@ -140,10 +142,12 @@
 @section('js')
     <script src="/js/demo/datatables-demo.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+
 <script>
 $(document).on('click', '#edit-car-invoice', function(e)
  { 
 e.preventDefault();
+   $('select.selectpicker').selectpicker();
 
 document.clear()
 
@@ -176,9 +180,10 @@ $(document).on('click', '.btn-update-car-invoice', function(e) {
   e.preventDefault();
   var id = $("#fid").val();
   var token = $('input[name=_token]').val();
-  var ex = $('#extras').val();
+  var ex = $('#edit_extras').val();
     var extras = JSON.stringify(ex);
-
+console.log('extras');
+console.log(extras);
   $.ajax(
   {
     type:'POST',
@@ -191,14 +196,14 @@ $(document).on('click', '.btn-update-car-invoice', function(e) {
       'year': $('#year_edit').val(),
       'vin': $('#vin_edit').val(),
       'color': $('#color_edit').val(),
-      'employee_id':$('#employee_id_edit').val(),
-      'dealer_id':$('#dealer_id_edit').val(),
-      'service_id':$('#service_id_edit').val(),
-      'body_style_id':$('#body_style_id_edit').val(),
-      'color':$('#color_edit').val(),
-      'stock':$('#stock_edit').val(),
-      'note':$('#note_edit').val(),
-      'price':$('#price_edit').val(),
+      'employee_id':$('#edit_employee_id').val(),
+      'dealer_id':$('#edit_dealer_id').val(),
+      'service_id':$('#edit_service_id').val(),
+      'body_style_id':$('#edit_body_style_id').val(),
+      'color':$('#edit_color').val(),
+      'stock':$('#edit_stock').val(),
+      'note':$('#edit_color').val(),
+      'price':$('#edit_price').val(),
       'extras':extras
 
           },
@@ -305,7 +310,6 @@ getDataInvoice();
 });
 
 function getDataInvoice(){
-
  $.ajax({
   type:'get',
   url:'/getDataInvoice',
@@ -314,6 +318,7 @@ function getDataInvoice(){
     dealer : $("#dealer_invoice").val()
   },
   success: function(data){
+
 console.log(data);
  $("#count_cars").text(data.count_cars);
  $("#duetxt").text('$ '+data.price+'.00 USD');

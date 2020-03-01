@@ -289,6 +289,7 @@ $carName = $car->name();
 'car' => $car,
 'dealer' => $car->dealer,
 'employee' => $car->employee,
+'newTotal' => Car::where('level_id',1)->count()
 ]);
 
 

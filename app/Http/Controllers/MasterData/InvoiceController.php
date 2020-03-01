@@ -296,7 +296,7 @@ return response()->json([
      public function getDataInvoice(Request $request)
     {
 
-$cars = Car::where('level_id',2)->where('dealer_id',$request->dealer);
+$cars = Car::where('level_id',3)->where('dealer_id',$request->dealer);
 $extras = $cars->sum('price_plus');
 $subtotal = $cars->sum('price');
 $total = $subtotal + $extras;

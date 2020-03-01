@@ -65,7 +65,7 @@ var m = ($('#make').val());
 		success: function(data){
 
 			clearCreateFormCar();
-			console.log('Car added.....')
+$('#arrived_cars').text(data.newTotal);
 		  swal(
 		  {
 			  position: 'top-end',

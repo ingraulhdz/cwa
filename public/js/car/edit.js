@@ -1,7 +1,7 @@
 $(document).on('click', '#edit-modal', function(e)
  { 
 e.preventDefault();
-   
+
 
 document.clear()
 
@@ -47,14 +47,14 @@ $(document).on('click', '.btn-update', function(e) {
 		  'year': $('#year_edit').val(),
 		  'vin': $('#vin_edit').val(),
 		  'color': $('#color').val(),
-		  'employee_id':$('#employee_id_edit').val(),
-		  'dealer_id':$('#dealer_id_edit').val(),
-		  'service_id':$('#service_id_edit').val(),
-		  'body_style_id':$('#body_style_id_edit').val(),
-		  'color':$('#color_edit').val(),
-		  'stock':$('#stock').val(),
-		  'note':$('#note_edit').val(),
-		  'price':$('#price_edit').val(),
+		  'employee_id':$('#edit_employee_id').val(),
+		  'dealer_id':$('#edit_dealer_id').val(),
+		  'service_id':$('#edit_service_id').val(),
+		  'body_style_id':$('#edit_body_style_id').val(),
+		  'color':$('#edit_color').val(),
+		  'stock':$('#edit_stock').val(),
+		  'note':$('#edit_note').val(),
+		  'price':$('#edit_price').val(),
 		  'extras':extras
 
 	  			},
@@ -106,14 +106,19 @@ function getCar(id){
 	},
 	success: function (data){
 		$('#modal-title').text("Edit Car: "+data.car.year +" "+ data.car.make +" "+ data.car.model);
-
+console.log(data.car);
 				$('#make_edit').val(data.car.make);
 		$('#model_edit').val(data.car.model);
 		$('#year_edit').val(data.car.year);
 		$('#vin_edit').val(data.car.vin);
-		$('#price_edit').val(data.car.price);
-		$('#color_edit').val(data.car.color);
-		$('#note_edit').val(data.car.note);
+		$('#edit_price').val(data.car.price);
+		$('#edit_stock').val(data.car.stock);
+		$('#edit_color').val(data.car.color);
+		$('#edit_note').val(data.car.note);
+		$('#edit_body_style_id').val(data.car.body_style_id);
+		$('#edit_service_id').val(data.car.service_id);
+		$('#edit_dealer_id').val(data.car.dealer_id);
+
 	$("#extras_edit option:selected").removeAttr("selected");
 
 
@@ -143,17 +148,17 @@ if(data.extras.id = valor){
 				$('#text_customer').text("DEALER");
 				$("#ctm").hide();
 				$("#dealer").show();
-				$("#dealer_id").empty();
-				$("#dealer_id").append(`<option value=${data.car.dealer_id} selected> ${data.dealer.name} </option>`);
+				$("#edit_dealer_id").empty();
+				$("#edit_dealer_id").append(`<option value=${data.car.dealer_id} selected> ${data.dealer.name} </option>`);
 
 				data.dealers.forEach(element => {
-					$("#dealer_id").append(`<option value=${element.id}> ${element.name} </option>`);
+					$("#edit_dealer_id").append(`<option value=${element.id}> ${element.name} </option>`);
 				});
 
 		}else{		
 			$("#dealer").hide();
 			$('#ctm').show();
-			$("#dealer_id").empty();
+			$("#edit_dealer_id").empty();
 			$('#text_customer').text("CUSTOMER");
 			
 			$('#ctm_name').text( data.customer.name );

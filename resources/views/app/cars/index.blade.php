@@ -13,8 +13,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><b id=""></b> New arrived</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="new_cars"></label></div>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><b id=""></b>Arrived</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="arrived_cars"></label></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -242,7 +242,7 @@ $.ajax(
     '_token':$('#token').val(),
   },
       success: function(data){
-$('#new_cars').text(data.new_cars);
+$('#arrived_cars').text(data.new_cars);
 $('#ready_cars').text(data.ready_cars);
 $('#done_cars').text(data.done_cars);
 $('#due_cars').text(data.due_cars);

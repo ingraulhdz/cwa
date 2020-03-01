@@ -17,11 +17,14 @@
 
 
 
+
+
+
 <div class="col-md-8">
  <div class="form-group">
         <label for="email" class="control-label col-xs-4">Dealer:</label>
         <div class="col-xs-5">
-            <select id="dealer_id" name="dealer_id" class="form-control form-control-sm" onchange="validacion('create_dealer_id');">
+            <select id="edit_dealer_id" name="edit_dealer_id" class="form-control form-control-sm" onchange="validacion('create_dealer_id');">
                         <option value=""  >Select a Dealer</option>
 
  @foreach(App\Models\Dealer::get() as $dealer)
@@ -40,7 +43,7 @@
    <div class="form-group ">
                         <label for="create_stock" class="control-label col-xs-4">Stock #:--</label>
                         <div class="col-xs-5">
-                            <input id="stock_edit" name="stock" type="text" class="form-control form-control-sm" placeholder="Delaer Stock#" onkeyup="validacion('create_stock');" required="true">
+                            <input id="edit_stock" name="edit_stock" type="text" class="form-control form-control-sm" placeholder="Delaer Stock#" onkeyup="validacion('create_stock');" required="true">
                             <small class="help-block"></small>
                         </div>
                     </div>
@@ -159,7 +162,7 @@
       <div class="input-group mb-2">
        
         </div>
-    <select id="service_id_edit" class="selectpicker show-tick form-control form-control-sm" data-live-search="true" name="service_id" required="true">
+    <select id="edit_service_id" class="selectpicker show-tick form-control form-control-sm" data-live-search="true" name="edit_service_id" required="true">
   <option value=''>Select service</option>
  
 
@@ -174,7 +177,7 @@
       <small for="inlineFormInputGroup">Body Style</small>
       <div class="input-group mb-2">
        
-   <select id="body_style_id_edit" class="selectpicker show-tick form-control form-control-sm" data-live-search="true"  name="body_style_id" value="{{ old('body_style_id') }}" required="true">
+   <select id="edit_body_style_id" class="selectpicker  form-control form-control-sm" data-live-search="true"  name="edit_body_style_id" value="{{ old('body_style_id') }}" required="true">
   <option value=''>Select Body Style</option>
  
 
@@ -195,7 +198,7 @@
       <small for="inlineFormInputGroup">Color</small>
       <div class="input-group mb-2">
       
-        <input type="text" class="form-control form-control-sm" id="color_edit" name="color" placeholder="Car Color" >
+        <input type="text" class="form-control form-control-sm" id="edit_color" name="edit_color" placeholder="Car Color" >
       </div>
 </div>
 
@@ -216,7 +219,7 @@
       <small for="inlineFormInputGroup">Price</small>
       <div class="input-group mb-2">
        
-        <input type="text" class="form-control form-control-sm" id="price_edit" name="price" placeholder="Price">
+        <input type="text" class="form-control form-control-sm" id="edit_price" name="edit_price" placeholder="Price">
       </div>
 </div>
 
@@ -225,7 +228,7 @@
       <div class="input-group mb-2">
         
   
-   <select id="extras_edit"  name="extras[]" class="form-control form-control-sm selectpicker "  multiple>
+   <select id="edit_extras"  name="extras[]" class="form-control form-control-sm selectpicker "  multiple>
   @foreach(App\Models\Extra::get() as $extra)
           <option value="{{$extra->id}}" class="ex_{{$extra->id}}">{{$extra->name}}</option>
   @endforeach
@@ -239,7 +242,7 @@
       <small for="inlineFormInputGroup">Note:</small>
       <div class="input-group mb-2">
        
-        <textarea type="text" class="form-control form-control-sm" id="note_" name="note" ></textarea>
+        <textarea type="text" class="form-control form-control-sm" id="edit_note" name="edit_note" ></textarea>
       </div>
 </div>
 </div>
