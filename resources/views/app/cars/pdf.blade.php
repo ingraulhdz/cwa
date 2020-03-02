@@ -13,7 +13,7 @@
  
 <div class="row">
   <div class="col-xs-4">   
-          <img  src="http://alchilerestaurant.com/images/pdflogo.png" width="150px" height="80px" >    
+          <img  src="../img/pdflogo.png" width="150px" height="80px" >    
 
   </div>
 

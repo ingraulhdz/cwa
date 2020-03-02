@@ -179,7 +179,7 @@
    <div class="col-md-3 form-group">
       <small for="inlineFormInputGroup">Price </small>
       <div class="input-group mb-2">
-        <input type="text" class="form-control form-control-sm" id="create_price" name="price" placeholder="Price" value="100" >
+        <input type="text" class="form-control form-control-sm" id="create_price" name="price" placeholder="Price"  >
       </div>
   </div>
 

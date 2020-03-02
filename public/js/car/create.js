@@ -21,6 +21,7 @@ e.preventDefault();
 	$('#modal-title').text("Add car" );
 	
 	$('#modal').modal('show');
+	$('#create_price').val(100);
 
 
 clearCreateFormCar();
@@ -98,19 +99,15 @@ if(data.employee){
 		  	"</tr>");
 
  $("#create_vin").val("");
+ $('#create-blade').hide();
+ $("#car_found").hide();
+ $("#car_found_link").hide();
+ $(".alert").hide();
 
-     $('#create-blade').hide();
-     $("#car_found").hide();
-     $("#car_found_link").hide();
-     $(".alert").hide();
-
-
-
-		  	$('#btn-modal').removeClass( "btn-create" );
-	$('#btn-modal').removeClass( "btn-success" );
-
-	$('#fa-btn-modal').removeClass( "fa-plus" );
-	$("#btn-modal").removeAttr("onclick","verificar();")
+$('#btn-modal').removeClass( "btn-create" );
+$('#btn-modal').removeClass( "btn-success" );
+$('#fa-btn-modal').removeClass( "fa-plus" );
+$("#btn-modal").removeAttr("onclick","verificar();")
 
 
 var popo = null;
@@ -162,7 +159,6 @@ var popo = null;
 	$('#create_body_style_id').val('');
 	$('#create_color').val('');
 	$('#create_note').val('');
-	$('#create_price').val('');
 	$('#create_vin').val('');
                                                  
 	$('#create-blade').hide();

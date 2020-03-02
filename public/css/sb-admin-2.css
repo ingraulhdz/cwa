@@ -11412,16 +11412,16 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("/loginlogo.jpg");
+  background: url("../img/pdflogo.png");
   background-position: center;
   background-size: auto;
    background-repeat: no-repeat;
-  background-size: 450px 250px;
+  background-size: 450px 150px;
 
 }
 
 .bg-register-image {
- background: url("/loginlogo.jpg");
+  background: url("../img/pdflogo.png");
   background-position: center;
   background-size: auto;
    background-repeat: no-repeat;
@@ -11429,7 +11429,7 @@ a:focus {
 }
 
 .bg-password-image {
- background: url("/loginlogo.jpg");
+  background: url("../img/pdflogo.png");
   background-position: center;
   background-size: auto;
    background-repeat: no-repeat;

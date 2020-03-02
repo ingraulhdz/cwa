@@ -206,8 +206,8 @@ $fecha = date("Y-m-d");
         $invoice->payment_id = null; //is not customer
         $invoice->is_paid = 0; //is not customer
         $invoice->save();
-        $cars->where('level_id',2)->where('dealer_id', $request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 3]);
-
+        $cars->where('level_id',3)->where('dealer_id', $request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
+//set each car status to 4 or Due when it has benn delivered  and invoiced but unpaid.
         }
 
         else{// if not dealer is for customer       
@@ -218,7 +218,7 @@ $fecha = date("Y-m-d");
                      $invoice->payment_id = $request->payment_id; //is not dealer
                     $invoice->save();
 
-              $cars->where('level_id',2)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
+              $cars->where('level_id',3)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
 
 
 
@@ -247,6 +247,9 @@ $fecha = date("Y-m-d");
     }
 
 
+
+
+
     public function send($id)
     {
 
@@ -268,8 +271,7 @@ $fecha = date("Y-m-d");
     {
 
 $invoice = Invoice::findOrFail($id);
-$invoice = Invoice::findOrFail($id);
-$cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->where('level_id',4)->get();
+$cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->get();
 
 
  $pdf = \PDF::loadView('app.invoices.pdf',compact('cars','invoice'));
@@ -341,6 +343,7 @@ $cars = Car::where('level_id',3)->where('dealer_id',$car->dealer_id);
     {
         try
         {
+
             $invoice = Invoice::findOrFail($id);
 
             return view('app.invoices.show', compact('invoice'));
@@ -371,14 +374,14 @@ $cars = new Car();
         $invoice->save();
 
      Car::where('invoice_id', $invoice->id)
-        ->update(['level_id' => 4]);
+        ->update(['level_id' => 5]);
 
 
 
 
 
   $message = "Someting is paid: ";
-  \Session::flash('error',$message);
+  \Session::flash('message',$message);
   return \Redirect::back()->withInput()->with($message);
 
    }

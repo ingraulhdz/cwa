@@ -119,7 +119,7 @@ console.log(data.car);
 		$('#edit_service_id').val(data.car.service_id);
 		$('#edit_dealer_id').val(data.car.dealer_id);
 
-	$("#extras_edit option:selected").removeAttr("selected");
+	$("#edit_extras option:selected").removeAttr("selected");
 
 
 

@@ -236,8 +236,8 @@ public function paid(){
         return Service::where('id',$this->service_id)->first()->cost;
     }
 
-      public function getExtra(){
-        return Extra::where('id',$this->extras)->first();
+      public function getExtras(){
+return Car_Extra::where('car_id',3);
     }
 
    

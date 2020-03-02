@@ -44,13 +44,18 @@ tr:nth-child(even) {
 
 <table class="header" border="0">
    <tr class="header">
-     <td class="header" style="text-align: left;">          <img  src="http://alchilerestaurant.com/images/pdflogo.png" width="150px" height="80px" > </td>
+     <td class="header" style="text-align: left;">         
+          <img  src="/logo2.png" width="150px" height="80px" >    
+          <img  src="/public/logo2.png" width="150px" height="80px" >    
+
+    </td>
+     
       <td class="header" cellspacing="20" cellpadding="20" > <h1>@if($invoice->dealer) {{$invoice->dealer->name}} @else {{$invoice->customer->name}} @endif</h1> </td>
       <td class="header" style="text-align: right;"> 
-         Magic Touch Services<br>
+         Pro Touch Services<br>
          455 Ogden Ave, IL  85004, US<br>
         (602) 519-0450<br>
-         magictouchservice1@gmail.com
+         customerservice@protouch.com
        </td>
     </tr>
 
@@ -68,7 +73,7 @@ tr:nth-child(even) {
               <b>
 Date: {{$invoice->created_at}}<br>
                              Invoice  #: {{$invoice->id}}<br>
-                              Total due: $ {{$invoice->due}}</b> <br>
+                              Total due: $ {{$invoice->due}} .00 USD</b> <br>
                     </td>
             </tr>
 
@@ -83,7 +88,7 @@ Date: {{$invoice->created_at}}<br>
 
 
 
-<table>
+<table style="font-size: 12px" >
   <tr>
     <th>Car</th>     
         <th>VIN #</th>
@@ -98,8 +103,11 @@ Date: {{$invoice->created_at}}<br>
                                 <td>{{$car->stock}}</td>
   <td> 
 
-@if(count($car->ex) > 0 ) <small>Total: ${{$car->totalExtras()}}.00 @foreach($car->ex as $extra)<li><small>{{$extra->name}} + ${{$extra->price}}.00</small> </li>@endforeach @else Nothing Extra @endif
-
+@if(count($car->ex) > 0 ) 
+<small>Total: ${{$car->totalExtras()}}.00 @foreach($car->ex as $extra)
+  <li  style="font-size: 9px"><small>{{$extra->name}} + ${{$extra->price}}.00</small> </li>
+@endforeach 
+@else Nothing Extra @endif
                           </td>                                 <td>{{$car->price}}</td>
             </tr>
 @endforeach

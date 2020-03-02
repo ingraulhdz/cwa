@@ -23,7 +23,8 @@ class CreateLevelsTable extends Migration
          DB::table('levels')->insert(['name' => 'Arrived', 'description' => 'Car just arrived' ]); 
          DB::table('levels')->insert(['name' => 'Ready', 'description' => 'When car is perfect done ready to deliver' ]); 
          DB::table('levels')->insert(['name' => 'Invoiced ', 'description' => 'When car is delivered, and paid is pending.' ]); 
-         DB::table('levels')->insert(['name' => 'Paid', 'description' => 'Car is paid' ]); 
+         DB::table('levels')->insert(['name' => 'Due', 'description' => 'Unpaid Car' ]);  
+            DB::table('levels')->insert(['name' => 'Paid', 'description' => 'Car is paid' ]); 
 
 
     }

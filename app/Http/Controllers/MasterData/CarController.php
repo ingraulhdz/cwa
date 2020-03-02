@@ -493,7 +493,7 @@ if($request->name)
         return redirect()->route('car.index');  
 
   }catch(Exception $e){
-            $messageError = "Someting is war: ".$e->getMessage();
+            $messageError = "Someting is wrong: ".$e->getMessage();
             \Session::flash('error',$messageError);
             return \Redirect::back()->withInput()->withErrors($messageError);
     }
@@ -510,7 +510,7 @@ else{
         $car->save();
 
        }catch(Exception $e){
-            $messageError = "Someting is wer: ".$e->getMessage();
+            $messageError = "Someting is wrong: ".$e->getMessage();
             \Session::flash('error',$messageError);
             return \Redirect::back()->withInput()->withErrors($messageError);
       }
