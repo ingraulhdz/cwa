@@ -17,7 +17,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="arrived_cars"></label></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-car fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -33,7 +33,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="ready_cars"></label></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-check fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -45,11 +45,11 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Done</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="done_cars"></label></div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Invoiced</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="invoiced_cars"></label></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-envelope fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -65,7 +65,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><label id="due_cars"></label></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                      <i class="fas fa-exclamation-triangle fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -242,9 +242,9 @@ $.ajax(
     '_token':$('#token').val(),
   },
       success: function(data){
-$('#arrived_cars').text(data.new_cars);
+$('#arrived_cars').text(data.arrived_cars);
 $('#ready_cars').text(data.ready_cars);
-$('#done_cars').text(data.done_cars);
+$('#invoiced_cars').text(data.invoiced_cars);
 $('#due_cars').text(data.due_cars);
       }
     });

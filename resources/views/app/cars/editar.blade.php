@@ -228,7 +228,7 @@
       <div class="input-group mb-2">
         
   
-   <select id="edit_extras"  name="extras[]" class="form-control form-control-sm selectpicker "  multiple>
+   <select id="edit_extras"  name="extras[]" class="form-control form-control-sm selectpicker extr"  multiple>
   @foreach(App\Models\Extra::get() as $extra)
           <option value="{{$extra->id}}" class="ex_{{$extra->id}}">{{$extra->name}}</option>
   @endforeach

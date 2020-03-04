@@ -93,11 +93,11 @@ $cars = Car::get();
 
 
 return response()->json([
-'new_cars' => $cars->where('level_id',1)->count(),
+'arrived_cars' => $cars->where('level_id',1)->count(),
 'ready_cars' => $cars->where('level_id',2)->count(),
-'done_cars' => $cars->where('level_id',3)->count(),
-'due_cars' => $cars->where('level_id','!=', 4)->count(),
-'paid_cars' => $cars->where('level_id',4)->count()
+'invoiced_cars' => $cars->where('level_id',3)->count(),
+'due_cars' => $cars->where('level_id', 4)->count(),
+'paid_cars' => $cars->where('level_id',5)->count()
 ]);
 
 }

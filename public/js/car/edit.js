@@ -24,6 +24,8 @@ var id = $(this).data('id');
 	$('#modal').addClass( "bd-example-modal-lg" );
 	$('#modal').modal('show');
 
+
+
   });
 
 
@@ -95,7 +97,6 @@ if(data.employee){
 
 
 function getCar(id){
-
  $.ajax({
 	type:'GET',
 	url:'/get-car',
@@ -105,6 +106,7 @@ function getCar(id){
 		'_token':$('#token').val(),
 	},
 	success: function (data){
+
 		$('#modal-title').text("Edit Car: "+data.car.year +" "+ data.car.make +" "+ data.car.model);
 console.log(data.car);
 				$('#make_edit').val(data.car.make);
@@ -119,28 +121,67 @@ console.log(data.car);
 		$('#edit_service_id').val(data.car.service_id);
 		$('#edit_dealer_id').val(data.car.dealer_id);
 
-	$("#edit_extras option:selected").removeAttr("selected");
+
+	    var elements = document.getElementById("edit_extras").options;
+  for(var i = 0; i < elements.length; i++){
+      if(elements[i].selected)
+	    elements[i].selected = false;
+    }
 
 
 
-if(data.extras.length > 0){
-data.extras.forEach(element => {
-var valor = $(".ex_"+element.id).val();
-if(data.extras.id = valor){
-						$('.ex_'+element.id).attr("selected","true");
+if(data.car.ex.length > 0){
+
+
+
+for(var x=0; x< data.car.ex.length; x++){
+for(var i = 0; i < elements.length; i++){
+	var element = elements[i].value;
+			var ext = data.car.ex[x].id;
+
+if( ext == element){
+	    elements[i].selected = true;
+
 
 }else{
 
-							$('.ex_'+element.id).removeAttr("selected","true");
+}
+
+
 
 }
 
-				});
-}else{	
-
-	$("#extras_edit option:selected").removeAttr("selected");
+}
 
 }
+
+
+    // for(var i = 0; i < elements.length; i++){
+    //   if(elements[i].selected)
+	   //  elements[i].selected = false;
+    // }
+
+
+
+
+// if(data.extras.length > 0){
+// data.extras.forEach(element => {
+// var valor = $(".ex_"+element.id).val();
+// if(data.extras.id = valor){
+// $('.ex_'+element.id).attr("selected","true");
+
+// }else{
+
+// $('.ex_'+element.id).removeAttr("selected","true");
+
+// }
+
+// 				});
+// }else{	
+
+// 	$("#edit_extras option:selected").removeAttr("selected");
+
+// }
 
 
 		
@@ -172,7 +213,7 @@ if(data.extras.id = valor){
 	
 
 	},error: function(data){
-		console.log('la and');
+		console.log('ERROR');
 	}
 });
 
