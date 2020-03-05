@@ -211,14 +211,14 @@ $fecha = date("Y-m-d");
         }
 
         else{// if not dealer is for customer       
-                   $id = $request->dealer_id;
+                   $id = $request->customer_id;
                  $invoice->customer_id = $request->dealer_id;
                      $invoice->dealer_id = null; //is not dealer
                      $invoice->is_paid = 1; //is not dealer
                      $invoice->payment_id = $request->payment_id; //is not dealer
                     $invoice->save();
 
-      $cars->where('level_id',3)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
+      $cars->where('level_id',3)->where('customer_id',$id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
 
 
 
@@ -298,13 +298,32 @@ return response()->json([
      public function getDataInvoice(Request $request)
     {
 
-$cars = Car::where('level_id',3)->where('dealer_id',$request->dealer);
+$cars = Car::where('level_id',3)->where('customer_id',$request->dealer)->orWhere('dealer_id', $request->dealer);
+$car=$cars->first();
+$cr='';
+
+if($car->dealer_id){
+  $cars = Car::where('level_id',3)->where('dealer_id',$request->dealer);
+
+$cr = 'dealer';
+
+}
+
+if($car->customer_id){
+$cr = 'customer';
+$cars = Car::where('level_id',3)->where('customer_id',$request->dealer);
+
+
+}
+
+
+
 $extras = $cars->sum('price_plus');
 $subtotal = $cars->sum('price');
 $total = $subtotal + $extras;
         return response()->json([ 
           'count_cars' => $cars->count(), 
-          'price' => $total,
+          'price' => $total, 'test' => $cr,
 
         ]);
 
@@ -345,8 +364,8 @@ $cars = Car::where('level_id',3)->where('dealer_id',$car->dealer_id);
         {
 
             $invoice = Invoice::findOrFail($id);
-
-            return view('app.invoices.show', compact('invoice'));
+$cars = Car::where('invoice_id',$id)->get();
+            return view('app.invoices.show', compact('invoice', 'cars'));
        
         }catch(\Exception $e){
             $messageError = "Someting is worng: ".$e->getMessage();

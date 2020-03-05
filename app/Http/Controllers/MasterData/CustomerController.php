@@ -198,10 +198,10 @@ $car = Car::findOrFail($id);
         {
             $due = $due + ($car->price) ;
         }
-        
+        $customer_id = $car->customer_id;
             $message ='The invoice was created!.';
             \Session::flash('message',$message);
- return view('app.invoices.create',compact('cars','dealer','due','dueDate','request'));
+ return view('app.invoices.create',compact('cars','dealer','due','dueDate','request','customer_id'));
 
         }catch(\Exception $e){
             $messageError = "Someting is worng: ".$e->getMessage();

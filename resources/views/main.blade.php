@@ -69,18 +69,21 @@
  
 
 @if(Session::has('message'))
-    {{ Session::get('message') }}
     <script >
 
 
 
-swal({
-  position: 'top-end',
-  type: 'success',
-  title:'{{ Session::get('message') }} ',
-  showConfirmButton: false,
-  timer: 2000
-});
+// swal({
+//   position: 'top-end',
+//   type: 'success',
+//   title:'{{ Session::get('message') }} ',
+//   showConfirmButton: false,
+//   timer: 2000
+// });
+
+
+ toastr["success"]('  {{ session('message') }}');
+
    </script>
 @endif
 @if(Session::has('error'))

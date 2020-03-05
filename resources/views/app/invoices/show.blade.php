@@ -95,7 +95,6 @@
                     <tr>
                       <th>Car</th>
                       <th>Stock</th>
-                      <th>VIN</th>
                       <th>Extras</th>
                       <th>Price</th>
                  
@@ -103,11 +102,10 @@
                   </thead>
                  
  <tbody>
-          @foreach($invoice->cars as $car)                       
+          @foreach($cars as $car)                       
                     <tr>
                          <td><a href="{{ route('car.show', $car)}}" class="text-dark" ><small>{{$car->name() }}</small></a></td>
                           <td>      {{$car->stock }}</td> 
-                          <td>      {{$car->vin }}</td> 
                           <td> 
 
 @if(count($car->ex) > 0 ) <small>Total: ${{$car->totalExtras()}}.00 @foreach($car->ex as $extra)<li><small>{{$extra->name}} + ${{$extra->price}}.00</small> </li>@endforeach @else Nothing Extra @endif

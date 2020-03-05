@@ -19,6 +19,7 @@
   <input type="hidden" name="dealer_id" id="dealer_invoice" value="{{$dealer->id}}">
   <input type="hidden" name="due_by" value="{{$dueDate}}">
   <input type="hidden" name="is_dealer" value="{{$dealer->manager}}">
+  <input type="hidden" name="customer_id" value="{{$customer_id}}">
 
 
 <div class="row">
@@ -205,7 +206,6 @@ console.log(extras);
       'note':$('#edit_color').val(),
       'price':$('#edit_price').val(),
       'extras':extras
-
           },
     success: function(data){
       swal(
@@ -323,7 +323,7 @@ console.log(data);
  $("#count_cars").text(data.count_cars);
  $("#duetxt").text('$ '+data.price+'.00 USD');
  $("#due").val(data.price);
-
+console.log(data.test);
   }
 
 
