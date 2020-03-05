@@ -3,7 +3,6 @@ $(document).on('click', '#edit-modal', function(e)
 e.preventDefault();
 
 
-document.clear()
 
 var id = $(this).data('id');
 
@@ -34,7 +33,7 @@ $(document).on('click', '.btn-update', function(e) {
 	e.preventDefault();
 	var id = $("#fid").val();
 	var token = $('input[name=_token]').val();
-	var ex = $('#extras_edit').val();
+	var ex = $('#edit_extras').val();
     var extras = JSON.stringify(ex);
 
 	$.ajax(
@@ -108,7 +107,6 @@ function getCar(id){
 	success: function (data){
 
 		$('#modal-title').text("Edit Car: "+data.car.year +" "+ data.car.make +" "+ data.car.model);
-console.log(data.car);
 				$('#make_edit').val(data.car.make);
 		$('#model_edit').val(data.car.model);
 		$('#year_edit').val(data.car.year);
@@ -123,6 +121,8 @@ console.log(data.car);
 
 
 	    var elements = document.getElementById("edit_extras").options;
+	    console.log(elements);
+	    console.log(data.car.ex);
   for(var i = 0; i < elements.length; i++){
       if(elements[i].selected)
 	    elements[i].selected = false;

@@ -163,7 +163,6 @@ $message ="customer inactive";
 
 
 public function invoice($id){
-
         try
         {
 // Car::where('id',$id)->where('is_invoice',0)
@@ -185,10 +184,12 @@ $car = Car::findOrFail($id);
             $dueDate = date ('Y-m-d' , $nuevafecha );
 
           $dealer = Customer::findOrFail( $car->customer_id);
+
          Car::where('id',$id)
-           ->update([  'level' => 2
+           ->update([  'level_id' => 3
                  ]);
-            $cars = Car::where('customer_id', $car->customer_id)->where('level',2)->get();
+
+  $cars = Car::where('customer_id', $car->customer_id)->where('level_id',3)->get();
 
 
 
@@ -198,7 +199,9 @@ $car = Car::findOrFail($id);
             $due = $due + ($car->price) ;
         }
         
-        return view('app.invoices.create',compact('cars','dealer','due','dueDate','request'));
+            $message ='The invoice was created!.';
+            \Session::flash('message',$message);
+ return view('app.invoices.create',compact('cars','dealer','due','dueDate','request'));
 
         }catch(\Exception $e){
             $messageError = "Someting is worng: ".$e->getMessage();

@@ -1,4 +1,4 @@
-@extends('app.cars.main')
+@extends('app.main')
 @section('subtitle', '/ Create')
 @section('sub-content')
 

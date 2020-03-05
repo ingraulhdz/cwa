@@ -218,7 +218,7 @@ $fecha = date("Y-m-d");
                      $invoice->payment_id = $request->payment_id; //is not dealer
                     $invoice->save();
 
-              $cars->where('level_id',3)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
+      $cars->where('level_id',3)->where('customer_id',$request->dealer_id)->update(['invoice_id' => $invoice->id, 'level_id' => 4]);
 
 
 

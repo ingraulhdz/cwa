@@ -113,6 +113,9 @@
                  
 
            <td class="td-options-{{$car->id}}">
+
+
+
                     <a href="#" class="btn btn-sm btn-info" id="show-modal" data-car="{{$car}}" data-id="{{$car->id}}" ><i class="fa fa-eye"></i></a>
 
                     <a href="#" class="btn btn-sm btn-warning" id="edit-modal"  data-id="{{$car->id}}" >
@@ -120,13 +123,26 @@
 
 
 
+
+
+                        @if($car->customer )
+ <a href="{{url('customer.invoice', $car) }}" class="btn btn-sm btn-info"><i class="fa fa-money-check-alt"></i> <small>Pay</small></a>
+
+@else
+
+
+
                     <a href="#" class="btn btn-sm btn-success ready" data-car="{{$car}}" data-id="{{$car->id}}"><i class="fa fa-check"></i></a>
 
-            <!--     @if($car->customer )
-                    <a href="{{url('customer.invoice', $car) }}" class="btn btn-sm btn-success"><i class="fa fa-money-check-alt"></i> <small>Pay</small></a>
-                @else -->
-                <!-- @endif  -->
+
+@endif
+
+       
                   </td>
+
+
+
+
                </tr>
                   @endforeach
                   </tbody>

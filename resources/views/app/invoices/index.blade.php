@@ -96,7 +96,7 @@
                       <th>Car</th>
                       <th>Detailer</th>
                       <th>Customer</th>
-                      <th>options</th>
+                      <th>Options</th>
                  
                     </tr>
                   </thead>
