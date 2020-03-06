@@ -284,7 +284,7 @@ $car = Car::findOrFail($id);
                     {
                         $due = $due + ($car->price) ;
                     }
-              $message =' Car Updated! ';
+              $message =' Car Updated x! ';
                         \Session::flash('message',$message);
 
 

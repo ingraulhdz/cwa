@@ -3,3 +3,6 @@ kmbhmqudhwkcrmfa = password for lenovo
 
 email = protouchtheautospa@gmail.com
 password = Protouch2020#
+
+MAIL_FROM_ADDRESS=micorreo@gmail.com
+MAIL_FROM_NAME=Juan

@@ -254,20 +254,21 @@ $customer_id =null;
     {
 
 
-        $invoice = Invoice::findOrFail($id);
-        
-        Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
+      
+
+try{
+
+  $invoice = Invoice::findOrFail($id);
+        $toMail = 'raulhernandezing@gmail.com';
+        Mail::to($toMail)->send(new \App\Mail\SendInvoice($invoice->id));
         $invoice->send_times= $invoice->send_times + 1;
         $invoice->save();
         $invoices = Invoice::where('is_paid',0);
         $cars = new Car();
-
+      $message ='The invoice was created and has been send to '. $toMail;
+            \Session::flash('message',$message);
         return view('app.invoices.index', compact('cars','invoices'));
 
-
-
-
-try{
 
 
   }catch(\Exception $e){

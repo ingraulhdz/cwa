@@ -73,6 +73,6 @@ $pdf = \PDF::loadView('app.invoices.pdf',compact('cars','invoice','customer'));
 
           
 
-        return $this->markdown('app.invoices.pdf')->subject('Your Invoice from Magic Touch Auto Spa')->attach(storage_path('invoices/pdf.pdf'));
+        return $this->markdown('app.invoices.pdf')->subject('Your Invoice from Pro Touch Auto Spa')->attach(storage_path('invoices/pdf.pdf'));
     }
 }
