@@ -52,7 +52,15 @@ class CreateCarsTable extends Migration
 
         });
 
-           
+        
+         DB::table('cars')->insert([
+            'make' => 'ford',
+            'model' => 'fusion',
+            'year' => '2007',
+            'vin' => '123456',
+            'price' => '150',
+            'customer_id' => '1',
+        ]);    
 
 
     }

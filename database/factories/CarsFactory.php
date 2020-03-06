@@ -29,7 +29,7 @@ timezone                              // 'Europe/Paris'
             'vin' => $faker->unique()->numerify('######'),
             'stock' => $faker->word(5),
             'employee_id' =>  $faker->numberBetween(1,10),
-            'level_id' =>  $faker->numberBetween(1 ,2),
+            'level_id' => 1,// $faker->numberBetween(1 ,2),
             'dealer_id' =>  $faker->numberBetween(1,10),
             'body_style_id' =>  $faker->numberBetween(1,2),
             'service_id' =>  1,

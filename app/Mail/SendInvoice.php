@@ -51,7 +51,7 @@ public $customer;
 
             }
 
-             $pdf = \PDF::loadView('app.invoices.pdf',compact('cars','invoice','customer'));
+$pdf = \PDF::loadView('app.invoices.pdf',compact('cars','invoice','customer'));
              $pdf->save(storage_path('invoices/pdf.pdf'));
              $this->cars = $cars;
              $this->id = $id;

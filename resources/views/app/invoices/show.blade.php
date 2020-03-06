@@ -19,7 +19,7 @@
     <li class="list-group-item"><b>Address:</b> @if($invoice->dealer) {{$invoice->dealer->address()}}  @else {{$invoice->customer->address()}} @endif</li>
     <li class="list-group-item"><b>Phone:</b> @if($invoice->dealer) {{$invoice->dealer->phone}}  @else {{$invoice->customer->phone}} @endif</li>
     <li class="list-group-item"><b>E-mail:</b> @if($invoice->dealer) {{$invoice->dealer->email}} @else {{$invoice->customer->email}} @endif </li>
-    @if($invoice->dealer)<li class="list-group-item"><b>Managedr: </b> @if($invoice->dealer) {{$invoice->dealer->manager}} @endif </li>@endif
+    @if($invoice->dealer)<li class="list-group-item"><b>Manager: </b> @if($invoice->dealer) {{$invoice->dealer->manager}} @endif </li>@endif
  <li class="list-group-item">
   <a href="{{url('invoice.print', $invoice) }}" class=" btn btn-sm btn-info" target="_blank"><i class="fa fa-print"> </i> <small>Print</small></a> 
   @if($invoice->is_paid)
@@ -102,7 +102,7 @@
                   </thead>
                  
  <tbody>
-          @foreach($cars as $car)                       
+          @foreach($invoice->cars as $car)                       
                     <tr>
                          <td><a href="{{ route('car.show', $car)}}" class="text-dark" ><small>{{$car->name() }}</small></a></td>
                           <td>      {{$car->stock }}</td> 

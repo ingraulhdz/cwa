@@ -224,7 +224,7 @@ $customer_id =null;
 
         }
 
-   //Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
+   Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
 
 
         $invoice->send_times = 1;
@@ -253,7 +253,9 @@ $customer_id =null;
     public function send($id)
     {
 
+
         $invoice = Invoice::findOrFail($id);
+        
         Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
         $invoice->send_times= $invoice->send_times + 1;
         $invoice->save();
@@ -261,6 +263,18 @@ $customer_id =null;
         $cars = new Car();
 
         return view('app.invoices.index', compact('cars','invoices'));
+
+
+
+
+try{
+
+
+  }catch(\Exception $e){
+            $messageError = "Someting is worng: ".$e->getMessage();
+            \Session::flash('error',$messageError);
+            return \Redirect::back()->withInput()->withErrors($messageError);
+        }
 
     }
 
