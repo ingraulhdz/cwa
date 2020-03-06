@@ -65,7 +65,7 @@ class InvoiceController extends Controller
 $fecha = date("Y-m-d");
             $nuevafecha = strtotime ( '+15 day' , strtotime ( $fecha ) ) ;
             $dueDate = date ('Y-m-d' , $nuevafecha );
-
+$customer_id =null;
 
         $due=0;
         foreach ($cars as $car) 
@@ -73,7 +73,7 @@ $fecha = date("Y-m-d");
             $due = $due + ($car->price) ;
         }
         
-        return view('app.invoices.create',compact('cars','dealer','due','dueDate','request'));
+        return view('app.invoices.create',compact('cars','dealer','due','dueDate','request','customer_id'));
 }
         }catch(\Exception $e){
             $messageError = "Someting is worng: ".$e->getMessage();

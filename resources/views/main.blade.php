@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
-  <title>CWA - Dashboard</title>
+  <title>CWA - Dashboard H0306 </title>
 
       @include('layout.css')
 
