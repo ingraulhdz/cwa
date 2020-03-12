@@ -35,7 +35,7 @@ timezone                              // 'Europe/Paris'
             'service_id' =>  1,
             'color' => $faker->colorName,
             'note' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-            'created_at' => $faker->dateTimeBetween($startDate = '2019-01-01 19:28:21', $endDate = '2020-02-20 19:28:21')
+            'created_at' => $faker->dateTimeBetween($startDate = '2020-03-01 19:28:21', $endDate = '2020-03-03 19:28:21')
 
                ];
 });

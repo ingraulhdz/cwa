@@ -224,7 +224,7 @@ $customer_id =null;
 
         }
 
-   Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
+   //Mail::to('raulhernandezing@gmail.com')->send(new \App\Mail\SendInvoice($invoice->id));
 
 
         $invoice->send_times = 1;
@@ -301,11 +301,19 @@ $cars= Car::orderBy('id','ASC')->where('invoice_id',$id)->get();
 
     public function getDataInvoiceIndex(Request $request)
     { 
+// return response()->json([ 
+//           'due' => Car::where('level_id', '!=', 5)->sum('price'),
+//           'invoiced' => Car::where('level_id', 3)->count(),
+//           'dealers' => Dealer::hasInvoice()->count(),
+//           'cars' => Car::where('level_id', 2)->count(),
+
+//         ]);
+
 return response()->json([ 
-          'due' => Car::where('level_id', '!=', 4)->sum('price'),
-          'invoiced' => Car::where('level_id', 3)->count(),
-          'dealers' => Dealer::hasInvoice()->count(),
-          'cars' => Car::where('level_id', 2)->count(),
+          'due' => 123,
+          'invoiced' => 4,
+          'dealers' => 2,
+          'cars' => 4,
 
         ]);
 

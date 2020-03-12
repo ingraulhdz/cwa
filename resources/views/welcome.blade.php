@@ -335,7 +335,7 @@ var ctx = document.getElementById("carsStatus");
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
-    labels: ["Ready: " + data.cars_ready, "invoiced: "+ data.cars_invoice, "News: " + data.cars_news, "cars assigned: " + data.cars_not_assigned],
+    labels: ["Ready: " + data.cars_ready, "invoiced: "+ data.cars_invoice, "Due: " + data.cars_news, "cars assigned: " + data.cars_not_assigned],
     datasets: [{
       data: [data.cars_ready, data.cars_invoice, data.cars_news, data.cars_not_assigned],
       backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e', '#1cc88a'],

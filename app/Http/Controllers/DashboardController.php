@@ -52,6 +52,8 @@ switch ($rol) {
     }
 
     public function getDataDashboard(Request $request){
+
+
 $now = new \DateTime();
 $mes = $now->format('m');
 $dia = $now->format('d');
@@ -59,13 +61,14 @@ $y = $now->format('y');
 $date = $now->format('g:ia \o\n l jS F Y');
 $now = Carbon::now();
 
-$cars=Car::where('level_id', '!=', 4)->orderBy('id', 'DESC')->get();
+$cars=Car::where('level_id', '!=', 5)->orderBy('id', 'DESC')->get();
 
 
 
 $ago = collect([]);
 foreach ($cars as $car) {
-$ago->push(['id' => $car->id, 'make' => $car->make, 'model' => $car->model, 'year' => $car->year,  'ago' => $car->created_at->addSeconds(10)->diffForHumans()]);
+//$ago->push(['id' => $car->id, 'make' => $car->make, 'model' => $car->model, 'year' => $car->year,  'ago' => $car->created_at->addSeconds(10)->diffForHumans()]);
+$ago->push(['id' => $car->id, 'make' => $car->make, 'model' => $car->model, 'year' => $car->year,  'ago' => $car->created_at]);
 }
 
 $expenses= MonthPassive::whereMonth('created_at', $mes)->first();
@@ -160,8 +163,8 @@ $cars_month = Car::whereMonth('created_at', '=', $mes)->get();
        'cars_monthly' => $cars_month->count(),
      'cars_today' => $cars_today->count(),
        'expenses' => $expenses,
-      'due' => $due = Car::where('level_id','!=', 4)->sum('price'),
-      'income' => $income = Car::where('level_id', 4)->sum('price'),
+      'due' => $due = Invoice::where('is_paid', 0)->sum('due'),
+      'income' => $income = Car::where('level_id', 5)->sum('price'),
       
       'employees' => $arrayEmployees, 
       'employeesTotal' => $employeesTotal, 
@@ -178,9 +181,22 @@ $cars_month = Car::whereMonth('created_at', '=', $mes)->get();
 		  'invoices_open' => $invoices->where('is_paid', 0)->count(),
 			'cars_ready' => $cars_month->where('level_id',2)->count(),
 			'cars_invoice' => $cars_month->where('level_id',3)->count(),
-			'cars_news' => $cars_month->where('level_id',1)->count(),
+			'cars_news' => $cars_month->where('level_id',4)->count(),
 			'cars_not_assigned' => $cars_month->where('employee_id','!=', null)->where('employee_id', null)->count(),
 		]);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
  
