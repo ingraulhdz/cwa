@@ -334,6 +334,16 @@ public function car_extras(Request $request, $id){
 
 
 
+    public function addServiceCar(Request $request)
+{   
+
+    $message ='The car ';
+        \Session::flash('message',$message);
+        return redirect()->route('car.index');  
+
+
+
+}
     public function updateCar(Request $request)
 {      
 

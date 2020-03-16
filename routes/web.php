@@ -45,6 +45,7 @@ Route::get('refreshData',['as'=>'refreshData','uses'=>'MasterData\ReportControll
 
 Route::post('ready_car',['as'=>'ready_car','uses'=>'MasterData\CarController@ready_car']);
 Route::post('update-car',['as'=>'update-car','uses'=>'MasterData\CarController@updateCar']);
+Route::post('addService-car',['as'=>'addService-car','uses'=>'MasterData\CarController@addServiceCar']);
 Route::post('create-car',['as'=>'create-car','uses'=>'MasterData\CarController@createCar']);
 Route::post('set-extras',['as'=>'set-extras','uses'=>'MasterData\CarController@setExtras']);
 Route::get('get-car',['as'=>'update-car','uses'=>'MasterData\CarController@getCar']);

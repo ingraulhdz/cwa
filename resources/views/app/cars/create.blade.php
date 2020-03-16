@@ -370,16 +370,48 @@ if(data.vin == old_vin){
                                    $('#'+campo).parent().parent().attr("class", "form-group has-warning text-danger has-feedback");
                                    $('#'+campo).parent().children('small').text("This Vin#  exist in our data base").attr("class","text-danger").show();
                                    $('#'+campo).parent().append("<small id='glypcn"+campo+"' class='fa fa-exclamation-triangle form-control-feedback'></small>");
-                                      // $('#make').val(data.car.make).attr("disabled","true");
+                                      // $('#make').val(data.car.make).attr("disabled","true");  allowOutsideClick: () => !Swal.isLoading()
+
                                
  console.log( 'lanzar repetido');
+Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.value) {
+   
+$.ajax({
+  type:'POST',
+  url:'addService-car',
+  data:{
+    '_token' :token,
+    'id': 1
+  },
+success: function(data){
+ 
 
-                                  Swal.fire({
-                                    type: 'error',
-                                    title: 'This car exists in our database...',
-                                    html: data.car.make +" "+data.car.model +" "+data.car.year +" Vin #" +data.car.vin +"<br><small> Last service:  "+ data.car.updated_at +"</small ",
-                                    footer: "<a href='/car/"+data.car.id+"'>See more abour this car</a>"
-                                  });
+},error: function(data){
+  swal({
+    title: ' Something was wrongd',
+    type: 'error'
+  });
+}});
+
+  }
+});
+
+
+
+
+
+
+
+
+
 vin = 0;
 $("#create_vin").val("");
  return false; 
